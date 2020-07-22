@@ -74,7 +74,7 @@ export class AppComponent implements OnInit {
       
         if (state) {
                    
-          this.router.navigate(['/home']);     
+          //this.router.navigate(['/home']);     
 
           if (this.platform.is('cordova')) {
             this.fcm.subscribeToTopic('general');
@@ -103,7 +103,7 @@ export class AppComponent implements OnInit {
             this.notifiacionesDesktopService.requestPermission();
           }
         } else {
-          this.router.navigate(['login']);
+          //this.router.navigate(['login']);
         }
 
        
