@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "707543111222",
+    "firebase_url": "https://ionic-app-boilerplate.firebaseio.com",
+    "project_id": "ionic-app-boilerplate",
+    "storage_bucket": "ionic-app-boilerplate.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:707543111222:android:74db78a2a2074fc123ea97",
+        "android_client_info": {
+          "package_name": "ionic.app.boilerplate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "707543111222-r07o7229ef4l9idb7j1r6i82blmr7f80.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ionic.app.boilerplate",
+            "certificate_hash": "b4f8b176fd31c750e5b8f59d49d5b56dc2c11b6a"
+          }
+        },
+        {
+          "client_id": "707543111222-bivmho664b5c1aje49rtk676vcnqv5jo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ionic.app.boilerplate",
+            "certificate_hash": "b399dac3125207c0bf7e3ef70f97a9a15abe45f3"
+          }
+        },
+        {
+          "client_id": "707543111222-rc4hi4fq35ngvunrspk56o10822sbv9l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVuWUS3mpsWQKmzIaR9aMVikHT7RpMCIg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "707543111222-rc4hi4fq35ngvunrspk56o10822sbv9l.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "707543111222-da9d9r7m4j5p00elui7s35dj4dqt09ut.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ionic.app.boilerplate"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
