@@ -55,7 +55,7 @@ export class AppComponent implements OnInit {
         this.usuario = new Usuario;
     }) 
 
-    console.log("NgOnInit")
+    //console.log("NgOnInit")
     this.notifiacionesDesktopService.init().then(data=>{
       console.log("OK")
     },error=>{

@@ -35,6 +35,15 @@ const routes: Routes = [
     loadChildren: () => import('./cambiar-contrasena/cambiar-contrasena.module').then( m => m.CambiarContrasenaPageModule),
     canActivate: [AuthGuardService]
   },
+  {
+    path: 'form-registro-propietario',
+    loadChildren: () => import('./form-registro-propietario/form-registro-propietario.module')
+    .then( m => m.FormRegistroPropietarioPageModule)
+  },
+  {
+    path: 'form-registro',
+    loadChildren: () => import('./form-registro/form-registro.module').then( m => m.FormRegistroPageModule)
+  },
   
   
 ];
