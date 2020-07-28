@@ -61,7 +61,7 @@ export class FormRegistroPage implements OnInit {
     if(this.f.accepted.value != true){
       this.presentToast("debe aceptar los términos y condiciones");
     }
-    alert('registrado');
+    
     /*
     this.authService.registrar(this.datosForm.value).subscribe(response =>{
       var resp:any = response;

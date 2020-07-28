@@ -14,21 +14,17 @@
       <h4 class="h41">Identidad</h4>
       <!--nombre-->
       <ion-item [class.invalid]="submitted && !datosForm.controls.first_name.valid">
-        <ion-label position="floating">Nombre</ion-label>
-        
-        <ion-input name="nombre" type="text" formControlName="first_name" required></ion-input>
-        
+        <ion-label position="floating">Nombre</ion-label>       
+        <ion-input name="nombre" type="text" formControlName="first_name" required></ion-input>       
         <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
             <div *ngIf="f.first_name.errors.required"><h5>Ingresa un Nombre</h5></div>
         </div> 
       </ion-item>
       
       <!--apellido-->
-      <ion-item>
+      <ion-item [class.invalid]="submitted && !datosForm.controls.last_name.valid">
         <ion-label position="floating">Apellido</ion-label>
-        <div [class.invalid]="submitted && !datosForm.controls.last_name.valid">
-          <ion-input name="apellido" type="text" formControlName="last_name" required></ion-input>
-        </div>
+        <ion-input name="apellido" type="text" formControlName="last_name" required></ion-input>
         <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
             <div *ngIf="f.last_name.errors.required"><h5>Ingresa un Apellido</h5></div>
         </div>
@@ -38,33 +34,27 @@
     <div class="div100">
       <h4 class="h41">Contacto</h4>
       <!--email-->
-      <ion-item>
+      <ion-item [class.invalid]="submitted && !datosForm.controls.email.valid">
         <ion-label position="floating">E-mail</ion-label>
-        <div [class.invalid]="submitted && !datosForm.controls.email.valid">
-          <ion-input name="titulo" type="text" formControlName="email" required></ion-input>
-        </div>
+        <ion-input name="titulo" type="text" formControlName="email" required></ion-input>
         <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
             <div *ngIf="f.email.errors.required"><h5>Ingresa un Email</h5></div>
         </div>
       </ion-item>
       
       <!--telefono-->
-      <ion-item>
+      <ion-item [class.invalid]="submitted && !datosForm.controls.phone.valid">
         <ion-label position="floating">Teléfono fijo (sólo números)</ion-label>
-        <div [class.invalid]="submitted && !datosForm.controls.phone.valid">
-          <ion-input name="phone" type="tel" formControlName="phone" required></ion-input>
-        </div>
+        <ion-input name="phone" type="tel" formControlName="phone" required></ion-input>
         <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
             <div *ngIf="f.phone.errors.required"><h5>El número de celular no es válido</h5></div>
         </div>
       </ion-item>  
       
       <!--celular--> 
-      <ion-item>
+      <ion-item [class.invalid]="submitted && !datosForm.controls.mobile.valid">
         <ion-label position="floating">Teléfono celular (sólo números)</ion-label>
-        <div [class.invalid]="submitted && !datosForm.controls.mobile.valid">
-          <ion-input name="mobile" type="tel" formControlName="mobile" required></ion-input>
-        </div>
+        <ion-input name="mobile" type="tel" formControlName="mobile" required></ion-input>
         <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
             <div *ngIf="f.mobile.errors.required"><h5>El número de celular no es válido</h5></div>
         </div>
