@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>form-registro-sucursal</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="datosForm">
+    
+    <div class="div1">
+      <h2>Registrá una Sucursal</h2>    
+    </div>         
+    <div class="div100">
+      <h4 class="h41">Identificación</h4>
+      <!--nombre sucursal-->
+      <ion-item [class.invalid]="submitted && !datosForm.controls.identificacion.valid">
+        <ion-label position="floating">Nombre sucursal</ion-label>       
+        <ion-input name="nombre" type="text" formControlName="identificacion" required></ion-input>       
+        <div *ngIf="submitted && f.identificacion.errors" class="invalid-feedback">
+            <div *ngIf="f.identificacion.errors.required"><h5>Ingresa un nombre para esta sucursal</h5></div>
+        </div> 
+      </ion-item>
+      
+      <!--descripcion-->
+      <ion-item [class.invalid]="submitted && !datosForm.controls.descripcion.valid">
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-input name="apellido" type="text" formControlName="descripcion" required></ion-input>
+        <div *ngIf="submitted && f.descripcion.errors" class="invalid-feedback">
+            <div *ngIf="f.descripcion.errors.required"><h5>Ingresa una Descripción breve de esta sucursal</h5></div>
+        </div>
+      </ion-item>
+
+      <!--ubicacion-->
+      <ion-item [class.invalid]="submitted && !datosForm.controls.ubicacion.valid">
+        <ion-label position="floating">Ubicación</ion-label>
+        <ion-input name="apellido" type="text" formControlName="ubicacion" required></ion-input>
+        <div *ngIf="submitted && f.ubicacion.errors" class="invalid-feedback">
+            <div *ngIf="f.ubicacion.errors.required"><h5>Ingresa una ubicación para esta sucursal</h5></div>
+        </div>
+      </ion-item>
+    </div>
+    <div class="div100">
+      <h4 class="h41">Contacto</h4>      
+      <!--telefono-->
+      <ion-item [class.invalid]="submitted && !datosForm.controls.phone.valid">
+        <ion-label position="floating">Teléfono fijo (sólo números sin guiones)</ion-label>
+        <ion-input name="phone" type="number" formControlName="phone" required></ion-input>
+        <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+            <div *ngIf="f.phone.errors.required"><h5>El número de teléfono no es válido</h5></div>
+        </div>
+      </ion-item>  
+      
+      <!--celular--> 
+      <ion-item [class.invalid]="submitted && !datosForm.controls.mobile.valid">
+        <ion-label position="floating">Teléfono celular (sólo números sin guiones)</ion-label>
+        <ion-input name="mobile" type="number" formControlName="mobile" required></ion-input>
+        <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+            <div *ngIf="f.mobile.errors.required"><h5>El número de celular no es válido</h5></div>
+        </div>
+      </ion-item>  
+    </div >
+    <p></p> <!--solo para crear espacio-->
+    <ion-button type="submit" expand="block" (click)="registrar()">Guardar</ion-button>  
+  </form>
+</ion-content>

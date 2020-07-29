@@ -44,6 +44,18 @@ const routes: Routes = [
     path: 'form-registro',
     loadChildren: () => import('./form-registro/form-registro.module').then( m => m.FormRegistroPageModule)
   },
+  {
+    path: 'form-registro-cliente',
+    loadChildren: () => import('./form-registro-cliente/form-registro-cliente.module').then( m => m.FormRegistroClientePageModule)
+  },
+  {
+    path: 'form-registro-propiedad',
+    loadChildren: () => import('./form-registro-propiedad/form-registro-propiedad.module').then( m => m.FormRegistroPropiedadPageModule)
+  },
+  {
+    path: 'form-registro-sucursal',
+    loadChildren: () => import('./form-registro-sucursal/form-registro-sucursal.module').then( m => m.FormRegistroSucursalPageModule)
+  },
   
   
 ];

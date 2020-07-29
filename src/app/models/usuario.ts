@@ -1,9 +1,10 @@
 export class Usuario{
-    public id ="";
-    public email ="";
-    public foto ="";
-    public nombre ="";
-    public token ="";
+    public id = "";
+    public email = "";
+    public foto = "";
+    public nombre = "";
+    public token = "";
+    public address = "";
 	constructor(
 		
 		){

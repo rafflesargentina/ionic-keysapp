@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { IonicModule } from '@ionic/angular';
+import { InputUbicacionComponent } from '../Components/input-ubicacion/input-ubicacion.component';
 
 
 @NgModule({
@@ -15,10 +16,10 @@ imports: [
     ImageCropperModule,
     ],
   declarations: [
-    SeleccionarImagenComponent
+    SeleccionarImagenComponent,
   ],
   exports: [
-    SeleccionarImagenComponent
+    SeleccionarImagenComponent,
   ]
 })
 export class ComponentsModule {}

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>form-registro-propietario</ion-title>
+    <ion-title>form-registro-cliente</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,7 +8,7 @@
   <form [formGroup]="datosForm">
     
     <div class="div1">
-      <h2>Registrá un Propietario</h2>    
+      <h2>Registrá un Cliente</h2>    
     </div>         
     <div class="div100">
       <h4 class="h41">Identidad</h4>
@@ -47,7 +47,7 @@
         <ion-label position="floating">Teléfono fijo (sólo números sin guiones)</ion-label>
         <ion-input name="phone" type="number" formControlName="phone" required></ion-input>
         <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
-            <div *ngIf="f.phone.errors.required"><h5>El número de teléfono no es válido</h5></div>
+            <div *ngIf="f.phone.errors.required"><h5>El número de celular no es válido</h5></div>
         </div>
       </ion-item>  
       
