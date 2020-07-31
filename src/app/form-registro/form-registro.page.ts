@@ -21,8 +21,6 @@ export class FormRegistroPage implements OnInit {
   // Variable para cambiar dinamicamente el tipo de Input que por defecto sera 'password'
   iconpassword1  =  'eye-off';
   iconpassword2  =  'eye-off';
-  //private colorBtnAgente = 'medium';
-  //private colorBtnCliente = 'dark';
 
   datosForm: FormGroup;
   submitted = false;
@@ -59,7 +57,7 @@ export class FormRegistroPage implements OnInit {
       this.presentToast("La contraseña y su confirmación no coinciden");
     }
     if(this.f.accepted.value != true){
-      this.presentToast("debe aceptar los términos y condiciones");
+      this.presentToast("Debe leer y aceptar los términos y condiciones");
     }
     
     /*
@@ -101,7 +99,7 @@ export class FormRegistroPage implements OnInit {
     toast.present();
   }
 
-  segmentChanged(event){
+  /*segmentChanged(event){
     const registro: string = event.target.value;
     if(registro == 'Soy Agente inmobiliario'){
       this.tipoRegistro = 'agente';
@@ -110,7 +108,7 @@ export class FormRegistroPage implements OnInit {
       this.tipoRegistro = 'cliente';
       this.datosForm.removeControl('cuit');
     } 
-  }
+  }*/
 
   // Esta función verifica si el tipo de campo es texto lo cambia a password y viceversa, 
   //además verificara el icono si es 'eye-off' lo cambiara a 'eye' y viceversa
@@ -126,7 +124,7 @@ export class FormRegistroPage implements OnInit {
     this.passwordEyeConfirm.el.setFocus();
   }
 
-  onChange(){
+  /*onChange(){
     
-  }
+  }*/
 }

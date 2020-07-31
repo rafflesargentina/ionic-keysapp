@@ -112,8 +112,7 @@ export class FormRegistroPropiedadPage implements OnInit {
     toast.present();
   }
 
-  setValue(newValue : any){
-    
+  setValue(newValue: any){
     this.user.address = newValue.address;
     //console.log(this.user.address);
   }
@@ -128,9 +127,9 @@ export class FormRegistroPropiedadPage implements OnInit {
 
   cambioOperacion(event){
     this.operations = ['Venta', 'Alquiler', 'Alquiler temporario'];
-    console.log('cambioOperacion', event.target.value);
+    //console.log('cambioOperacion', event.target.value);
     this.included_operations.push(event.target.value);
-    console.log('operaciones incluidas', this.included_operations);
+    //console.log('operaciones incluidas', this.included_operations);
     if(event.target.value.includes(' Venta ')){
       console.log('operacion_venta', this.sale_operation);
       this.sale_operation = true;
@@ -159,11 +158,11 @@ export class FormRegistroPropiedadPage implements OnInit {
       this.datosForm.removeControl('temp_rental_price');
       this.datosForm.removeControl('temp_rental_currency');
     }
-    console.log('datosForm', this.datosForm);
+    //console.log('datosForm', this.datosForm);
   }
 
   op_inc(event){
-    console.log('op_inc', event.target.value);
+    //console.log('op_inc', event.target.value);
     if(this.included_operations.includes('Venta')){
       this.sale_operation = true;
     }

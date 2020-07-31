@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { Usuario } from '../models/usuario';
 
 @Component({
   selector: 'app-form-registro-sucursal',
@@ -12,18 +13,18 @@ export class FormRegistroSucursalPage implements OnInit {
 
   datosForm: FormGroup;
   submitted = false;
-  
+  public user: Usuario;
+
   constructor(
     private formBuilder: FormBuilder,
     //private authService: AuthenticationRafflesService,
     private toastCtrl:ToastController,
     private router:Router
   ) { 
-
+    this.user = new Usuario();
     this.datosForm = this.formBuilder.group({
-
-      identificacion: ['', Validators.required],
-      descripcion: ['', Validators.required],
+      identification: ['', Validators.required],
+      description: ['', Validators.required],
       address: ['', Validators.required],
       phone: ['', Validators.required],
       mobile: ['', Validators.required]  
@@ -76,6 +77,11 @@ export class FormRegistroSucursalPage implements OnInit {
       duration: 3000
     });
     toast.present();
+  }
+
+  setValue(newValue: any){
+    this.user.address = newValue.address;
+    //console.log(this.user.address);
   }
 
 }
