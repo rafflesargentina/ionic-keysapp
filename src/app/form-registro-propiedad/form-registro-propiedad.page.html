@@ -10,148 +10,151 @@
     <h1 >Registrá una Propiedad</h1>
     <h4 >En dos simples pasos</h4>
   </div>
-  <ion-segment value="primero" (ionChange)="segmentChanged($event)">
-    <ion-segment-button value="primero">
+  <ion-segment value="first" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="first">
       <ion-label>Primer Paso</ion-label>
     </ion-segment-button>
-    <ion-segment-button value="segundo">
+    <ion-segment-button value="second">
       <ion-label>Segundo Paso</ion-label>
     </ion-segment-button>
   </ion-segment>
   <!--formulario-->
   <form [formGroup]="datosForm">
     
-    <div *ngIf="segmento == 'primero'">
+    <div *ngIf="segment == 'first'">
       <!--propietario-->
-      <ion-item [class.invalid]="submitted && !datosForm.controls.propietario.valid">
+      <ion-item [class.invalid]="submitted && !datosForm.controls.owner.valid">
         <ion-label position="floating">Propietario*</ion-label> 
         <ion-select ok-text="Ok" cancel-text="Cancel" expand="full"
-            formControlName="propietario" required>
-          <ion-select-option *ngFor="let propietario of propietarios" >
-            {{propietario.first_name}} {{propietario.last_name}}
+            formControlName="owner" required>
+          <ion-select-option *ngFor="let owner of owners" >
+            {{ owner.first_name }} {{ owner.last_name }}
           </ion-select-option>
         </ion-select>
-        <div *ngIf="submitted && f.propietario.errors" class="invalid-feedback">
-          <div *ngIf="f.propietario.errors.required"><h5>Ingresa un Propietario</h5></div>
+        <div *ngIf="submitted && f.owner.errors" class="invalid-feedback">
+          <div *ngIf="f.owner.errors.required"><h5>Ingresa un Propietario</h5></div>
         </div>
       </ion-item>
-      <!--dirección-->
-      <ion-item [class.invalid]="submitted && !datosForm.controls.direccion.valid">
-        <ion-label position="floating">Dirección*</ion-label>       
-        <ion-input name="nombre" type="text" formControlName="direccion" required></ion-input>       
-        <div *ngIf="submitted && f.direccion.errors" class="invalid-feedback">
-            <div *ngIf="f.direccion.errors.required"><h5>Ingresa una Dirección</h5></div>
-        </div> 
+      <ion-item [class.invalid]="submitted && !datosForm.controls.address.valid">
+        <app-input-ubicacion     
+          [address] = "user.address"          
+          [country]="user.address.country"
+          [street_number]="user.address.street_number"
+          [street_name] ="user.address.street_name" 
+          [locality]="user.address.locality"
+          [state] ="user.address.state"
+          [door_number]="user.address.door_number"  
+          [floor_number]="user.address.floor_number" 
+          [latitud]="user.address.lat" 
+          [longitud]="user.address.lng"  
+          [location]="user.address.location"  
+          (onSelectValue)='setValue($event)' >
+        </app-input-ubicacion> 
       </ion-item>
-      <app-input-ubicacion     
-        [address] = "user.address"
-        [country]="user.address.country"
-        [street_number]="user.address.street_number"
-        [street_name] ="user.address.street_name" 
-        [locality]="user.address.locality"
-        [state] ="user.address.state"
-        [door_number]="user.address.door_number"  
-        [floor_number]="user.address.floor_number" 
-        [latitud]="user.address.lat" 
-        [longitud]="user.address.lng"  
-        [location]="user.address.location"  
-        (onSelectValue)='setValue($event)'>
-      </app-input-ubicacion>
+      <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+        <div *ngIf="f.address.errors.required"><h5>Ingresa una Dirección</h5></div>
+      </div>
     </div >
-    <div *ngIf="segmento == 'segundo'">
+    <div *ngIf="segment == 'second'">
       <!--operaciones-->
-      <ion-item [class.invalid]="submitted && !datosForm.controls.operaciones.valid">
+      <ion-item [class.invalid]="submitted && !datosForm.controls.operations.valid" >
         <ion-label position="floating">Operaciones</ion-label> 
         <ion-select ok-text="Ok" cancel-text="Cancel" multiple="true" expand="full"
-            formControlName="operaciones" required (ionChange)="cambioOperacion($event)">
-          <ion-select-option *ngFor="let operacion of operaciones" >
-            {{operacion}}
+            formControlName="operations" required (ionChange)="cambioOperacion($event)">
+          <ion-select-option *ngFor="let operation of operations">
+            {{operation}}
           </ion-select-option>
         </ion-select>
-        <div *ngIf="submitted && f.operaciones.errors" class="invalid-feedback">
-          <div *ngIf="f.operaciones.errors.required"><h5>Ingresa al menos una Operación</h5></div>
+        <div *ngIf="submitted && f.operations.errors" class="invalid-feedback">
+          <div *ngIf="f.operations.errors.required"><h5>Ingresa al menos una Operación</h5></div>
         </div>
       </ion-item>
       <p></p><!--es sólo para crear espacio-->
       <!--precio de venta-->        
-      <ion-item [class.invalid]="submitted && !datosForm.controls.precio_venta.valid" 
-                *ngIf="operacion_venta==true">
+      <ion-item [class.invalid]="submitted && !datosForm.controls.sale_price.valid" 
+                *ngIf="sale_operation==true">
         <ion-label position="floating">Precio de Venta</ion-label>       
-        <ion-input name="nombre" type="number" formControlName="precio_venta" 
+        <ion-input name="sale_price" type="number" formControlName="sale_price" 
             clearOnEdit="true" required></ion-input> 
-        <div *ngIf="submitted && f.precio_venta.errors" class="invalid-feedback">
-            <div *ngIf="f.precio_venta.errors.required"><h5>Ingresa un precio de venta</h5></div>
+        <div *ngIf="submitted && f.sale_price.errors" class="invalid-feedback">
+            <div *ngIf="f.sale_price.errors.required"><h5>Ingresa un precio de venta</h5></div>
         </div>
       </ion-item>
       <!--moneda de venta-->
-      <ion-item [class.invalid]="submitted && !datosForm.controls.moneda_venta.valid"
-                *ngIf="operacion_venta==true" >
+      <ion-item [class.invalid]="submitted && !datosForm.controls.sale_currency.valid"
+                *ngIf="sale_operation==true" >
         <ion-label position="floating">Moneda</ion-label> 
         <ion-select ok-text="Ok" cancel-text="Cancel" expand="full"
-            formControlName="moneda_venta" required>
-          <ion-select-option *ngFor="let moneda of ['U$S', '$']">
-            {{moneda}}
+            formControlName="sale_currency" required>
+          <ion-select-option *ngFor="let currency of currencies">
+            {{ currency }}
           </ion-select-option>
         </ion-select>
-        <div *ngIf="submitted && f.moneda_venta.errors" class="invalid-feedback">
-          <div *ngIf="f.moneda_venta.errors.required"><h5>Ingresa un tipo de Moneda</h5></div>
+        <div *ngIf="submitted && f.sale_currency.errors" class="invalid-feedback">
+          <div *ngIf="f.sale_currency.errors.required"><h5>Ingresa un tipo de Moneda</h5></div>
         </div>
       </ion-item>
       <!--precio de alquiler-->
-      <ion-item [class.invalid]="submitted && !datosForm.controls.precio_alquiler.valid" 
-                *ngIf="operacion_alquiler">
+      <ion-item [class.invalid]="submitted && !datosForm.controls.rental_price.valid" 
+                *ngIf="rental_operation">
         <ion-label position="floating">Precio de Alquiler</ion-label> 
-        <ion-input name="nombre" type="number" formControlName="precio_alquiler" 
+        <ion-input name="rental_price" type="number" formControlName="rental_price" 
                     clearOnEdit="true" required></ion-input>             
-        <div *ngIf="submitted && f.precio_alquiler.errors" class="invalid-feedback">
-            <div *ngIf="f.precio_alquiler.errors.required"><h5>Ingresa un precio de alquiler</h5></div>
+        <div *ngIf="submitted && f.rental_price.errors" class="invalid-feedback">
+            <div *ngIf="f.rental_price.errors.required"><h5>Ingresa un precio de alquiler</h5></div>
         </div> 
       </ion-item>
       <!--moneda de alquiler-->
-      <ion-item [class.invalid]="submitted && !datosForm.controls.moneda_alquiler.valid"
-                *ngIf="operacion_alquiler">
+      <ion-item [class.invalid]="submitted && !datosForm.controls.rental_currency.valid"
+                *ngIf="rental_operation">
         <ion-label position="floating">Moneda</ion-label> 
         <ion-select ok-text="Ok" cancel-text="Cancel" expand="full"
-            formControlName="moneda_alquiler" required>
-          <ion-select-option *ngFor="let moneda of ['U$S', '$']">
-            {{moneda}}
+            formControlName="rental_currency" required>
+          <ion-select-option *ngFor="let currency of currencies">
+            {{ currency }}
           </ion-select-option>
         </ion-select>
-        <div *ngIf="submitted && f.moneda_alquiler.errors" class="invalid-feedback">
-          <div *ngIf="f.moneda_alquiler.errors.required"><h5>Ingresa un tipo de Moneda</h5></div>
+        <div *ngIf="submitted && f.rental_currency.errors" class="invalid-feedback">
+          <div *ngIf="f.rental_currency.errors.required"><h5>Ingresa un tipo de Moneda</h5></div>
         </div>
       </ion-item>
       <!--precio de alquiler temporario-->
-      <ion-item [class.invalid]="submitted && !datosForm.controls.precio_alquiler.valid" 
-                *ngIf="operacion_alquiler_temp">
+      <ion-item [class.invalid]="submitted && !datosForm.controls.temp_rental_price.valid" 
+                *ngIf="temp_rental_operation">
         <ion-label position="floating">Precio de Alquiler temporario</ion-label> 
-        <ion-input name="nombre" type="number" formControlName="precio_alquiler_temp" required></ion-input>             
-        <div *ngIf="submitted && f.precio_alquiler.errors" class="invalid-feedback">
-            <div *ngIf="f.precio_alquiler.errors.required"><h5>Ingresa un precio de alquiler</h5></div>
+        <ion-input name="temp_rental_price" type="number" formControlName="temp_rental_price" required></ion-input>             
+        <div *ngIf="submitted && f.temp_rental_price.errors" class="invalid-feedback">
+            <div *ngIf="f.temp_rental_price.errors.required">
+              <h5>Ingresa un precio de alquiler</h5>
+            </div>
         </div> 
       </ion-item>
       <!--moneda de alquiler temporario-->
-      <ion-item [class.invalid]="submitted && !datosForm.controls.moneda_alquiler_temp.valid"
-                *ngIf="operacion_alquiler_temp">
+      <ion-item [class.invalid]="submitted && !datosForm.controls.temp_rental_currency.valid"
+                *ngIf="temp_rental_operation">
         <ion-label position="floating">Moneda</ion-label> 
         <ion-select ok-text="Ok" cancel-text="Cancel" expand="full"
-            formControlName="moneda_alquiler_temp" required>
-          <ion-select-option *ngFor="let moneda of ['U$S', '$']">
-            {{moneda}}
+            formControlName="temp_rental_currency" required>
+          <ion-select-option *ngFor="let currency of currencies">
+            {{ currency }}
           </ion-select-option>
         </ion-select>
-        <div *ngIf="submitted && f.moneda_alquiler_temp.errors" class="invalid-feedback">
-          <div *ngIf="f.moneda_alquiler_temp.errors.required"><h5>Ingresa un tipo de Moneda</h5></div>
+        <div *ngIf="submitted && f.temp_rental_currency.errors" class="invalid-feedback">
+          <div *ngIf="f.temp_rental_currency.errors.required">
+            <h5>Ingresa un tipo de Moneda</h5>
+          </div>
         </div>
       </ion-item>
       <p></p><!--es sólo para crear espacio-->
       <!--descripcion-->
-      <ion-item [class.invalid]="submitted && !datosForm.controls.descripcion.valid">
+      <ion-item [class.invalid]="submitted && !datosForm.controls.description.valid">
         <ion-label position="floating">Descripción</ion-label>
-        <ion-textarea placeholder="Ingrese una descripción de la propiedad"
-                      formControlName="descripcion" required></ion-textarea>
-        <div *ngIf="submitted && f.descripcion.errors" class="invalid-feedback">
-          <div *ngIf="f.descripcion.errors.required"><h5>Ingresa una descripción de la propiedad</h5></div>
+        <ion-textarea placeholder="Ingrese una descripción de la propiedad" name="description"
+                      formControlName="description" required></ion-textarea>
+        <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+          <div *ngIf="f.description.errors.required">
+            <h5>Ingresa una descripción de la propiedad</h5>
+          </div>
         </div>
       </ion-item>
       <p></p><!--es sólo para crear espacio-->

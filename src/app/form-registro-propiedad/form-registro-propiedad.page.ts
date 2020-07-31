@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Usuario } from '../models/usuario';
@@ -11,7 +11,7 @@ import { Propietario } from '../models/propietario';
   styleUrls: ['./form-registro-propiedad.page.scss'],
 })
 export class FormRegistroPropiedadPage implements OnInit {
-  propietarios: Propietario[] = [
+  owners: Propietario[] = [
     { first_name: 'Juan José ',
       last_name: 'Paso', 
       email: '',
@@ -35,13 +35,14 @@ export class FormRegistroPropiedadPage implements OnInit {
       email: '',
       phone: '',
       mobile: ''
-    }];
-  segmento: string = 'primero';
-  operaciones: string[] = ['Venta', 'Alquiler', 'Alquiler temporario'];
-  operaciones_incluidas: string[] = [];
-  operacion_venta: boolean = false;
-  operacion_alquiler: boolean = false;
-  operacion_alquiler_temp: boolean = false;
+    } ];
+  currencies: string[] = ['Dólares U$S', 'Pesos $'];
+  segment: string = 'first';
+  operations: string[] = ['Venta', 'Alquiler', 'Alquiler temporario'];
+  included_operations: string[] = [];
+  sale_operation: boolean = false;
+  rental_operation: boolean = false;
+  temp_rental_operation: boolean = false;
 
   datosForm: FormGroup;
   submitted = false;
@@ -55,17 +56,10 @@ export class FormRegistroPropiedadPage implements OnInit {
   ) { 
     this.user = new Usuario();
     this.datosForm = this.formBuilder.group({
-      propietario: ['', Validators.required],
-      direccion : ['', Validators.required],
+      owner: ['', Validators.required],
       address: ['', Validators.required],
-      precio_venta: ['', Validators.required],
-      moneda_venta: ['', Validators.required],
-      precio_alquiler: ['', Validators.required],
-      moneda_alquiler: ['', Validators.required],
-      precio_alquiler_temp: ['', Validators.required],
-      moneda_alquiler_temp: ['', Validators.required],
-      operaciones: ['', Validators.required],
-      descripcion: ['', Validators.required]
+      operations: ['', Validators.required],
+      description: ['', Validators.required]
     });
     
   }
@@ -121,50 +115,64 @@ export class FormRegistroPropiedadPage implements OnInit {
   setValue(newValue : any){
     
     this.user.address = newValue.address;
-    console.log(this.user.address);
+    //console.log(this.user.address);
   }
 
   segmentChanged(ev: any) {
-    if(this.segmento == 'primero'){
-      this.segmento = 'segundo';
+    if(this.segment == 'first'){
+      this.segment = 'second';
     }else{
-      this.segmento = 'primero';
+      this.segment = 'first';
     }
   }
 
   cambioOperacion(event){
-    this. operaciones = ['Venta', 'Alquiler', 'Alquiler temporario'];
+    this.operations = ['Venta', 'Alquiler', 'Alquiler temporario'];
     console.log('cambioOperacion', event.target.value);
-    this.operaciones_incluidas.push(event.target.value);
-    console.log('operaciones incluidas', this.operaciones_incluidas);
+    this.included_operations.push(event.target.value);
+    console.log('operaciones incluidas', this.included_operations);
     if(event.target.value.includes(' Venta ')){
-      console.log('operacion_venta', this.operacion_venta);
-      this.operacion_venta = true;
+      console.log('operacion_venta', this.sale_operation);
+      this.sale_operation = true;
+      this.datosForm.addControl('sale_price', new FormControl('', Validators.required));
+      this.datosForm.addControl('sale_currency', new FormControl('', Validators.required));
     }else{
-      this.operacion_venta = false;
+      this.sale_operation = false;
+      this.datosForm.removeControl('sale_price');
+      this.datosForm.removeControl('sale_currency');
     }
     if(event.target.value.includes(' Alquiler ')){
-      this.operacion_alquiler = true;
+      this.rental_operation = true;
+      this.datosForm.addControl('rental_price', new FormControl('', Validators.required));
+      this.datosForm.addControl('rental_currency', new FormControl('', Validators.required));
     }else{
-      this.operacion_alquiler = false;
+      this.rental_operation = false;
+      this.datosForm.removeControl('rental_price');
+      this.datosForm.removeControl('rental_currency');
     }
     if(event.target.value.includes(' Alquiler temporario ')){
-      this.operacion_alquiler_temp = true;
+      this.temp_rental_operation = true;
+      this.datosForm.addControl('temp_rental_price', new FormControl('', Validators.required));
+      this.datosForm.addControl('temp_rental_currency', new FormControl('', Validators.required));
     }else{
-      this.operacion_alquiler_temp = false;
+      this.temp_rental_operation = false;
+      this.datosForm.removeControl('temp_rental_price');
+      this.datosForm.removeControl('temp_rental_currency');
     }
+    console.log('datosForm', this.datosForm);
   }
 
   op_inc(event){
     console.log('op_inc', event.target.value);
-    if(this.operaciones_incluidas.includes('Venta')){
-      this.operacion_venta = true;
+    if(this.included_operations.includes('Venta')){
+      this.sale_operation = true;
     }
-    if(this.operaciones_incluidas.includes('Alquiler')){
-      this.operacion_alquiler = true;
+    if(this.included_operations.includes('Alquiler')){
+      this.rental_operation = true;
     }
-    if(this.operaciones_incluidas.includes('Alquiler Temporario')){
-      this.operacion_alquiler_temp = true;
+    if(this.included_operations.includes('Alquiler Temporario')){
+      this.temp_rental_operation = true;
     }
   }
+
 }

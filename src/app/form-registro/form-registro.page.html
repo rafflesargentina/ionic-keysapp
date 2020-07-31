@@ -8,18 +8,14 @@
   <ion-img src="../../assets/shapes.svg"></ion-img>
   <h1>Regístrate en nuestra app</h1>
   <p>Para comenzar debes seleccionar la opción que mejor describe tu actividad profesional</p>
-  
-  <ion-buttons >
-    <ion-button slot="start" color="medium" fill="solid" [color]="colorBtnAgente"
-    (click)="cambioRegistro('agente')" #btnAgente >
-      Soy Agente inmobiliario
-    </ion-button>
-    <ion-button slot="end" color="medium" fill="solid" [color]="colorBtnCliente"
-    (click)="cambioRegistro('cliente')" #btnCliente >
-      Soy Cliente
-    </ion-button>
-  </ion-buttons>
-
+  <ion-segment value="Soy Cliente" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="Soy Agente inmobiliario">
+      <ion-label>Soy Agente Inmobiliario</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="Soy Cliente">
+      <ion-label>Soy Cliente</ion-label>
+    </ion-segment-button>
+  </ion-segment>
   <p>Y completa los siguientes campos mandatorios.</p>
 
   <form [formGroup]="datosForm">

@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { FormRegistroSucursalPageRoutingModule } from './form-registro-sucursal-routing.module';
 
 import { FormRegistroSucursalPage } from './form-registro-sucursal.page';
+import { InputUbicacionComponent } from '../Components/input-ubicacion/input-ubicacion.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { FormRegistroSucursalPage } from './form-registro-sucursal.page';
     IonicModule,
     FormRegistroSucursalPageRoutingModule
   ],
-  declarations: [FormRegistroSucursalPage]
+  declarations: [FormRegistroSucursalPage, InputUbicacionComponent]
 })
 export class FormRegistroSucursalPageModule {}

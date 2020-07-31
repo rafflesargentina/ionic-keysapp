@@ -24,7 +24,7 @@ export class FormRegistroSucursalPage implements OnInit {
 
       identificacion: ['', Validators.required],
       descripcion: ['', Validators.required],
-      ubicacion: ['', Validators.required],
+      address: ['', Validators.required],
       phone: ['', Validators.required],
       mobile: ['', Validators.required]  
     });

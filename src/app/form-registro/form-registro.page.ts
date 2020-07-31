@@ -21,8 +21,8 @@ export class FormRegistroPage implements OnInit {
   // Variable para cambiar dinamicamente el tipo de Input que por defecto sera 'password'
   iconpassword1  =  'eye-off';
   iconpassword2  =  'eye-off';
-  private colorBtnAgente = 'medium';
-  private colorBtnCliente = 'dark';
+  //private colorBtnAgente = 'medium';
+  //private colorBtnCliente = 'dark';
 
   datosForm: FormGroup;
   submitted = false;
@@ -101,17 +101,15 @@ export class FormRegistroPage implements OnInit {
     toast.present();
   }
 
-  cambioRegistro(registro: string){
-    this.tipoRegistro = registro;
-    if(this.tipoRegistro == 'agente'){
+  segmentChanged(event){
+    const registro: string = event.target.value;
+    if(registro == 'Soy Agente inmobiliario'){
+      this.tipoRegistro = 'agente';
       this.datosForm.addControl('cuit', new FormControl('', Validators.required));
-      this.colorBtnAgente = 'dark';
-      this.colorBtnCliente = 'medium';
     }else{
+      this.tipoRegistro = 'cliente';
       this.datosForm.removeControl('cuit');
-      this.colorBtnAgente = 'medium';
-      this.colorBtnCliente = 'dark';
-    }
+    } 
   }
 
   // Esta función verifica si el tipo de campo es texto lo cambia a password y viceversa, 
