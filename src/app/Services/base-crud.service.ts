@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { GLOBAL } from './global/globals';
 import { UsuarioService } from './usuario.service';
 import { ToastService } from './toast.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BaseCRUDService {
 
-  private url = "";
+  public url = "";
   private endpoint = "";
 
   private httpHeaders:HttpHeaders;
@@ -21,13 +21,13 @@ export class BaseCRUDService {
   };
   
   constructor(
-    private httpClient: HttpClient,
-    private usuarioService:UsuarioService,
-    private toastService:ToastService
+    public httpClient: HttpClient,
+    public usuarioService:UsuarioService,
+    public toastService:ToastService
   ) {
-    this.url = GLOBAL.url; 
+    this.url = environment.url;
   }
-
+ 
   setAuthorizationToken(){
     this.httpHeaders = new HttpHeaders({
       'Content-Type' : 'application/json',

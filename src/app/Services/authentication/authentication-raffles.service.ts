@@ -1,5 +1,4 @@
 import { Injectable, NgZone } from '@angular/core';
-import { GLOBAL } from '../global/globals';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
@@ -11,6 +10,7 @@ import { Router } from '@angular/router';
 import { UsuarioService } from '../usuario.service';
 import { Usuario } from '../../models/usuario';
 import { ToastService } from '../toast.service';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -42,10 +42,10 @@ export class AuthenticationRafflesService {
     private usuarioService:UsuarioService
   ) { 
 
-    this.url = GLOBAL.url;
+    this.url = environment.url;
     this.platform.ready().then(() => {
       this.checkToken();
-    });
+    }); 
   }
 
   checkToken() {    
