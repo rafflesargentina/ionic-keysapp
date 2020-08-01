@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>form-registro-sucursal</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="datosForm">
+    
+    <div class="div1">
+      <h2>Registrá una Sucursal</h2>    
+    </div>         
+    <div class="div100">
+      <h4 class="h41">Identificación</h4>
+      <!--nombre sucursal-->
+      <ion-item [class.invalid]="submitted && !datosForm.controls.identification.valid">
+        <ion-label position="floating">Nombre sucursal</ion-label>       
+        <ion-input name="identification" type="text" formControlName="identification" required></ion-input>       
+        <div *ngIf="submitted && f.identification.errors" class="invalid-feedback">
+            <div *ngIf="f.identification.errors.required">
+              <h5>Ingresa un nombre para esta sucursal</h5>
+            </div>
+        </div> 
+      </ion-item>
+      
+      <!--descripcion-->
+      <ion-item [class.invalid]="submitted && !datosForm.controls.description.valid">
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-input name="description" type="text" formControlName="description" required></ion-input>
+        <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+            <div *ngIf="f.description.errors.required">
+              <h5>Ingresa una Descripción breve de esta sucursal</h5>
+            </div>
+        </div>
+      </ion-item>
+
+      <!--ubicacion-->
+      <ion-item [class.invalid]="submitted && !datosForm.controls.address.valid">
+        <app-input-ubicacion     
+          [address] = "user.address"
+          [country]="user.address.country"
+          [street_number]="user.address.street_number"
+          [street_name] ="user.address.street_name" 
+          [locality]="user.address.locality"
+          [state] ="user.address.state"
+          [door_number]="user.address.door_number"  
+          [floor_number]="user.address.floor_number" 
+          [latitud]="user.address.lat" 
+          [longitud]="user.address.lng"  
+          [location]="user.address.location"  
+          (onSelectValue)='setValue($event)'>
+        </app-input-ubicacion>
+        <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+            <div *ngIf="f.address.errors.required">
+              <h5>Ingresa una ubicación para esta sucursal</h5>
+            </div>
+        </div>
+      </ion-item>
+    </div>
+    <div class="div100">
+      <h4 class="h41">Contacto</h4>      
+      <!--telefono-->
+      <ion-item [class.invalid]="submitted && !datosForm.controls.phone.valid">
+        <ion-label position="floating">Teléfono fijo (sólo números sin guiones)</ion-label>
+        <ion-input name="phone" type="number" formControlName="phone" required></ion-input>
+        <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+            <div *ngIf="f.phone.errors.required">
+              <h5>El número de teléfono no es válido</h5>
+            </div>
+        </div>
+      </ion-item>
+      
+      <!--celular--> 
+      <ion-item [class.invalid]="submitted && !datosForm.controls.mobile.valid">
+        <ion-label position="floating">Teléfono celular (sólo números sin guiones)</ion-label>
+        <ion-input name="mobile" type="number" formControlName="mobile" required></ion-input>
+        <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+            <div *ngIf="f.mobile.errors.required">
+              <h5>El número de celular no es válido</h5>
+            </div>
+        </div>
+      </ion-item>  
+    </div >
+    <p></p> <!--solo para crear espacio-->
+    <ion-button type="submit" expand="block" (click)="registrar()">Guardar</ion-button>  
+  </form>
+</ion-content>
