@@ -12,6 +12,10 @@ import { Usuario } from '../../models/usuario';
 import { ToastService } from '../toast.service';
 import { environment } from 'src/environments/environment';
 
+/*---------------------------------
+Responsabilidad: 
+
+-----------------------------------*/
 
 @Injectable({
   providedIn: 'root'
@@ -116,7 +120,7 @@ export class AuthenticationRafflesService {
     return this.httpClient.post(this.url+'password-request',body, options)
   }
 
-  public registrar(form){
+  public registrar(data){
     this.httpHeaders = new HttpHeaders({
       'Content-Type' : 'application/json',
       'Accept': 'application/json',
@@ -127,8 +131,7 @@ export class AuthenticationRafflesService {
       headers: this.httpHeaders
     };
 
-    let body= JSON.stringify(form);   
-    
+    let body= data;       
 
     return this.httpClient.post(this.url+'register',body, options).subscribe(response =>{
       var resp:any = response;
