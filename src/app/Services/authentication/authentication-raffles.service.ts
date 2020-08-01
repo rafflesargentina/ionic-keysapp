@@ -1,5 +1,4 @@
 import { Injectable, NgZone } from '@angular/core';
-import { GLOBAL } from '../global/globals';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
@@ -11,7 +10,12 @@ import { Router } from '@angular/router';
 import { UsuarioService } from '../usuario.service';
 import { Usuario } from '../../models/usuario';
 import { ToastService } from '../toast.service';
+import { environment } from 'src/environments/environment';
 
+/*---------------------------------
+Responsabilidad: 
+
+-----------------------------------*/
 
 @Injectable({
   providedIn: 'root'
@@ -42,10 +46,10 @@ export class AuthenticationRafflesService {
     private usuarioService:UsuarioService
   ) { 
 
-    this.url = GLOBAL.url;
+    this.url = environment.url;
     this.platform.ready().then(() => {
       this.checkToken();
-    });
+    }); 
   }
 
   checkToken() {    
@@ -116,7 +120,7 @@ export class AuthenticationRafflesService {
     return this.httpClient.post(this.url+'password-request',body, options)
   }
 
-  public registrar(form){
+  public registrar(data){
     this.httpHeaders = new HttpHeaders({
       'Content-Type' : 'application/json',
       'Accept': 'application/json',
@@ -127,8 +131,7 @@ export class AuthenticationRafflesService {
       headers: this.httpHeaders
     };
 
-    let body= JSON.stringify(form);   
-    
+    let body= data;       
 
     return this.httpClient.post(this.url+'register',body, options).subscribe(response =>{
       var resp:any = response;

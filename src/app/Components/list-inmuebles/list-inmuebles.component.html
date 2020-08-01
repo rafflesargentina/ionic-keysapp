@@ -1,0 +1,19 @@
+<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+  <ion-refresher-content></ion-refresher-content>
+</ion-refresher>
+
+<ion-item>
+  <ion-input type="text" placeholder="Buscar" [(ngModel)]="palabraFiltro"></ion-input>
+  <button clear slot="end" (click)="buscar()">Buscar</button>
+</ion-item>
+
+<div *ngFor="let item of items">
+  <app-card-inmueble [item]="item" (clickCard)="seleccionar(item)"></app-card-inmueble>               
+</div>
+
+<ion-infinite-scroll threshold="100px" (ionInfinite)="buscar($event)">
+  <ion-infinite-scroll-content
+    loadingSpinner="bubbles"
+    loadingText="Cargando más inmuebles...">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
