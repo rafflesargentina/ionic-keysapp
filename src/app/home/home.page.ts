@@ -13,7 +13,7 @@ export class HomePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.inmuebleService.create({}).subscribe(data=>{
+    this.inmuebleService.read().subscribe(data=>{
       
     })
   }

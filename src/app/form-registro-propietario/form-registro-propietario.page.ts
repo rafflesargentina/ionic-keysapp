@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { Evento } from '../models/evento';
 
 @Component({
   selector: 'app-form-registro-propietario',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class FormRegistroPropietarioPage implements OnInit {
 
+  
   datosForm: FormGroup;
   submitted = false;
   
@@ -19,6 +21,8 @@ export class FormRegistroPropietarioPage implements OnInit {
     private toastCtrl:ToastController,
     private router:Router
   ) { 
+
+  
 
     this.datosForm = this.formBuilder.group({
 
@@ -39,6 +43,9 @@ export class FormRegistroPropietarioPage implements OnInit {
   registrar(){
 
     this.submitted = true;
+
+   
+
     /*
     this.authService.registrar(this.datosForm.value).subscribe(response =>{
       var resp:any = response;

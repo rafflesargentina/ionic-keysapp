@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AuthenticationRafflesService } from '../Services/authentication/authentication-raffles.service';
 
 @Component({
   selector: 'app-form-registro',
@@ -28,7 +29,8 @@ export class FormRegistroPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private toastCtrl: ToastController,
-    private router: Router
+    private router: Router,
+    private authServiceRaffless:AuthenticationRafflesService
   ) { 
 
     this.datosForm = this.formBuilder.group({
@@ -58,36 +60,9 @@ export class FormRegistroPage implements OnInit {
     }
     if(this.f.accepted.value != true){
       this.presentToast("Debe leer y aceptar los términos y condiciones");
-    }
+    }   
     
-    /*
-    this.authService.registrar(this.datosForm.value).subscribe(response =>{
-      var resp:any = response;
-      console.log(resp.data.data);
-      localStorage.setItem('token',resp.data.token);
-      localStorage.setItem('user',JSON.stringify(resp.data.user));
-      this.authService.authenticationState.next(true);
-      this.router.navigate(['/tabs/home']);
-    },err=>{
-      if(err.status == 0){
-        //this.presentAlert("No fue posible conectarnos a nuestros servidores, por favor verifica tu conexión");
-        this.presentToast("No fue posible conectarnos a nuestros servidores, por favor verifica tu conexión");
-      }
-      //email: test_user_53751378@testuser.com
-      //password: Yobs2020
-      console.log(err);
-      let mensaje: string = '';
-      Object.keys(err.error.errors).forEach((key,index)=> {
-        // key: the name of the object key
-        // index: the ordinal position of the key within the object 
-        //this.authService.authenticationState.next(false);
-        console.log(err.error.errors[key][0])
-        mensaje += err.error.errors[key][0] + '\n';
-        //this.presentToast(err.error.errors[key][0]);
-        //this.presentAlert(err.error.errors[key][0]);
-      });
-      this.presentToast(mensaje);
-    })*/
+    this.authServiceRaffless.registrar(this.datosForm.value);
   }
 
   async presentToast(mensaje: string) {

@@ -26,17 +26,17 @@ export class BaseCRUDService {
     public toastService:ToastService
   ) {
     this.url = environment.url;
-  }
- 
-  setAuthorizationToken(){
+  } 
+
+  setEndpoint(endpoint){
     this.httpHeaders = new HttpHeaders({
       'Content-Type' : 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer ' + this.usuarioService.getToken()
     });
-  }
-
-  setEndpoint(endpoint){
+    this.options = {
+      headers: this.httpHeaders
+    };
     this.endpoint = endpoint;
   }
 
@@ -48,6 +48,7 @@ export class BaseCRUDService {
   }
 
   read(){    
+    console.log(this.options);
     return this.httpClient.get(this.url+this.endpoint, this.options) .pipe(
       retry(0),
       catchError(this.handleError)
@@ -73,7 +74,7 @@ export class BaseCRUDService {
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
-      alert(error.error)
+      
       console.error(
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);

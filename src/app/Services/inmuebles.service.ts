@@ -17,6 +17,6 @@ export class InmueblesService extends BaseCRUDService{
   ) { 
     
     super(httpClient,usuarioService,toastService);
-    this.setEndpoint("inmuebles");
+    this.setEndpoint("properties");
   }
 }
