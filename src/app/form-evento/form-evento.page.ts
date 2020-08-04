@@ -54,6 +54,7 @@ export class FormEventoPage implements OnInit {
   }
 
   ionViewDidEnter(){
+
     let usuario_id = this.usuarioService.getUID();
     
     if(this.route.snapshot.params.id){
@@ -80,8 +81,6 @@ export class FormEventoPage implements OnInit {
   eliminarCliente(){
     this.clienteAsignado = new Usuario();
   }
-
-
 
   async seleccionarInmueble(){
     const modal = await this.modalController.create({

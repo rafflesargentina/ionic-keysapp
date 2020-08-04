@@ -58,7 +58,7 @@ export class BaseCRUDService {
     );
   }
 
-  read(){    
+  all(){    
     console.log(this.options);
     return this.httpClient.get(this.getEndpoint(), this.options) .pipe(
       retry(0),

@@ -7,16 +7,7 @@
 <ion-content class="ion-padding">  
   <ion-img src="../../assets/shapes.svg"></ion-img>
   <h1>Regístrate en nuestra app</h1>
-  <!--<p>Para comenzar debes seleccionar la opción que mejor describe tu actividad profesional</p>
-  <ion-segment value="Soy Cliente" (ionChange)="segmentChanged($event)">
-    <ion-segment-button value="Soy Agente inmobiliario">
-      <ion-label>Soy Agente Inmobiliario</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="Soy Cliente">
-      <ion-label>Soy Cliente</ion-label>
-    </ion-segment-button>
-  </ion-segment>
-  <p>Y completa los siguientes campos mandatorios.</p>-->
+  
 
   <form [formGroup]="datosForm">
     <!--nombre-->
@@ -45,19 +36,7 @@
       <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
           <div *ngIf="f.email.errors.required"><h5>Ingresa un Email</h5></div>
       </div>
-    </ion-item>
-    
-    <!--cuit-->
-    <!--<ion-item *ngIf="tipoRegistro=='agente'" (ionChange)="onChange($event)"
-              [class.invalid]="submitted && !datosForm.controls.cuit.valid">
-      <ion-label position="floating">N° de matrícula/CUIT</ion-label>
-      <ion-input name="cuit" type="text" formControlName="cuit" 
-                    required ></ion-input>
-      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-          <div *ngIf="f.email.errors.required"><h5>Ingresa número de matrícula o CUIT</h5></div>
-      </div>
-    </ion-item>-->
-
+    </ion-item> 
     <!--contraseña-->
     <ion-item [class.invalid]="submitted && !datosForm.controls.password.valid">
       <ion-label position="floating">Contraseña</ion-label>
@@ -69,8 +48,7 @@
       <button  item-end  class="btn_eye_icon"  (click)="togglePasswordMode()">
         <ion-icon  [name]="iconpassword1"></ion-icon>
       </button>
-    </ion-item>
-    
+    </ion-item>    
     <!--repetir contraseña-->
     <ion-item [class.invalid]="submitted && !datosForm.controls.password_confirmation.valid">
       <ion-label position="floating">Confirmación de contraseña</ion-label>
@@ -96,11 +74,7 @@
     </div>
     
     <ion-button type="submit" expand="block" (click)="registrar()">Registrarme</ion-button>
-    <!--
-    <div class="div100">
-      <h4 class="h41">Olvidaste tu contraseña? <a routerLink="/form-recuperar" style="float: right;">recuperala</a> </h4>     
-    </div>   
-    -->
+   
     <div class="div100">
       <a routerLink="/login" class="text-center">Ya tengo cuenta creada</a>   
     </div>      

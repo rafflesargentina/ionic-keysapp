@@ -9,13 +9,11 @@ import { InmueblesService } from '../Services/inmuebles.service';
 export class HomePage implements OnInit {
 
   constructor(
-    private inmuebleService:InmueblesService
+    
   ) { }
 
   ngOnInit() {
-    this.inmuebleService.read().subscribe(data=>{
-      
-    })
+    
   }
 
 }

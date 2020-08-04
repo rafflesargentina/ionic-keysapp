@@ -3,12 +3,12 @@
     <ion-title>form-evento</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content class="ion-padding">
   <form [formGroup]="datosForm">
 
     <div [class.invalid]="submitted && !datosForm.controls.property_id.valid">
       <ion-item>   
-        <card-inmueble [inmueble]="inmuebleAsignado"></card-inmueble>  
+        <app-card-inmueble [inmueble]="inmuebleAsignado"></app-card-inmueble>  
         <ion-button  *ngIf="!isEditando"  class="btn-delete" color="primary" slot="end" (click)="eliminarInmueble()">
           <ion-icon name="trash"></ion-icon>
         </ion-button>        
@@ -21,7 +21,7 @@
 
     <div [class.invalid]="submitted && !datosForm.controls.property_id.valid">
       <ion-item>   
-        <card-cliente [cliente]="clienteAsignado"></card-cliente>  
+        <app-card-cliente [cliente]="clienteAsignado"></app-card-cliente>  
         <ion-button  *ngIf="!isEditando"  class="btn-delete" color="primary" slot="end" (click)="eliminarCliente()">
           <ion-icon name="trash"></ion-icon>
         </ion-button>        
@@ -53,7 +53,7 @@
       </div>
     </ion-item>  
   </form>
-
+  <ion-button color="primary" (click)="guardar()">Guardar</ion-button>  
 </ion-content>
 <ion-footer *ngIf="pendienteConfirmar" class="ion-no-border ion-padding">
   <ion-toolbar> 

@@ -71,6 +71,30 @@ const routes: Routes = [
     path: 'select-inmueble',
     loadChildren: () => import('./select-inmueble/select-inmueble.module').then( m => m.SelectInmueblePageModule)
   },
+  {
+    path: 'form-invitacion',
+    loadChildren: () => import('./form-invitacion/form-invitacion.module').then( m => m.FormInvitacionPageModule)
+  },
+  {
+    path: 'detail-evento',
+    loadChildren: () => import('./detail-evento/detail-evento.module').then( m => m.DetailEventoPageModule)
+  },
+  {
+    path: 'detail-cliente',
+    loadChildren: () => import('./detail-cliente/detail-cliente.module').then( m => m.DetailClientePageModule)
+  },
+  {
+    path: 'detail-agente',
+    loadChildren: () => import('./detail-agente/detail-agente.module').then( m => m.DetailAgentePageModule)
+  },
+  {
+    path: 'detail-inmueble',
+    loadChildren: () => import('./detail-inmueble/detail-inmueble.module').then( m => m.DetailInmueblePageModule)
+  },
+  {
+    path: 'form-inmueble',
+    loadChildren: () => import('./form-inmueble/form-inmueble.module').then( m => m.FormInmueblePageModule)
+  },
 
   
 
