@@ -123,8 +123,7 @@ export class AuthenticationRafflesService {
   public registrar(data){
     this.httpHeaders = new HttpHeaders({
       'Content-Type' : 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Bearer ' + localStorage.getItem('token')
+      'Accept': 'application/json'
     });  
 
     let options = {
@@ -138,7 +137,7 @@ export class AuthenticationRafflesService {
           
       let usuario = new Usuario();
       usuario.id = resp.data.user.id;
-      usuario.foto = resp.data.user.avatar.thumbnail;
+    //  usuario.foto = resp.data.user.avatar.thumbnail;
       usuario.email = resp.data.user.email;
       usuario.nombre = resp.data.user.name;
       usuario.token = resp.data.token;

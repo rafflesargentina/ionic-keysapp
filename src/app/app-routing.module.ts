@@ -56,6 +56,24 @@ const routes: Routes = [
     path: 'form-registro-sucursal',
     loadChildren: () => import('./form-registro-sucursal/form-registro-sucursal.module').then( m => m.FormRegistroSucursalPageModule)
   },
+  {
+    path: 'calendario',
+    loadChildren: () => import('./calendario/calendario.module').then( m => m.CalendarioPageModule)
+  },
+  {
+    path: 'form-evento',
+    loadChildren: () => import('./form-evento/form-evento.module').then( m => m.FormEventoPageModule)
+  },  {
+    path: 'select-cliente',
+    loadChildren: () => import('./select-cliente/select-cliente.module').then( m => m.SelectClientePageModule)
+  },
+  {
+    path: 'select-inmueble',
+    loadChildren: () => import('./select-inmueble/select-inmueble.module').then( m => m.SelectInmueblePageModule)
+  },
+
+  
+
   
   
 ];

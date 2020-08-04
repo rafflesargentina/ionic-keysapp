@@ -14,7 +14,7 @@ export class UsuarioService {
   constructor() { }
 
   checkToken() {    
-    if (localStorage.getItem('user')) {
+    if (localStorage.getItem('user')) {      
       this.authenticationState.next(true);
       this.userSubject.next(JSON.parse(localStorage.getItem('user')));
     }    
@@ -48,6 +48,7 @@ export class UsuarioService {
 
   getToken(){    
     let user =  JSON.parse(localStorage.getItem('user'));
+    console.log(user.token)
     return user.token;
   }
 

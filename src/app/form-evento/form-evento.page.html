@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>form-evento</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="datosForm">
+
+    <div [class.invalid]="submitted && !datosForm.controls.property_id.valid">
+      <ion-item>   
+        <card-inmueble [inmueble]="inmuebleAsignado"></card-inmueble>  
+        <ion-button  *ngIf="!isEditando"  class="btn-delete" color="primary" slot="end" (click)="eliminarInmueble()">
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>        
+      </ion-item>  
+      <ion-button *ngIf="!isEditando" type="button" expand="block" (click)="seleccionarInmueble()">Seleccionar Inmueble</ion-button>
+      <div *ngIf="submitted && f.property_id.errors" class="invalid-feedback">
+        <div *ngIf="f.property_id.errors.required"><h5>Ingresa un Inmueble</h5></div>
+      </div>
+    </div>
+
+    <div [class.invalid]="submitted && !datosForm.controls.property_id.valid">
+      <ion-item>   
+        <card-cliente [cliente]="clienteAsignado"></card-cliente>  
+        <ion-button  *ngIf="!isEditando"  class="btn-delete" color="primary" slot="end" (click)="eliminarCliente()">
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>        
+      </ion-item>  
+      <ion-button  *ngIf="!isEditando"  type="button" expand="block" (click)="seleccionarInmueble()">Seleccionar Inmueble</ion-button>
+      <div *ngIf="submitted && f.property_id.errors" class="invalid-feedback">
+        <div *ngIf="f.property_id.errors.required"><h5>Ingresa un Cliente</h5></div>
+      </div>
+    </div>
+
+    <!--Inhabilitar si es edicion de un evento-->
+    <ion-item [class.invalid]="submitted && !datosForm.controls.customer_id.valid">
+      <ion-label position="floating">Fecha</ion-label>     
+      
+      <ion-datetime displayFormat="DD MMMM YYYY"  value="2012-12-15T13:47:20.789"></ion-datetime>
+
+      <div *ngIf="submitted && f.customer_id.errors" class="invalid-feedback">
+          <div *ngIf="f.customer_id.errors.required"><h5>Ingresa un Cliente</h5></div>
+      </div>
+    </ion-item>  
+
+    <ion-item [class.invalid]="submitted && !datosForm.controls.customer_id.valid">
+      <ion-label position="floating">Hora</ion-label>     
+      
+      <ion-datetime displayFormat="H:mm" value="2012-12-15T13:47:20.789"></ion-datetime>
+
+      <div *ngIf="submitted && f.customer_id.errors" class="invalid-feedback">
+          <div *ngIf="f.customer_id.errors.required"><h5>Ingresa un Cliente</h5></div>
+      </div>
+    </ion-item>  
+  </form>
+
+</ion-content>
+<ion-footer *ngIf="pendienteConfirmar" class="ion-no-border ion-padding">
+  <ion-toolbar> 
+    <ion-button color="primary" slot="end" (click)="aceptar()">Aceptar</ion-button>  
+    <ion-button color="light" slot="start"  color="light" (click)="rechazar()">Rechazar</ion-button>
+  </ion-toolbar>
+</ion-footer>
