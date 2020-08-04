@@ -55,9 +55,11 @@ export class FormEventoPage implements OnInit {
 
   ionViewDidEnter(){
     let usuario_id = this.usuarioService.getUID();
+    
     if(this.route.snapshot.params.id){
       this.isEditando = true;
-      this.eventosService.get(this.route.snapshot.params.id).subscribe(data=>{
+      this.eventosService.get(this.route.snapshot.params.id).subscribe(resp=>{
+        let data:any = resp;
         this.datosForm.patchValue(data);
         if(usuario_id == data.agent_id){
           if(data.pendiente_agente_confirmar){
@@ -137,15 +139,16 @@ export class FormEventoPage implements OnInit {
   }
 
   aceptar(){
-
-    this.eventosService.aceptar(this.evento).subscriber(resp =>{
+    let usuario_id = this.usuarioService.getUID();
+    this.eventosService.aceptar(usuario_id,this.evento).subscribe(resp =>{
       this.ionViewDidEnter();
     });
     
   }
 
   rechazar(){
-    this.eventosService.rechazar(this.evento).subscriber(resp =>{
+    let usuario_id = this.usuarioService.getUID();
+    this.eventosService.rechazar(usuario_id,this.evento).subscribe(resp =>{
       this.ionViewDidEnter();
     });
   }

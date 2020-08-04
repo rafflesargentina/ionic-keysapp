@@ -1,5 +1,5 @@
 export class Evento{
-
+    public id="";
     public agent_id ="";
     public customer_id="";
     public date ="";

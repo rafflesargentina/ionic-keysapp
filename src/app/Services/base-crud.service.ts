@@ -16,7 +16,7 @@ export class BaseCRUDService {
 
   private httpHeaders:HttpHeaders;
 
-  private options = {
+  public options = {
     headers: this.httpHeaders
   };
   
@@ -40,8 +40,19 @@ export class BaseCRUDService {
     this.endpoint = endpoint;
   }
 
+  getEndpoint(){
+    return this.url+this.endpoint;
+  }
+
   create(data){
-    return this.httpClient.post(this.url+this.endpoint,data, this.options) .pipe(
+    return this.httpClient.post(this.getEndpoint(),data, this.options) .pipe(
+      retry(0),
+      catchError(this.handleError)
+    );
+  }
+
+  get(id){
+    return this.httpClient.post(this.getEndpoint()+"/"+id, this.options) .pipe(
       retry(0),
       catchError(this.handleError)
     );
@@ -49,7 +60,7 @@ export class BaseCRUDService {
 
   read(){    
     console.log(this.options);
-    return this.httpClient.get(this.url+this.endpoint, this.options) .pipe(
+    return this.httpClient.get(this.getEndpoint(), this.options) .pipe(
       retry(0),
       catchError(this.handleError)
     );
@@ -60,7 +71,7 @@ export class BaseCRUDService {
   }
 
   delete(id){
-    return this.httpClient.delete(this.url+this.endpoint+"/"+id, this.options) .pipe(
+    return this.httpClient.delete(this.getEndpoint()+"/"+id, this.options) .pipe(
       retry(0),
       catchError(this.handleError)
     );
