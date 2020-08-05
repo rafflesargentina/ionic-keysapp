@@ -1,9 +1,23 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>home</ion-title>
+    <app-header [titulo]="'Home'" [icono]="'add'"></app-header>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="ion-padding">
+  <ion-button expand="block" [routerLink]="['/list-clientes']">Listado de clientes</ion-button>
+  <ion-button expand="block" [routerLink]="['/list-inmuebles']">Listado de Inmuebles</ion-button>
+  <ion-button expand="block" [routerLink]="['/list-propietarios']">Listado de Propietarios</ion-button>
+  <hr>
+  <ion-button expand="block" [routerLink]="['/form-registro']">Formulario de Registro</ion-button>
+  <ion-button expand="block" [routerLink]="['/form-registro-propiedad']">Formulario de Registro de Propiedad</ion-button>
+  <ion-button expand="block" [routerLink]="['/form-registro-sucursal']">Formulario de Registro de Sucursal</ion-button>
+  <ion-button expand="block" [routerLink]="['/cambiar-contrasena']">Formulario para Cambiar Contraseña</ion-button>
+  <hr>
+  <ion-button expand="block" [routerLink]="['/calendario']">Calendario</ion-button>
+  <ion-button expand="block" [routerLink]="['/form-evento']">Evento</ion-button>
+  <ion-button expand="block" [routerLink]="['/select-cliente']">Seleccionar Cliente</ion-button>
+  <ion-button expand="block" [routerLink]="['/select-inmueble']">Seleccionar Inmueble</ion-button>
+  <hr>
+  <ion-button expand="block" [routerLink]="['/']"></ion-button>
 </ion-content>

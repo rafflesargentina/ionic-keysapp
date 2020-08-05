@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InmueblesService } from '../Services/inmuebles.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,13 +9,11 @@ import { InmueblesService } from '../Services/inmuebles.service';
 export class HomePage implements OnInit {
 
   constructor(
-    private inmuebleService:InmueblesService
+    private router: Router,
   ) { }
 
   ngOnInit() {
-    this.inmuebleService.read().subscribe(data=>{
-      
-    })
+    
   }
 
 }

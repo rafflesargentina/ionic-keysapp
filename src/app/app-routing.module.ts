@@ -76,10 +76,31 @@ const routes: Routes = [
     path: 'list-inmuebles',
     loadChildren: () => import('./list-inmuebles/list-inmuebles.module').then( m => m.ListInmueblesPageModule)
   },
+  {
+    path: 'list-clientes',
+    loadChildren: () => import('./list-clientes/list-clientes.module').then( m => m.ListClientesPageModule)
+  },
+  {
+    path: 'list-propietarios',
+    loadChildren: () => import('./list-propietarios/list-propietarios.module').then( m => m.ListPropietariosPageModule)
+  },
+  {
+    path: 'detail-cliente/:id',
+    loadChildren: () => import('./detail-cliente/detail-cliente.module').then( m => m.DetailClientePageModule)
+  },
+  {
+    path: 'detail-inmueble/:id',
+    loadChildren: () => import('./detail-inmueble/detail-inmueble.module').then( m => m.DetailInmueblePageModule)
+  },
+  {
+    path: 'detail-propietario/:id',
+    loadChildren: () => import('./detail-propietario/detail-propietario.module').then( m => m.DetailPropietarioPageModule)
+  },
+
   
 
   
-  
+  {path: '**', redirectTo: 'home'}
 ];
 
 @NgModule({

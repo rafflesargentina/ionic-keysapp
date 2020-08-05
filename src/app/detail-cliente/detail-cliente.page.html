@@ -1,0 +1,18 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <app-header [titulo]="'Detalles de Cliente'" [icono]="'back'"></app-header>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="ion-padding">
+    <ion-card-header color="dark">
+      <ion-card-title>{{cliente.first_name}} {{cliente.last_name}}</ion-card-title>
+      <ion-card-subtitle>{{cliente.email}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>tel: </strong>{{cliente.phone}}</p>
+      <p><strong>cel: </strong>{{cliente.mobile}}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

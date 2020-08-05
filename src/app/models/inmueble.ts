@@ -1,5 +1,6 @@
 export class Inmueble{
-	constructor(
+    id: string;
+    constructor(
 		
 		){
     }

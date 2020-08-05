@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Inmueble } from '../models/inmueble';
 import { InmueblesService } from '../Services/inmuebles.service';
+import { TiposPropiedadesService } from '../Services/tipos-propiedades.service';
+import { IonInfiniteScroll } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-inmuebles',
@@ -8,30 +11,50 @@ import { InmueblesService } from '../Services/inmuebles.service';
   styleUrls: ['./list-inmuebles.page.scss'],
 })
 export class ListInmueblesPage implements OnInit {
-  items: Inmueble[];
-
-  constructor(private inmueblesService: InmueblesService) { }
+  
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
+  items: Inmueble[] = [];
+  constructor(
+    private router: Router,
+    private inmuebleService: InmueblesService,
+    private tiposPropiedadesService: TiposPropiedadesService
+    ) { }
 
   ngOnInit() {
-    this.inmueblesService.read().subscribe(resp => {
+    /*this.clientesService.read().subscribe( resp => {
       console.log(resp);
-    });
+    });*/
   }
 
-  doRefresh(event){
-    console.log('eventRefresher', event.target.value);
-  }
+  doRefresh(event){ 
+    console.log('list-inmuebles.doRefresh(event)', event.target.value);
+    this.items = []; 
+    console.log('items', this.items);
+    event.target.complete(); 
+  } 
 
   onChange(event){
-    console.log('onChange-searchbar', event.target.value);
+    console.log('list-inmuebles.onChange(event)', event.target.value);
+    this.items= [];
   }
 
-  seleccionar(item){
-    console.log('seleccionar item', item);
+  seleccionar(item: Inmueble){
+    console.log('list-inmueble.seleccionar(item)', item);
+    this.router.navigate(['/detail-inmueble', item.id]);
   }
 
-  buscar(event){
-    console.log('buscar', event.target.value);
+  loadData(event){
+    console.log('list-inmueble.loadData(event)', event.target.value);
+    setTimeout(() => { 
+      if(this.items.length > 50){ //frenamos en 50 la carga
+        event.target.complete(); 
+        this.infiniteScroll.disabled = true; 
+        return; 
+      } 
+      const nuevoArr = []; 
+      this.items.push(...nuevoArr); 
+      event.target.complete(); 
+    }, 1000); 
   }
   
 

@@ -8,12 +8,14 @@ import { FormEventoPageRoutingModule } from './form-evento-routing.module';
 
 import { FormEventoPage } from './form-evento.page';
 import { CardInmuebleComponent } from '../Components/card-inmueble/card-inmueble.component';
+import { ComponentsModule } from '../Components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    ComponentsModule,
     FormEventoPageRoutingModule
   ],
   declarations: [FormEventoPage,CardInmuebleComponent]

@@ -12,25 +12,29 @@ import { Propietario } from '../models/propietario';
 })
 export class FormRegistroPropiedadPage implements OnInit {
   owners: Propietario[] = [
-    { first_name: 'Juan José ',
+    { id: '1', 
+      first_name: 'Juan José ',
       last_name: 'Paso', 
       email: '',
       phone: '',
       mobile: ''
     },
-    { first_name: 'Manuel ',
+    { id: '2', 
+      first_name: 'Manuel ',
       last_name: 'Belgrano', 
       email: '',
       phone: '',
       mobile: ''
     },
-    { first_name: 'Miguel ',
+    { id: '3', 
+      first_name: 'Miguel ',
       last_name: 'de Azcuénaga', 
       email: '',
       phone: '',
       mobile: ''
     },
-    { first_name: 'Rosarito ',
+    { id: '4', 
+      first_name: 'Rosarito ',
       last_name: 'Vega de la Cruz', 
       email: '',
       phone: '',
