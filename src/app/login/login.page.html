@@ -11,8 +11,12 @@
               <ion-input name="email" type="email" [(ngModel)]="email" placeholder="your@email.com" ngModel required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input name="password" type="password" [(ngModel)]="password" placeholder="Password" ngModel required></ion-input>
-            </ion-item>
+              <ion-input name="password" [(ngModel)]="password" placeholder="Password" ngModel required
+                    [type]="passwordTypeInput" #passwordEye clear-on-edit="true"></ion-input>
+              <button  item-end  type="button" class="btn_eye_icon" (click)="togglePasswordMode()">
+                <ion-icon [name]="iconpassword"></ion-icon>
+              </button>
+            </ion-item>           
           </div>
           <ion-row justify-content-center>
             <a routerLink="/recuperar-contrasena">Olvidaste tu contraseña?</a>

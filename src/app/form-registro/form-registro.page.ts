@@ -14,8 +14,8 @@ export class FormRegistroPage implements OnInit {
   // Importar el ViewChild para acceder a un elemento del DOM
   @ViewChild('passwordEyeRegister') passwordEye;
   @ViewChild('passwordEyeConfirmation') passwordEyeConfirm;
-  @ViewChild('btnCliente') btnCliente;
-  @ViewChild('btnCliente') btnAgente;
+  //@ViewChild('btnCliente') btnCliente;
+  //@ViewChild('btnAgente') btnAgente;
   // Seleccionamos el elemento con el nombre que le pusimos con el #
   passwordTypeInput1  =  'password';
   passwordTypeInput2  =  'password';

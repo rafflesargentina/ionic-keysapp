@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { UsuarioService } from './usuario.service';
 import { ToastService } from './toast.service';
 import { BaseCRUDService } from './base-crud.service';
+import { Observable } from 'rxjs';
+import { Cliente } from '../models/cliente';
 
 @Injectable({
   providedIn: 'root'
@@ -18,4 +20,5 @@ export class ClientesService extends BaseCRUDService{
     super(httpClient,usuarioService,toastService);
     this.setEndpoint("clients");
   }
+
 }
