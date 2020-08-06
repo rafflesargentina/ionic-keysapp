@@ -65,14 +65,6 @@ const routes: Routes = [
     loadChildren: () => import('./form-evento/form-evento.module').then( m => m.FormEventoPageModule)
   },
   {
-    path: 'select-cliente',
-    loadChildren: () => import('./select-cliente/select-cliente.module').then( m => m.SelectClientePageModule)
-  },
-  {
-    path: 'select-inmueble',
-    loadChildren: () => import('./select-inmueble/select-inmueble.module').then( m => m.SelectInmueblePageModule)
-  },
-  {
     path: 'list-inmuebles',
     loadChildren: () => import('./list-inmuebles/list-inmuebles.module').then( m => m.ListInmueblesPageModule)
   },

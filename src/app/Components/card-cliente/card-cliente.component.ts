@@ -12,7 +12,7 @@ export class CardClienteComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('card-cliente', this.item);
+    //console.log('card-cliente', this.item);
   }
 
 }

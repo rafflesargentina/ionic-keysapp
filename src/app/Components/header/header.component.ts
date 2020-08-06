@@ -10,7 +10,7 @@ import { NavController } from '@ionic/angular';
 export class HeaderComponent implements OnInit {
 
   @Input() titulo = "";
-  @Input() icono ="add";
+  @Input() icono = "";
 
   constructor(
     public router:Router,
@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
 
   agregar(){
     //this.router.navigate(['']);
-    console.log('header.agregar');
+    //console.log('header.agregar');
   }
 
   atras(){

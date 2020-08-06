@@ -57,6 +57,8 @@ export class ListInmueblesPage implements OnInit {
     }, 1000); 
   }
   
-
+  botonFlotante(){
+    
+  }
 
 }

@@ -22,6 +22,18 @@ export class ListPropietariosPage implements OnInit {
     /*this.clientesService.read().subscribe( resp => {
       console.log(resp);
     });*/
+    this.items = [
+      {'id': '1', 'first_name': 'juan', 'last_name': 'de los palotes', 'email': '', 'phone': '', 'mobile': ''},
+      {'id': '2', 'first_name': 'pedro', 'last_name': 'de los palotes', 'email': '', 'phone': '', 'mobile': ''},
+      {'id': '3', 'first_name': 'marcos', 'last_name': 'de los palotes', 'email': '', 'phone': '', 'mobile': ''},
+      {'id': '4', 'first_name': 'cecilia', 'last_name': 'de los palotes', 'email': '', 'phone': '', 'mobile': ''},
+      {'id': '5', 'first_name': 'francisca', 'last_name': 'de los palotes', 'email': '', 'phone': '', 'mobile': ''},
+      {'id': '6', 'first_name': 'juan', 'last_name': 'de los palotes', 'email': '', 'phone': '', 'mobile': ''},
+      {'id': '7', 'first_name': 'pedro', 'last_name': 'de los palotes', 'email': '', 'phone': '', 'mobile': ''},
+      {'id': '8', 'first_name': 'marcos', 'last_name': 'de los palotes', 'email': '', 'phone': '', 'mobile': ''},
+      {'id': '9', 'first_name': 'cecilia', 'last_name': 'de los palotes', 'email': '', 'phone': '', 'mobile': ''},
+      {'id': '10', 'first_name': 'francisca', 'last_name': 'de los palotes', 'email': '', 'phone': '', 'mobile': ''},
+    ];
   }
 
   doRefresh(event){ 
@@ -95,6 +107,10 @@ export class ListPropietariosPage implements OnInit {
       this.items.push(...nuevoArr); 
       event.target.complete(); 
     }, 1000); 
+  }
+
+  botonFlotante(){
+    
   }
 
 }

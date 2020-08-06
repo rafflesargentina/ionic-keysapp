@@ -1,6 +1,6 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-    <app-header [titulo]="'Home'" [icono]="'add'"></app-header>
+    <app-header [titulo]="'Home'" [icono]="''"></app-header>
   </ion-toolbar>
 </ion-header>
 
@@ -16,8 +16,8 @@
   <hr>
   <ion-button expand="block" [routerLink]="['/calendario']">Calendario</ion-button>
   <ion-button expand="block" [routerLink]="['/form-evento']">Evento</ion-button>
-  <ion-button expand="block" [routerLink]="['/select-cliente']">Seleccionar Cliente</ion-button>
-  <ion-button expand="block" [routerLink]="['/select-inmueble']">Seleccionar Inmueble</ion-button>
+  <ion-button expand="block" (click)="modalCliente()">Seleccionar Cliente</ion-button>
+  <ion-button expand="block" (click)="modalInmueble()">Seleccionar Inmueble</ion-button>
   <hr>
   <ion-button expand="block" [routerLink]="['/']"></ion-button>
 </ion-content>
