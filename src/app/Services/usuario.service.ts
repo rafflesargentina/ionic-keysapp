@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Usuario } from '../models/usuario';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class UsuarioService {
     }    
   } 
 
-  add(user:Usuario){    
+  add(user:User){    
     localStorage.setItem('user',JSON.stringify(user));
     this.authenticationState.next(true); 
     this.userSubject.next(user);

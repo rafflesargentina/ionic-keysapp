@@ -11,6 +11,7 @@ import { UsuarioService } from '../usuario.service';
 import { Usuario } from '../../models/usuario';
 import { ToastService } from '../toast.service';
 import { environment } from 'src/environments/environment';
+import { User } from 'src/app/models/user';
 
 /*---------------------------------
 Responsabilidad: 
@@ -67,7 +68,7 @@ export class AuthenticationRafflesService {
 		return this.httpClient.post(this.url+"login", body, this.options).subscribe(response =>{
       var resp:any = response;     
       
-      let usuario = new Usuario();
+      let usuario = new User();
       usuario.id = resp.data.user.id;
       usuario.foto = resp.data.user.avatar.thumbnail;
       usuario.email = resp.data.user.email;
@@ -135,7 +136,7 @@ export class AuthenticationRafflesService {
     return this.httpClient.post(this.url+'register',body, options).subscribe(response =>{
       var resp:any = response;
           
-      let usuario = new Usuario();
+      let usuario = new User();
       usuario.id = resp.data.user.id;
     //  usuario.foto = resp.data.user.avatar.thumbnail;
       usuario.email = resp.data.user.email;
@@ -248,7 +249,7 @@ export class AuthenticationRafflesService {
 		this.httpClient.post(this.url+'auth/google', body, this.options).subscribe(data=>{
       var resp:any = data;
          
-          let usuario = new Usuario();
+          let usuario = new User();
           usuario.id = resp.data.user.id;
           usuario.foto = resp.data.user.avatar.thumbnail;
           usuario.email = resp.data.user.email;

@@ -5,7 +5,8 @@ export class Notificacion{
     public titulo = "";
     public mensaje:"";
     public tipo ="";
-    public estado ="enviada"; //enviada-leida
+    public estado ="enviada"; 
+    
 	constructor(
 		
 		){

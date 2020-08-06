@@ -63,7 +63,8 @@ const routes: Routes = [
   {
     path: 'form-evento',
     loadChildren: () => import('./form-evento/form-evento.module').then( m => m.FormEventoPageModule)
-  },  {
+  },
+  {
     path: 'select-cliente',
     loadChildren: () => import('./select-cliente/select-cliente.module').then( m => m.SelectClientePageModule)
   },
@@ -90,11 +91,12 @@ const routes: Routes = [
   {
     path: 'detail-inmueble',
     loadChildren: () => import('./detail-inmueble/detail-inmueble.module').then( m => m.DetailInmueblePageModule)
+  },  {
+    path: 'select-propietario',
+    loadChildren: () => import('./select-propietario/select-propietario.module').then( m => m.SelectPropietarioPageModule)
   },
-  {
-    path: 'form-inmueble',
-    loadChildren: () => import('./form-inmueble/form-inmueble.module').then( m => m.FormInmueblePageModule)
-  },
+
+  
 
   
 

@@ -53,38 +53,37 @@ export class FormEventoPage implements OnInit {
   ngOnInit() {
   }
 
-  ionViewDidEnter(){
-
-    let usuario_id = this.usuarioService.getUID();
+  ionViewDidEnter(){ 
     
     if(this.route.snapshot.params.id){
       this.isEditando = true;
       this.eventosService.get(this.route.snapshot.params.id).subscribe(resp=>{
         let data:any = resp;
         this.datosForm.patchValue(data);
-        if(usuario_id == data.agent_id){
-          if(data.pendiente_agente_confirmar){
-            this.pendienteConfirmar = true;
-          }
-        }
-        if(usuario_id == data.customer_id){
-          
-        }
       })      
     }
   }
 
   eliminarInmueble(){
     this.inmuebleAsignado = new Inmueble();
+    this.evento.property_id ="";
+
+    this.datosForm.patchValue({
+      property_id: ""
+    })
+
   }
 
   eliminarCliente(){
     this.clienteAsignado = new Usuario();
+    this.datosForm.patchValue({
+      customer_id: ""
+    })
   }
 
   async seleccionarInmueble(){
     const modal = await this.modalController.create({
-      component: SelectClientePage
+      component: SelectInmueblePage
     });    
 
     modal.onDidDismiss()
@@ -99,7 +98,7 @@ export class FormEventoPage implements OnInit {
   async seleccionarCliente(){
 
     const modal = await this.modalController.create({
-      component: SelectInmueblePage
+      component: SelectClientePage
     });    
 
     modal.onDidDismiss()

@@ -11,6 +11,7 @@ import { NotificacionesService } from './Services/notificaciones.service';
 import { ToastService } from './Services/toast.service';
 import { UsuarioService } from './Services/usuario.service';
 import { Usuario } from './models/usuario';
+import { User } from 'firebase';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,7 @@ export class AppComponent implements OnInit {
 
 
   public comercioSeleccionado ="";
-  public usuario:Usuario;
+  public usuario:User;
 
   constructor(
     private platform: Platform,
@@ -48,12 +49,12 @@ export class AppComponent implements OnInit {
 
   initializeApp() {
 
-    this.usuarioService.getActualUserObservable().subscribe(user =>{
+   /* this.usuarioService.getActualUserObservable().subscribe(user =>{
       if(user)
         this.usuario = user;
       else
-        this.usuario = new Usuario;
-    }) 
+        this.usuario = new User();
+    })*/ 
 
     //console.log("NgOnInit")
     this.notifiacionesDesktopService.init().then(data=>{

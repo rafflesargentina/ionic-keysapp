@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastService } from '../Services/toast.service';
 
 @Component({
   selector: 'app-form-invitacion',
@@ -8,8 +9,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FormInvitacionPage implements OnInit {
 
+  public email = "";
+
   constructor(
     private route:ActivatedRoute,
+    private toastService:ToastService
   ) { 
 
 
@@ -22,6 +26,14 @@ export class FormInvitacionPage implements OnInit {
     if(this.route.snapshot.params.rol){
 
     }
+  }
+
+  enviar(){
+
+    if(this.email ==""){
+      this.toastService.mensaje("","Por favor ingrese un mail");
+    }
+
   }
 
 }

@@ -12,6 +12,7 @@ import { AngularFirestoreDocument, AngularFirestore } from 'angularfire2/firesto
 import { ToastService } from '../toast.service';
 import { UsuarioService } from '../usuario.service';
 import { Usuario } from '../../models/usuario';
+import { User } from 'src/app/models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -65,7 +66,7 @@ export class AuthenticationFirebaseService {
         
         console.log(value.user);
         
-        let usuario = new Usuario();
+        let usuario = new User();
         usuario.id = value.user.uid;
         usuario.foto = value.user.photoURL;
         usuario.email = value.user.email;
@@ -150,7 +151,7 @@ export class AuthenticationFirebaseService {
         this.ngZone.run(async () => {          
           console.log(result.user);
         
-          let usuario = new Usuario();
+          let usuario = new User();
           usuario.id = result.user.uid;
           usuario.foto = result.user.photoURL;
           usuario.email = result.user.email;
@@ -202,7 +203,7 @@ export class AuthenticationFirebaseService {
 
         console.log(response.user);
         
-        let usuario = new Usuario();
+        let usuario = new User();
         usuario.id = response.user.uid;
         usuario.foto = response.user.photoURL;
         usuario.email = response.user.email;
@@ -243,7 +244,7 @@ export class AuthenticationFirebaseService {
         
         console.log(result.user);
         
-        let usuario = new Usuario();
+        let usuario = new User();
         usuario.id = result.user.uid;
         usuario.foto = result.user.photoURL;
         usuario.email = result.user.email;

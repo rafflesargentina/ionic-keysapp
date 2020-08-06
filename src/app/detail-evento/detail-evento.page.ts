@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { EventosService } from '../Services/eventos.service';
+import { ClientesService } from '../Services/clientes.service';
+import { InmueblesService } from '../Services/inmuebles.service';
+import { ActivatedRoute } from '@angular/router';
+import { UsuarioService } from '../Services/usuario.service';
+import { Evento } from '../models/evento';
+import { Inmueble } from '../models/inmueble';
+import { Usuario } from '../models/usuario';
 
 @Component({
   selector: 'app-detail-evento',
@@ -7,9 +15,55 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailEventoPage implements OnInit {
 
-  constructor() { }
+  public fecha ="";
+  public hora = "";
+  public clienteAsignado:Usuario;
+  public inmuebleAsignado:Inmueble;
+  public evento:Evento;
+
+  public pendienteConfirmar = true;
+
+  constructor(
+    private eventosService:EventosService,
+    private clientesService:ClientesService,
+    private inmueblesService:InmueblesService,
+    private usuarioService:UsuarioService,
+    private route:ActivatedRoute
+  ) { 
+
+  }
 
   ngOnInit() {
+  }
+
+  ionViewDidEnter(){
+
+    let usuario_id = this.usuarioService.getUID();
+
+    if(this.route.snapshot.params.id){
+      this.eventosService.get(this.route.snapshot.params.id).subscribe(resp=>{               
+        this.evento.asignarValores(resp);
+    
+        this.inmueblesService.get(this.evento.property_id).subscribe(resp =>{
+          this.inmuebleAsignado.asignarValores(resp);
+        });
+
+        this.clientesService.get(this.evento.customer_id).subscribe(resp=>{
+          this.clienteAsignado.asignarValores(resp);
+        })
+
+        if(usuario_id == this.evento.agent_id){
+        //  if(this.evento.pendiente_agente_confirmar){
+            this.pendienteConfirmar = true;
+          //}
+        }
+        if(usuario_id == this.evento.customer_id){
+          //if(this.evento.pendiente_customer_confirmar){
+            this.pendienteConfirmar = true;
+         // }
+        }
+      })      
+    }
   }
 
 }

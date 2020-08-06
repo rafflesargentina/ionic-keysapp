@@ -1,11 +1,11 @@
-export class Usuario{
-    public id = "";
-    public email = "";
-    public foto = "";
-    public nombre = "";
-    public token = "";
-    public address = "";
-	constructor(
+export class Usuario {
+    public first_name= "";
+    public last_name= "";
+    public email= "";
+    public phone= "";
+    public mobile= "";
+    
+    constructor(
 		
 		){
     }
