@@ -10,7 +10,7 @@ import { SelectClientePage } from '../select-cliente/select-cliente.page';
 import { SelectInmueblePage } from '../select-inmueble/select-inmueble.page';
 import { ClientesService } from '../Services/clientes.service';
 import { Route } from '@angular/compiler/src/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UsuarioService } from '../Services/usuario.service';
 
 @Component({
@@ -36,7 +36,8 @@ export class FormEventoPage implements OnInit {
     private eventosService:EventosService,
     private modalController:ModalController,
     private route:ActivatedRoute,
-    private usuarioService:UsuarioService
+    private usuarioService:UsuarioService,
+    private router:Router
   ) {
 
     this.datosForm = this.formBuilder.group({
@@ -51,6 +52,7 @@ export class FormEventoPage implements OnInit {
 
 
   ngOnInit() {
+
   }
 
   ionViewDidEnter(){ 

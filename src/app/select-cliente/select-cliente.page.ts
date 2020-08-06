@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { Cliente } from '../models/cliente';
+import { Usuario } from '../models/usuario';
 
 @Component({
   selector: 'app-select-cliente',
@@ -17,7 +17,7 @@ export class SelectClientePage implements OnInit {
  
   }
 
-  seleccionar(item: Cliente){
+  seleccionar(item: Usuario){
     //console.log('select-clientes.page.seleccionar(item)', item);
     this.modalCtrl.dismiss({
       cliente: item

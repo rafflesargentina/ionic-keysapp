@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Propietario } from '../models/propietario';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PropietariosService } from '../Services/propietarios.service';
 
@@ -10,7 +9,13 @@ import { PropietariosService } from '../Services/propietarios.service';
 })
 export class DetailPropietarioPage implements OnInit {
 
-  owner: Propietario;
+  owner= {
+    'id': '1', 
+    'first_name': 'juan', 
+    'last_name': 'de los palotes', 
+    'email': 'juandelospalotes@hotmail.com', 
+    'phone': '3571-554433', 
+    'mobile': '3456-34544333'};	
 
   constructor(
     private router: Router,							

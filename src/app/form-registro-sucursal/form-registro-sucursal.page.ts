@@ -13,7 +13,7 @@ export class FormRegistroSucursalPage implements OnInit {
 
   datosForm: FormGroup;
   submitted = false;
-  public user: Usuario;
+  public user: any;
 
   constructor(
     private formBuilder: FormBuilder,

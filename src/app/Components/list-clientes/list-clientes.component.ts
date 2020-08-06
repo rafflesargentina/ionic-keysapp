@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
-import { Cliente } from 'src/app/models/cliente';
 import { ClientesService } from 'src/app/Services/clientes.service';
+import { Usuario } from 'src/app/models/usuario';
 
 @Component({
   selector: 'list-clientes',
@@ -10,9 +10,9 @@ import { ClientesService } from 'src/app/Services/clientes.service';
 })
 export class ListClientesComponent implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-  items: Cliente[] = [];
-  cliente: Cliente;  //creo que este atributo no es necesario
-  @Output() seleccionarCliente: EventEmitter<Cliente> = new EventEmitter<Cliente>();
+  items:any[] = [];
+  cliente: Usuario;  //creo que este atributo no es necesario
+  @Output() seleccionarCliente: EventEmitter<Usuario> = new EventEmitter<Usuario>();
 
   constructor(
     private clientesService: ClientesService
@@ -22,6 +22,8 @@ export class ListClientesComponent implements OnInit {
     /*this.clientesService.read().subscribe( resp => {
       console.log(resp);
     });*/
+
+
     this.items = [
       {'id': '1', 'first_name': 'juan', 'last_name': 'de los palotes', 'email': '', 'phone': '', 'mobile': ''},
       {'id': '2', 'first_name': 'pedro', 'last_name': 'de los palotes', 'email': '', 'phone': '', 'mobile': ''},
@@ -38,6 +40,7 @@ export class ListClientesComponent implements OnInit {
 
   doRefresh(event){ 
     //console.log('list-clientes.component.doRefresh(event)', event.target.value);
+
     this.items = [
       {'id': '1', 'first_name': 'juan', 'last_name': 'de los palotes', 'email': '', 'phone': '', 'mobile': ''},
       {'id': '2', 'first_name': 'pedro', 'last_name': 'de los palotes', 'email': '', 'phone': '', 'mobile': ''},
@@ -69,14 +72,15 @@ export class ListClientesComponent implements OnInit {
     this.items= [];
   }
 
-  seleccionar(item: Cliente){
+  seleccionar(item: Usuario){
     //console.log('list-clientes.component.seleccionar(item)', item);
     this.cliente = item;
     //emitir al padre
     this.seleccionarCliente.emit(this.cliente);
   }
 
-  
+
+
 
   loadData(event){
     //console.log('list-clientes.component.loadData(event)', event.target.value);

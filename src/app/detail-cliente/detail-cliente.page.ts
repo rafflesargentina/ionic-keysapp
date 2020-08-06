@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ClientesService } from '../Services/clientes.service';
-import { Cliente } from '../models/cliente';
+import { Usuario } from '../models/usuario';
 
 @Component({
   selector: 'app-detail-cliente',
@@ -9,7 +9,7 @@ import { Cliente } from '../models/cliente';
   styleUrls: ['./detail-cliente.page.scss'],
 })
 export class DetailClientePage implements OnInit {
-  cliente: Cliente;
+  cliente: any;
 
   constructor(
     private router: Router,							

@@ -40,10 +40,6 @@ const routes: Routes = [
     loadChildren: () => import('./form-registro/form-registro.module').then( m => m.FormRegistroPageModule)
   },
   {
-    path: 'form-registro-cliente',
-    loadChildren: () => import('./form-registro-cliente/form-registro-cliente.module').then( m => m.FormRegistroClientePageModule)
-  },
-  {
     path: 'form-registro-propiedad',
     loadChildren: () => import('./form-registro-propiedad/form-registro-propiedad.module').then( m => m.FormRegistroPropiedadPageModule)
   },
@@ -72,17 +68,16 @@ const routes: Routes = [
     loadChildren: () => import('./list-propietarios/list-propietarios.module').then( m => m.ListPropietariosPageModule)
   },
   {
-    path: 'detail-cliente/:id',
+    path: 'detail-cliente',
     loadChildren: () => import('./detail-cliente/detail-cliente.module').then( m => m.DetailClientePageModule)
   },
   {
-    path: 'detail-inmueble/:id',
+    path: 'detail-inmueble',
     loadChildren: () => import('./detail-inmueble/detail-inmueble.module').then( m => m.DetailInmueblePageModule)
   },
   {
-    path: 'detail-propietario/:id',
+    path: 'detail-propietario',
     loadChildren: () => import('./detail-propietario/detail-propietario.module').then( m => m.DetailPropietarioPageModule)
-  },
   },
   {
     path: 'select-cliente',
@@ -119,10 +114,6 @@ const routes: Routes = [
   {
     path: 'form-llave',
     loadChildren: () => import('./form-llave/form-llave.module').then( m => m.FormLlavePageModule)
-  },
-  {
-    loadChildren: () => import('./detail-cliente/detail-cliente.module').then( m => m.DetailClientePageModule)
-    path: 'detail-cliente',
   },
 
   

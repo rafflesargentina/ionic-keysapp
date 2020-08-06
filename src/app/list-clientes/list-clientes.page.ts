@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Cliente } from '../models/cliente';
 import { Router } from '@angular/router';
+import { Usuario } from '../models/usuario';
 
 @Component({
   selector: 'app-list-clientes',
@@ -17,7 +17,7 @@ export class ListClientesPage implements OnInit {
  
   }
 
-  seleccionar(item: Cliente){
+  seleccionar(item: Usuario){
     //console.log('list-clientes.page.seleccionar(item)', item);
     this.router.navigate(['/detail-cliente', item.id]);
   }

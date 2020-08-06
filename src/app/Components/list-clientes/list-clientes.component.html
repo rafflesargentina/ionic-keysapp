@@ -18,7 +18,7 @@
   </ion-refresher>
   <ion-list *ngIf="items.length > 0" class="animated fadeIn fast"> 
     <ion-item *ngFor="let item of items; let i = index"> 
-      <app-card-cliente [item]="item" (click)="seleccionar(item)"></app-card-cliente>
+      <app-card-usuario [item]="item" (click)="seleccionar(item)"></app-card-usuario>
     </ion-item> 	
   </ion-list>
   <ion-list *ngIf="!items.length > 0" class="animated fadeIn fast"> 

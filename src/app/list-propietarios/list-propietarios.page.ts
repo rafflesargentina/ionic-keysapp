@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
-import { Propietario } from '../models/propietario';
 import { Router } from '@angular/router';
 import { PropietariosService } from '../Services/propietarios.service';
+import { Usuario } from '../models/usuario';
 
 @Component({
   selector: 'app-list-propietarios',
@@ -12,7 +12,7 @@ import { PropietariosService } from '../Services/propietarios.service';
 export class ListPropietariosPage implements OnInit {
 
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-  items: Propietario[] = [];
+  items: any[] = [];
   constructor(
     private router: Router,
     private propietariosService: PropietariosService
@@ -69,7 +69,7 @@ export class ListPropietariosPage implements OnInit {
     this.items= [];
   }
 
-  seleccionar(item: Propietario){
+  seleccionar(item: Usuario){
     //console.log('list-propietarios.seleccionar(item)', item);
     this.router.navigate(['/detail-propietario', item.id]);
   }
