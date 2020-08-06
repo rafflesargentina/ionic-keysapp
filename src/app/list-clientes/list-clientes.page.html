@@ -3,12 +3,7 @@
     <app-header [titulo]="'Listado de Clientes'" [icono]="'back'"></app-header>
   </ion-toolbar>
 </ion-header>
-
-<ion-content>
+<div class="posicion-lista">
   <list-clientes (seleccionarCliente)="seleccionar($event)"></list-clientes>  
-</ion-content>
-<ion-fab horizontal="end" vertical="end" slot="fixed">
-  <ion-fab-button color="primary">
-    <ion-icon name="add" (click)="botonFlotante()"></ion-icon>
-  </ion-fab-button>
-</ion-fab>
+</div>
+

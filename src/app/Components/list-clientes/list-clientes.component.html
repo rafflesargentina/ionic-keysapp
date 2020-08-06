@@ -31,8 +31,15 @@
     </ion-item> 	
   </ion-list> 
   
+  
   <ion-infinite-scroll threshold="150px" (ionInfinite)="loadData($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando Clientes...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
+  
 </ion-content>
+<ion-fab class="boton-flotante" horizontal="end" vertical="end" slot="fixed">
+  <ion-fab-button color="primary">
+    <ion-icon name="add" (click)="agregar()"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

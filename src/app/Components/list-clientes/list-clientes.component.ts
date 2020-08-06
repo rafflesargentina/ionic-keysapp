@@ -76,6 +76,8 @@ export class ListClientesComponent implements OnInit {
     this.seleccionarCliente.emit(this.cliente);
   }
 
+  
+
   loadData(event){
     //console.log('list-clientes.component.loadData(event)', event.target.value);
     setTimeout(() => { 
