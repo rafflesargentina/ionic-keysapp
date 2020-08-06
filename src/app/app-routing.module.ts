@@ -36,11 +36,6 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
-    path: 'form-registro-propietario',
-    loadChildren: () => import('./form-registro-propietario/form-registro-propietario.module')
-    .then( m => m.FormRegistroPropietarioPageModule)
-  },
-  {
     path: 'form-registro',
     loadChildren: () => import('./form-registro/form-registro.module').then( m => m.FormRegistroPageModule)
   },
@@ -91,9 +86,18 @@ const routes: Routes = [
   {
     path: 'detail-inmueble',
     loadChildren: () => import('./detail-inmueble/detail-inmueble.module').then( m => m.DetailInmueblePageModule)
-  },  {
+  },
+  {
     path: 'select-propietario',
     loadChildren: () => import('./select-propietario/select-propietario.module').then( m => m.SelectPropietarioPageModule)
+  },
+  {
+    path: 'list-notificaciones',
+    loadChildren: () => import('./list-notificaciones/list-notificaciones.module').then( m => m.ListNotificacionesPageModule)
+  },
+  {
+    path: 'form-llave',
+    loadChildren: () => import('./form-llave/form-llave.module').then( m => m.FormLlavePageModule)
   },
 
   

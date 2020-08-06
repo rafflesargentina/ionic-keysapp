@@ -34,6 +34,8 @@ export class FormInvitacionPage implements OnInit {
       this.toastService.mensaje("","Por favor ingrese un mail");
     }
 
+    
+
   }
 
 }

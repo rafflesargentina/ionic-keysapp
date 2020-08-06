@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { FormRegistroPropietarioPage } from './form-registro-propietario.page';
+import { ListNotificacionesPage } from './list-notificaciones.page';
 
-describe('FormRegistroPropietarioPage', () => {
-  let component: FormRegistroPropietarioPage;
-  let fixture: ComponentFixture<FormRegistroPropietarioPage>;
+describe('ListNotificacionesPage', () => {
+  let component: ListNotificacionesPage;
+  let fixture: ComponentFixture<ListNotificacionesPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormRegistroPropietarioPage ],
+      declarations: [ ListNotificacionesPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(FormRegistroPropietarioPage);
+    fixture = TestBed.createComponent(ListNotificacionesPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

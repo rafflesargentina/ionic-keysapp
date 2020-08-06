@@ -12,4 +12,6 @@ export class SelectClientePage implements OnInit {
   ngOnInit() {
   }
 
+  
+
 }

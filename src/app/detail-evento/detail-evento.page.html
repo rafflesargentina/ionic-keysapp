@@ -15,13 +15,11 @@
     <ion-label position="floating">Cliente</ion-label>     
     <app-card-usuario [usuario]="clienteAsignado"></app-card-usuario>  
   </ion-item>
- 
 
   <ion-item>
     Fecha:{{this.evento.date}}
   </ion-item>
-
-
+  
   <ion-item *ngIf=="!pendienteConfirmar">
     Confirmado    
   </ion-item>

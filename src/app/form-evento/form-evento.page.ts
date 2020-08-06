@@ -107,7 +107,9 @@ export class FormEventoPage implements OnInit {
       this.clienteAsignado.asignarValores(resp);
     });
 
-    modal.present();   
+    modal.present();  
+    
+    
     
   }
 
