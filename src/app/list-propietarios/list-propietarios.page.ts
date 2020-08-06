@@ -37,7 +37,7 @@ export class ListPropietariosPage implements OnInit {
   }
 
   doRefresh(event){ 
-    console.log('list-propietarios.doRefresh(event)', event.target.value);
+    //console.log('list-propietarios.doRefresh(event)', event.target.value);
     this.items = [
       {'id': '1', 'first_name': 'juan', 'last_name': 'de los palotes', 'email': '', 'phone': '', 'mobile': ''},
       {'id': '2', 'first_name': 'pedro', 'last_name': 'de los palotes', 'email': '', 'phone': '', 'mobile': ''},
@@ -60,22 +60,22 @@ export class ListPropietariosPage implements OnInit {
       {'id': '19', 'first_name': 'cecilia', 'last_name': 'de los palotes', 'email': '', 'phone': '', 'mobile': ''},
       {'id': '20', 'first_name': 'francisca', 'last_name': 'de los palotes', 'email': '', 'phone': '', 'mobile': ''},
       ]; 
-    console.log('items', this.items);
+    //console.log('items', this.items);
     event.target.complete(); 
   } 
 
   onChange(event){
-    console.log('list-propietarios.onChange(event)', event.target.value);
+    //console.log('list-propietarios.onChange(event)', event.target.value);
     this.items= [];
   }
 
   seleccionar(item: Propietario){
-    console.log('list-propietarios.seleccionar(item)', item);
+    //console.log('list-propietarios.seleccionar(item)', item);
     this.router.navigate(['/detail-propietario', item.id]);
   }
 
   loadData(event){
-    console.log('list-propietarios.loadData(event)', event.target.value);
+    //console.log('list-propietarios.loadData(event)', event.target.value);
     setTimeout(() => { 
       if(this.items.length > 50){ //frenamos en 50 la carga
         event.target.complete(); 

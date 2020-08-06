@@ -10,6 +10,9 @@ import { CardClienteComponent } from '../Components/card-cliente/card-cliente.co
 import { CardInmuebleComponent } from './card-inmueble/card-inmueble.component';
 import { CardAgenteComponent } from './card-agente/card-agente.component';
 import { CardPropietarioComponent } from './card-propietario/card-propietario.component';
+import { ListClientesComponent } from './list-clientes/list-clientes.component';
+import { ListInmueblesComponent } from './list-inmuebles/list-inmuebles.component';
+import { ListPropietariosPage } from '../list-propietarios/list-propietarios.page';
 
 @NgModule({
 imports: [
@@ -25,7 +28,9 @@ imports: [
     CardClienteComponent,
     CardInmuebleComponent,
     CardAgenteComponent,
-    CardPropietarioComponent
+    CardPropietarioComponent,
+    ListClientesComponent,
+    ListInmueblesComponent
   ],
   exports: [
     SeleccionarImagenComponent,
@@ -33,7 +38,9 @@ imports: [
     CardClienteComponent,
     CardInmuebleComponent,
     CardAgenteComponent,
-    CardPropietarioComponent
+    CardPropietarioComponent,
+    ListClientesComponent,
+    ListInmueblesComponent,
   ]
 })
 export class ComponentsModule {}

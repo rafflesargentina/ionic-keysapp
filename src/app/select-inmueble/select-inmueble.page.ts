@@ -11,64 +11,24 @@ import { ClientesService } from '../Services/clientes.service';
 })
 export class SelectInmueblePage implements OnInit {
 
-  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-  items: Inmueble[] = [];
-  inmueble: Inmueble;
-
   constructor(
-    private router: Router,
-    private clientesService: ClientesService,
-    public modalCtrl: ModalController
+    private modalCtrl: ModalController
     ) { }
 
   ngOnInit() {
-    /*this.clientesService.read().subscribe( resp => {
-      console.log(resp);
-    });*/
-    this.items = [];
-  }
-
-  doRefresh(event){ 
-    //console.log('liselectst-clientes.doRefresh(event)', event.target.value);
-    this.items = []; 
-    //console.log('items', this.items);
-    event.target.complete(); 
-  } 
-
-  onChange(event){
-    //console.log('select-clientes.onChange(event)', event.target.value);
-    this.items= [];
+ 
   }
 
   seleccionar(item: Inmueble){
-    //console.log('select-clientes.seleccionar(item)', item);
-    this.inmueble = item;
-    this.salirConArgumentos();
-  }
-
-  loadData(event){
-    //console.log('select-clientes.loadData(event)', event.target.value);
-    setTimeout(() => { 
-      if(this.items.length > 50){ //frenamos en 50 la carga
-        event.target.complete(); 
-        this.infiniteScroll.disabled = true; 
-        return; 
-      } 
-      const nuevoArr = []; 
-      this.items.push(...nuevoArr); 
-      event.target.complete(); 
-    }, 1000); 
-  }
-
-  salirConArgumentos(){
-    //console.log('select-cliente.salirConArgumentos', this.cliente);
+    //console.log('select-inmueble.page.seleccionar(item)', item);
     this.modalCtrl.dismiss({
-      inmueble: this.inmueble
+      inmueble: item
     });
   }
 
-  salirSinArgumentos(){		
-    this.modalCtrl.dismiss();		
+  botonFlotante(){
+    //redirigir a agregar inmueble
+    this.modalCtrl.dismiss();	
   }
 
 }

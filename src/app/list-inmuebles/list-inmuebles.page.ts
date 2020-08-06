@@ -12,53 +12,22 @@ import { Router } from '@angular/router';
 })
 export class ListInmueblesPage implements OnInit {
   
-  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-  items: Inmueble[] = [];
   constructor(
     private router: Router,
-    private inmuebleService: InmueblesService,
-    private tiposPropiedadesService: TiposPropiedadesService
     ) { }
 
   ngOnInit() {
-    /*this.clientesService.read().subscribe( resp => {
-      console.log(resp);
-    });*/
-  }
-
-  doRefresh(event){ 
-    console.log('list-inmuebles.doRefresh(event)', event.target.value);
-    this.items = []; 
-    console.log('items', this.items);
-    event.target.complete(); 
-  } 
-
-  onChange(event){
-    console.log('list-inmuebles.onChange(event)', event.target.value);
-    this.items= [];
+ 
   }
 
   seleccionar(item: Inmueble){
-    console.log('list-inmueble.seleccionar(item)', item);
-    this.router.navigate(['/detail-inmueble', item.id]);
+    //console.log('list-inmueble.page.seleccionar(item)', item);
+    this.router.navigate(['/detail-cliente', item.id]);
   }
 
-  loadData(event){
-    console.log('list-inmueble.loadData(event)', event.target.value);
-    setTimeout(() => { 
-      if(this.items.length > 50){ //frenamos en 50 la carga
-        event.target.complete(); 
-        this.infiniteScroll.disabled = true; 
-        return; 
-      } 
-      const nuevoArr = []; 
-      this.items.push(...nuevoArr); 
-      event.target.complete(); 
-    }, 1000); 
-  }
-  
   botonFlotante(){
-    
+    //redirigir a agregar cliente
+    console.log('redirigir a agregar inmueble');
   }
 
 }
