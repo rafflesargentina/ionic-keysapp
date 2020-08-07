@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Inmueble } from '../../models/inmueble';
 
 @Component({
   selector: 'app-card-inmueble',
@@ -7,10 +8,12 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CardInmuebleComponent implements OnInit {
 
-  @Input() inmueble:any;
+  @Input() item: Inmueble;
   
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log('card-inmueble', this.item);
+  }
 
 }

@@ -17,6 +17,7 @@ import { ComponentsModule } from '../Components/components.module';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
+    ComponentsModule,
     FormEventoPageRoutingModule
   ],
   declarations: [FormEventoPage]

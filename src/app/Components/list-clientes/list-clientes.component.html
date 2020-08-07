@@ -1,19 +1,45 @@
-<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-  <ion-refresher-content></ion-refresher-content>
-</ion-refresher>
 
-<ion-item>
-  <ion-input type="text" placeholder="Buscar" [(ngModel)]="palabraFiltro"></ion-input>
-  <button clear slot="end" (click)="buscar()">Buscar</button>
-</ion-item>
 
-<div *ngFor="let item of items">
-  <app-card-cliente [item]="item" (clickCard)="seleccionar(item)"></app-card-cliente>               
-</div>
+<ion-searchbar animated 
+            [placeholder]="placeholder" 
+            showCancelButton="never" 
+            color="light" 
+            autocomplete="on"
+            enterkeyhint="send"
+            inputmode="text"
+            type="text"
+            debounce="500"
+            (ionChange)="onChange($event)">
+</ion-searchbar>
 
-<ion-infinite-scroll threshold="100px" (ionInfinite)="buscar($event)">
-  <ion-infinite-scroll-content
-    loadingSpinner="bubbles"
-    loadingText="Cargando más clientes...">
-  </ion-infinite-scroll-content>
-</ion-infinite-scroll>
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list *ngIf="items.length > 0" class="animated fadeIn fast"> 
+    <ion-item *ngFor="let item of items; let i = index"> 
+      <app-card-usuario [item]="item" (click)="seleccionar(item)"></app-card-usuario>
+    </ion-item> 	
+  </ion-list>
+  <ion-list *ngIf="!items.length > 0" class="animated fadeIn fast"> 
+    <ion-item> 
+      <ion-card>
+        <ion-card-header color="warning">
+          <h5>No hay items con esa descripción</h5>
+        </ion-card-header>
+      </ion-card>   
+    </ion-item> 	
+  </ion-list> 
+  
+  
+  <ion-infinite-scroll threshold="150px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando Clientes...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  
+</ion-content>
+<ion-fab class="boton-flotante" horizontal="end" vertical="end" slot="fixed">
+  <ion-fab-button color="primary">
+    <ion-icon name="add" (click)="agregar()"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

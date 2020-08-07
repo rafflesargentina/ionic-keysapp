@@ -40,10 +40,6 @@ const routes: Routes = [
     loadChildren: () => import('./form-registro/form-registro.module').then( m => m.FormRegistroPageModule)
   },
   {
-    path: 'form-registro-cliente',
-    loadChildren: () => import('./form-registro-cliente/form-registro-cliente.module').then( m => m.FormRegistroClientePageModule)
-  },
-  {
     path: 'form-registro-propiedad',
     loadChildren: () => import('./form-registro-propiedad/form-registro-propiedad.module').then( m => m.FormRegistroPropiedadPageModule)
   },
@@ -60,6 +56,30 @@ const routes: Routes = [
     loadChildren: () => import('./form-evento/form-evento.module').then( m => m.FormEventoPageModule)
   },
   {
+    path: 'list-inmuebles',
+    loadChildren: () => import('./list-inmuebles/list-inmuebles.module').then( m => m.ListInmueblesPageModule)
+  },
+  {
+    path: 'list-clientes',
+    loadChildren: () => import('./list-clientes/list-clientes.module').then( m => m.ListClientesPageModule)
+  },
+  {
+    path: 'list-propietarios',
+    loadChildren: () => import('./list-propietarios/list-propietarios.module').then( m => m.ListPropietariosPageModule)
+  },
+  {
+    path: 'detail-cliente',
+    loadChildren: () => import('./detail-cliente/detail-cliente.module').then( m => m.DetailClientePageModule)
+  },
+  {
+    path: 'detail-inmueble',
+    loadChildren: () => import('./detail-inmueble/detail-inmueble.module').then( m => m.DetailInmueblePageModule)
+  },
+  {
+    path: 'detail-propietario',
+    loadChildren: () => import('./detail-propietario/detail-propietario.module').then( m => m.DetailPropietarioPageModule)
+  },
+  {
     path: 'select-cliente',
     loadChildren: () => import('./select-cliente/select-cliente.module').then( m => m.SelectClientePageModule)
   },
@@ -74,10 +94,6 @@ const routes: Routes = [
   {
     path: 'detail-evento',
     loadChildren: () => import('./detail-evento/detail-evento.module').then( m => m.DetailEventoPageModule)
-  },
-  {
-    path: 'detail-cliente',
-    loadChildren: () => import('./detail-cliente/detail-cliente.module').then( m => m.DetailClientePageModule)
   },
   {
     path: 'detail-agente',
@@ -103,6 +119,7 @@ const routes: Routes = [
   
 
   
+  {path: '**', redirectTo: 'home'}
 
   
   

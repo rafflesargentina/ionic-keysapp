@@ -8,6 +8,7 @@ import { FormRegistroPropiedadPageRoutingModule } from './form-registro-propieda
 
 import { FormRegistroPropiedadPage } from './form-registro-propiedad.page';
 import { InputUbicacionComponent } from '../Components/input-ubicacion/input-ubicacion.component';
+import { ComponentsModule } from '../Components/components.module';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { InputUbicacionComponent } from '../Components/input-ubicacion/input-ubi
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
+    ComponentsModule,
     FormRegistroPropiedadPageRoutingModule,
   ],
   declarations: [FormRegistroPropiedadPage, InputUbicacionComponent]

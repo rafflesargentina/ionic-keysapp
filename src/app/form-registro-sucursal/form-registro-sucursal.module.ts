@@ -8,6 +8,7 @@ import { FormRegistroSucursalPageRoutingModule } from './form-registro-sucursal-
 
 import { FormRegistroSucursalPage } from './form-registro-sucursal.page';
 import { InputUbicacionComponent } from '../Components/input-ubicacion/input-ubicacion.component';
+import { ComponentsModule } from '../Components/components.module';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { InputUbicacionComponent } from '../Components/input-ubicacion/input-ubi
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
+    ComponentsModule,
     FormRegistroSucursalPageRoutingModule
   ],
   declarations: [FormRegistroSucursalPage, InputUbicacionComponent]

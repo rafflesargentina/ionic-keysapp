@@ -1,9 +1,14 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>select-inmueble</ion-title>
+    <app-header [titulo]="'Seleccionar Inmueble'"></app-header>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <list-inmuebles (seleccionarInmueble)="seleccionar($event)"></list-inmuebles>  
 </ion-content>
+<ion-fab horizontal="end" vertical="end" slot="fixed">
+  <ion-fab-button color="danger">
+    <ion-icon name="close" (click)="botonFlotante()"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
