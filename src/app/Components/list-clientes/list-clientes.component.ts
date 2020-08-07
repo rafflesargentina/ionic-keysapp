@@ -21,7 +21,7 @@ export class ListClientesComponent implements OnInit {
   ngOnInit() {
     /*this.clientesService.read().subscribe( resp => {
       console.log(resp);
-    });*/
+    });*/ 
     this.items = [
       {'id': '1', 'first_name': 'juan', 'last_name': 'de los palotes', 'email': '', 'phone': '', 'mobile': ''},
       {'id': '2', 'first_name': 'pedro', 'last_name': 'de los palotes', 'email': '', 'phone': '', 'mobile': ''},

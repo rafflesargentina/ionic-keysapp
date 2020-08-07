@@ -110,7 +110,11 @@ const routes: Routes = [
   {
     path: 'form-llave',
     loadChildren: () => import('./form-llave/form-llave.module').then( m => m.FormLlavePageModule)
+  },  {
+    path: 'form-sucursal',
+    loadChildren: () => import('./form-sucursal/form-sucursal.module').then( m => m.FormSucursalPageModule)
   },
+
 
   
 
