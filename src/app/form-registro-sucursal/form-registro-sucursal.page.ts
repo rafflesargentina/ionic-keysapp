@@ -80,7 +80,7 @@ export class FormRegistroSucursalPage implements OnInit {
   }
 
   setValue(newValue: any){
-    this.user.address = newValue.address;
+    //this.user.address = newValue.address;
     //console.log(this.user.address);
   }
 
