@@ -1,21 +1,21 @@
-import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
-import { ClientesService } from 'src/app/Services/clientes.service';
-import { Usuario } from 'src/app/models/usuario';
+import { Router } from '@angular/router';
+import { PropietariosService } from '../Services/propietarios.service';
+import { Usuario } from '../models/usuario';
 
 @Component({
-  selector: 'list-clientes',
-  templateUrl: './list-clientes.component.html',
-  styleUrls: ['./list-clientes.component.scss'],
+  selector: 'app-list-propietarios',
+  templateUrl: './list-propietarios.page.html',
+  styleUrls: ['./list-propietarios.page.scss'],
 })
-export class ListClientesComponent implements OnInit {
+export class ListPropietariosPage implements OnInit {
+
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   items: any[] = [];
-  cliente: Usuario;  //creo que este atributo no es necesario
-  @Output() seleccionarCliente: EventEmitter<Usuario> = new EventEmitter<Usuario>();
-
   constructor(
-    private clientesService: ClientesService
+    private router: Router,
+    private propietariosService: PropietariosService
     ) { }
 
   ngOnInit() {
@@ -37,7 +37,7 @@ export class ListClientesComponent implements OnInit {
   }
 
   doRefresh(event){ 
-    //console.log('list-clientes.component.doRefresh(event)', event.target.value);
+    //console.log('list-propietarios.doRefresh(event)', event.target.value);
     this.items = [
       {'id': '1', 'first_name': 'juan', 'last_name': 'de los palotes', 'email': '', 'phone': '', 'mobile': ''},
       {'id': '2', 'first_name': 'pedro', 'last_name': 'de los palotes', 'email': '', 'phone': '', 'mobile': ''},
@@ -65,21 +65,17 @@ export class ListClientesComponent implements OnInit {
   } 
 
   onChange(event){
-    //console.log('list-clientes.component.onChange(event)', event.target.value);
+    //console.log('list-propietarios.onChange(event)', event.target.value);
     this.items= [];
   }
 
   seleccionar(item: Usuario){
-    //console.log('list-clientes.component.seleccionar(item)', item);
-    this.cliente = item;
-    //emitir al padre
-    this.seleccionarCliente.emit(this.cliente);
+    //console.log('list-propietarios.seleccionar(item)', item);
+    this.router.navigate(['/detail-propietario', item.id]);
   }
 
-  
-
   loadData(event){
-    //console.log('list-clientes.component.loadData(event)', event.target.value);
+    //console.log('list-propietarios.loadData(event)', event.target.value);
     setTimeout(() => { 
       if(this.items.length > 50){ //frenamos en 50 la carga
         event.target.complete(); 
@@ -111,6 +107,10 @@ export class ListClientesComponent implements OnInit {
       this.items.push(...nuevoArr); 
       event.target.complete(); 
     }, 1000); 
+  }
+
+  botonFlotante(){
+    
   }
 
 }

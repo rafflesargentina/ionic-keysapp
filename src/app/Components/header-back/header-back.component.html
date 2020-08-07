@@ -1,0 +1,14 @@
+<ion-toolbar >
+  <div class="header-logo" slot="start">
+    <img src="../../../assets/icon/logo.svg" alt="">
+  </div>
+  <ion-title class="isologo" *ngIf="titulo == ''">
+    <img src="../../../assets/isologo.svg" alt="">
+  </ion-title>
+  <ion-title class="isologo" *ngIf="titulo != ''">
+    <h2>{{titulo}}</h2>
+  </ion-title>
+  <ion-buttons class="header-logo" slot="end" (click)="agregar()">
+    <img src="../../../assets/icono_agregar.svg" alt="">
+  </ion-buttons> 
+</ion-toolbar>

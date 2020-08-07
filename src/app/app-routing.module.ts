@@ -96,6 +96,18 @@ const routes: Routes = [
     loadChildren: () => import('./list-notificaciones/list-notificaciones.module').then( m => m.ListNotificacionesPageModule)
   },
   {
+    path: 'list-clientes',
+    loadChildren: () => import('./list-clientes/list-clientes.module').then( m => m.ListClientesPageModule)
+  },
+  {
+    path: 'list-inmuebles',
+    loadChildren: () => import('./list-inmuebles/list-inmuebles.module').then( m => m.ListInmueblesPageModule)
+  },
+  {
+    path: 'list-notificaciones',
+    loadChildren: () => import('./list-notificaciones/list-notificaciones.module').then( m => m.ListNotificacionesPageModule)
+  },
+  {
     path: 'form-llave',
     loadChildren: () => import('./form-llave/form-llave.module').then( m => m.FormLlavePageModule)
   },

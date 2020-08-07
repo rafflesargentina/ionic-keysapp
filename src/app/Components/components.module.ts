@@ -5,8 +5,11 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { IonicModule } from '@ionic/angular';
 import { InputUbicacionComponent } from '../Components/input-ubicacion/input-ubicacion.component';
-import { CardInmuebleComponent } from './card-inmueble/card-inmueble.component';
-import { CardClienteComponent } from './card-cliente/card-cliente.component';
+import { ListClientesComponent } from './list-clientes/list-clientes.component';
+import { HeaderComponent } from './header/header.component';
+import { CardUsuarioComponent } from './card-usuario/card-usuario.component';
+import { ListInmueblesComponent } from './list-inmuebles/list-inmuebles.component';
+import { ListAgentesComponent } from './list-agentes/list-agentes.component';
 
 
 @NgModule({
@@ -19,13 +22,19 @@ imports: [
     ],
   declarations: [
     SeleccionarImagenComponent,
-    CardInmuebleComponent,
-    CardClienteComponent
+    ListClientesComponent,
+    ListInmueblesComponent,
+    ListAgentesComponent,
+    HeaderComponent,
+    CardUsuarioComponent
   ],
   exports: [
     SeleccionarImagenComponent,
-    CardInmuebleComponent,
-    CardClienteComponent
+    ListClientesComponent,
+    ListInmueblesComponent,
+    ListAgentesComponent,
+    HeaderComponent,
+    CardUsuarioComponent
   ]
 })
 export class ComponentsModule {}
