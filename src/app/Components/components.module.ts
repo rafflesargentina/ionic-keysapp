@@ -12,8 +12,9 @@ import { HeaderComponent } from './header/header.component';
 //import { ListAgentesComponent } from './list-agentes/list-agentes.component';
 //import { CardInmuebleComponent } from './card-inmueble/card-inmueble.component';
 import { CardComponent } from './card/card.component';
-import { ListComponent } from './list/list.component';
 import { DetailComponent } from './detail/detail.component';
+import { ItemDirective } from './list-base/item.directive';
+import { ListBaseComponent } from './list-base/list-base.component';
 
 
 @NgModule({
@@ -27,16 +28,18 @@ imports: [
   declarations: [
     SeleccionarImagenComponent,
     HeaderComponent,
-    ListComponent,
+    ListBaseComponent,
     DetailComponent,
-    CardComponent
+    CardComponent,
+    ItemDirective
   ],
   exports: [
     SeleccionarImagenComponent,
     HeaderComponent,
-    ListComponent,
+    ListBaseComponent,
     DetailComponent,
-    CardComponent
+    CardComponent,
+    ItemDirective
   ]
 })
 export class ComponentsModule {}

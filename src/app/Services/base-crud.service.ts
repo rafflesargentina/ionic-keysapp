@@ -93,11 +93,14 @@ export class BaseCRUDService {
    
     console.log(error);
     let mensaje: string = '';
-    Object.keys(error.error.errors).forEach((key,index)=> {
-      console.log(error.error.errors[key][0])
-      mensaje += error.error.errors[key][0] + '\n';
-    });
-    this.toastService.mensaje("",mensaje);
+    if(error.status != 0){
+      Object.keys(error.error.errors).forEach((key,index)=> {
+        console.log(error.error.errors[key][0])
+        mensaje += error.error.errors[key][0] + '\n';
+      });
+      this.toastService.mensaje("",mensaje);
+    }
+    
 
     return throwError(mensaje);
   };

@@ -4,5 +4,11 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <list (select)="seleccionar($event)" (add)="agregar($event)"></list>  
+  <app-list-base 
+    [itemComponent]="itemComponent"
+    [service] ="getService"
+    (select)="seleccionar($event)" (add)="agregar($event)"  
+  ></app-list-base>  
+
+  
 </ion-content>

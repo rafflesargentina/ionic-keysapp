@@ -36,6 +36,7 @@ import { RecortarImagenPage } from './recortar-imagen/recortar-imagen.page';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { SeleccionarImagenComponent } from './Components/seleccionar-imagen/seleccionar-imagen.component';
 import { ComponentsModule } from './Components/components.module';
+import { ItemDirective } from './Components/list-base/item.directive';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAYAbLJnwJPwltC6tC1NaPjryYuIKTB1zM",
@@ -51,8 +52,7 @@ const firebaseConfig = {
 @NgModule({
   declarations: [
     AppComponent,    
-    RecortarImagenPage,
-    
+    RecortarImagenPage
   ],
   entryComponents: [
    

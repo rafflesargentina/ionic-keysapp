@@ -126,7 +126,8 @@ const routes: Routes = [
   {
     path: 'select/:tipo',
     loadChildren: () => import('./select/select.module').then( m => m.SelectPageModule)
-  }, 
+  },   
+
   
 ];
 
