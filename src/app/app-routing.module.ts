@@ -12,10 +12,6 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
-  /*{
-    path: 'registro',
-    loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
-  },*/
   {
     path: 'recuperar-contrasena',
     loadChildren: () => import('./recuperar-contrasena/recuperar-contrasena.module').then( m => m.RecuperarContrasenaPageModule)
@@ -39,10 +35,6 @@ const routes: Routes = [
     path: 'form-registro',
     loadChildren: () => import('./form-registro/form-registro.module').then( m => m.FormRegistroPageModule)
   },
-  /*{
-    path: 'form-registro-cliente',
-    loadChildren: () => import('./form-registro-cliente/form-registro-cliente.module').then( m => m.FormRegistroClientePageModule)
-  },*/
   {
     path: 'form-registro-propiedad',
     loadChildren: () => import('./form-registro-propiedad/form-registro-propiedad.module').then( m => m.FormRegistroPropiedadPageModule)
@@ -59,14 +51,6 @@ const routes: Routes = [
     path: 'form-evento',
     loadChildren: () => import('./form-evento/form-evento.module').then( m => m.FormEventoPageModule)
   },
-  /*{
-    path: 'select-cliente',
-    loadChildren: () => import('./select-cliente/select-cliente.module').then( m => m.SelectClientePageModule)
-  },
-  {
-    path: 'select-inmueble',
-    loadChildren: () => import('./select-inmueble/select-inmueble.module').then( m => m.SelectInmueblePageModule)
-  },*/
   {
     path: 'form-invitacion',
     loadChildren: () => import('./form-invitacion/form-invitacion.module').then( m => m.FormInvitacionPageModule)
@@ -75,32 +59,10 @@ const routes: Routes = [
     path: 'detail-evento/:id',
     loadChildren: () => import('./detail-evento/detail-evento.module').then( m => m.DetailEventoPageModule)
   },
-  /*{
-    path: 'detail-cliente/:id',
-    loadChildren: () => import('./detail-cliente/detail-cliente.module').then( m => m.DetailClientePageModule)
-  },
   {
-    path: 'detail-agente/:id',
-    loadChildren: () => import('./detail-agente/detail-agente.module').then( m => m.DetailAgentePageModule)
-  },
-  {
-    path: 'detail-inmueble/:id',
-    loadChildren: () => import('./detail-inmueble/detail-inmueble.module').then( m => m.DetailInmueblePageModule)
-  },
-  {
-    path: 'select-propietario',
-    loadChildren: () => import('./select-propietario/select-propietario.module').then( m => m.SelectPropietarioPageModule)
-  },*/
- 
-  /*{
-    path: 'list-clientes/:usuario',
-    loadChildren: () => import('./list-clientes/list-clientes.module').then( m => m.ListClientesPageModule)
-  },*/
-  {
-    path: 'list',
+    path: 'list/:tipo',
     loadChildren: () => import('./list/list.module').then( m => m.ListPageModule)
   },
- 
   {
     path: 'form-llave',
     loadChildren: () => import('./form-llave/form-llave.module').then( m => m.FormLlavePageModule)
