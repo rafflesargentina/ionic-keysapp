@@ -72,19 +72,19 @@ const routes: Routes = [
     loadChildren: () => import('./form-invitacion/form-invitacion.module').then( m => m.FormInvitacionPageModule)
   },
   {
-    path: 'detail-evento',
+    path: 'detail-evento/:id',
     loadChildren: () => import('./detail-evento/detail-evento.module').then( m => m.DetailEventoPageModule)
   },
   {
-    path: 'detail-cliente',
+    path: 'detail-cliente/:id',
     loadChildren: () => import('./detail-cliente/detail-cliente.module').then( m => m.DetailClientePageModule)
   },
   {
-    path: 'detail-agente',
+    path: 'detail-agente/:id',
     loadChildren: () => import('./detail-agente/detail-agente.module').then( m => m.DetailAgentePageModule)
   },
   {
-    path: 'detail-inmueble',
+    path: 'detail-inmueble/:id',
     loadChildren: () => import('./detail-inmueble/detail-inmueble.module').then( m => m.DetailInmueblePageModule)
   },
   {
@@ -96,7 +96,7 @@ const routes: Routes = [
     loadChildren: () => import('./list-notificaciones/list-notificaciones.module').then( m => m.ListNotificacionesPageModule)
   },
   {
-    path: 'list-clientes',
+    path: 'list-clientes/:usuario',
     loadChildren: () => import('./list-clientes/list-clientes.module').then( m => m.ListClientesPageModule)
   },
   {
@@ -110,10 +110,24 @@ const routes: Routes = [
   {
     path: 'form-llave',
     loadChildren: () => import('./form-llave/form-llave.module').then( m => m.FormLlavePageModule)
-  },  {
+  },
+  {
     path: 'form-sucursal',
     loadChildren: () => import('./form-sucursal/form-sucursal.module').then( m => m.FormSucursalPageModule)
   },
+  {
+    path: 'list/:tipo',
+    loadChildren: () => import('./list/list.module').then( m => m.ListPageModule)
+  },
+  {
+    path: 'detail/:tipo/:id',
+    loadChildren: () => import('./detail/detail.module').then( m => m.DetailPageModule)
+  },
+  {
+    path: 'select/:tipo',
+    loadChildren: () => import('./select/select.module').then( m => m.SelectPageModule)
+  },
+
 
 
   

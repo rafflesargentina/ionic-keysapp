@@ -10,6 +10,10 @@ import { HeaderComponent } from './header/header.component';
 import { CardUsuarioComponent } from './card-usuario/card-usuario.component';
 import { ListInmueblesComponent } from './list-inmuebles/list-inmuebles.component';
 import { ListAgentesComponent } from './list-agentes/list-agentes.component';
+import { CardInmuebleComponent } from './card-inmueble/card-inmueble.component';
+import { CardComponent } from './card/card.component';
+import { ListComponent } from './list/list.component';
+import { DetailComponent } from './detail/detail.component';
 
 
 @NgModule({
@@ -22,19 +26,17 @@ imports: [
     ],
   declarations: [
     SeleccionarImagenComponent,
-    ListClientesComponent,
-    ListInmueblesComponent,
-    ListAgentesComponent,
     HeaderComponent,
-    CardUsuarioComponent
+    ListComponent,
+    DetailComponent,
+    CardComponent
   ],
   exports: [
     SeleccionarImagenComponent,
-    ListClientesComponent,
-    ListInmueblesComponent,
-    ListAgentesComponent,
     HeaderComponent,
-    CardUsuarioComponent
+    ListComponent,
+    DetailComponent,
+    CardComponent
   ]
 })
 export class ComponentsModule {}

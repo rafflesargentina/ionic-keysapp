@@ -1,0 +1,8 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <app-header [titulo]="titulo" [icono]="'back'"></app-header>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <list (select)="seleccionar($event)" (add)="agregar($event)"></list>  
+</ion-content>

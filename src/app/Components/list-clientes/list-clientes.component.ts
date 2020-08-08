@@ -12,7 +12,8 @@ export class ListClientesComponent implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   items: any[] = [];
   cliente: Usuario;  //creo que este atributo no es necesario
-  @Output() seleccionarCliente: EventEmitter<Usuario> = new EventEmitter<Usuario>();
+  @Output() select: EventEmitter<Usuario> = new EventEmitter<Usuario>();
+  @Output() add: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(
     private clientesService: ClientesService
@@ -73,7 +74,7 @@ export class ListClientesComponent implements OnInit {
     //console.log('list-clientes.component.seleccionar(item)', item);
     this.cliente = item;
     //emitir al padre
-    this.seleccionarCliente.emit(this.cliente);
+    this.select.emit(this.cliente);
   }
 
   
@@ -111,6 +112,11 @@ export class ListClientesComponent implements OnInit {
       this.items.push(...nuevoArr); 
       event.target.complete(); 
     }, 1000); 
+  }
+
+  agregar(){
+    //emitir al padre
+    this.add.emit();
   }
 
 }

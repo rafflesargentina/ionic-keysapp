@@ -1,5 +1,5 @@
 export class Usuario {
-    public id="";
+    public id= "";
     public first_name= "";
     public last_name= "";
     public email= "";

@@ -8,6 +8,8 @@ import { SelectPropietarioPage } from '../select-propietario/select-propietario.
 import { TiposPropiedadesService } from '../Services/tipos-propiedades.service';
 import { TiposOperacionesService } from '../Services/tipos-operaciones.service';
 import { Inmueble } from '../models/inmueble';
+import { SelectPage } from '../select/select.page';
+import { ToastService } from '../Services/toast.service';
 
 @Component({
   selector: 'app-form-registro-propiedad',
@@ -20,6 +22,7 @@ export class FormRegistroPropiedadPage implements OnInit {
   segment: string = 'first';
   operaciones = [];
   tipos = [];
+  titulo: string = 'Registro de Inmuebles'
   public inmueble:Inmueble;
   sale_operation: boolean = false;
   rental_operation: boolean = false;
@@ -33,6 +36,7 @@ export class FormRegistroPropiedadPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router:Router,
+    private toast: ToastService,
     private modalController:ModalController,
     private tiposPropiedadesService:TiposPropiedadesService,
     private tiposOperacionesService:TiposOperacionesService
@@ -94,9 +98,13 @@ export class FormRegistroPropiedadPage implements OnInit {
   async seleccionarPropietario(){
 
     const modal = await this.modalController.create({
-      component: SelectPropietarioPage
+      component: SelectPage,
+      componentProps: { 					
+        //datos que viajan al modal en modo clave: valor,	
+        tipo: 'propietario'				
+      } 
     });    
-
+    /*
     modal.onDidDismiss()
     .then((data) => {
       let resp:any = data;
@@ -104,9 +112,20 @@ export class FormRegistroPropiedadPage implements OnInit {
       this.datosForm.patchValue({
         owner_id: resp.id
       })
-    });
+    });*/
     modal.present();
-
+    await modal.onDidDismiss()
+    .then((data) => {
+      let resp: any = data;
+      if(data != undefined){
+        this.propietarioAsignado.asignarValores(resp);
+        this.datosForm.patchValue({
+          owner_id: resp.id
+        });
+      }else{
+        this.toast.mensaje('Error', 'Debe seleccionar un propietario');
+      }
+    }); 
   }  
 
   setValue(newValue: any){

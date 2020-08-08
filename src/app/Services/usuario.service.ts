@@ -57,5 +57,7 @@ export class UsuarioService {
     return this.authenticationState.value;
   }
   
-
+  get(id: string){
+    
+  }
 }

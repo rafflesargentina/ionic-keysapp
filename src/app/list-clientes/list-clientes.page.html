@@ -1,9 +1,9 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-    <app-header [titulo]="'Listado de Clientes'" [icono]="'back'"></app-header>
+    <app-header [titulo]="titulo" [icono]="'back'"></app-header>
   </ion-toolbar>
 </ion-header>
-<div class="posicion-lista">
-  <list-clientes (seleccionarCliente)="seleccionar($event)"></list-clientes>  
-</div>
+<ion-content>
+  <list-clientes (select)="seleccionar($event)" (add)="agregar($event)"></list-clientes>  
+</ion-content>
 

@@ -1,9 +1,10 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>select-cliente</ion-title>
+    <app-header [titulo]="'Seleccionar Cliente'" [icono]="'back'"
+                (volver)="volver($event)"></app-header>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  
+  <list-clientes (select)="seleccionar($event)" (add)="agregar($event)"></list-clientes>  
 </ion-content>

@@ -8,6 +8,10 @@ import { FormRegistroPropiedadPageRoutingModule } from './form-registro-propieda
 
 import { FormRegistroPropiedadPage } from './form-registro-propiedad.page';
 import { InputUbicacionComponent } from '../Components/input-ubicacion/input-ubicacion.component';
+import { ComponentsModule } from '../Components/components.module';
+import { ToastService } from '../Services/toast.service';
+import { InmueblesService } from '../Services/inmuebles.service';
+import { UsuarioService } from '../Services/usuario.service';
 
 @NgModule({
   imports: [
@@ -15,8 +19,10 @@ import { InputUbicacionComponent } from '../Components/input-ubicacion/input-ubi
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
+    ComponentsModule,
     FormRegistroPropiedadPageRoutingModule,
   ],
-  declarations: [FormRegistroPropiedadPage, InputUbicacionComponent]
+  declarations: [FormRegistroPropiedadPage, InputUbicacionComponent],
+  providers: [ToastService, InmueblesService, UsuarioService]
 })
 export class FormRegistroPropiedadPageModule {}
