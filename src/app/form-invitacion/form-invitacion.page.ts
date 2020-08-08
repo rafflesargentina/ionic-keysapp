@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastService } from '../Services/toast.service';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-form-invitacion',
@@ -10,10 +11,12 @@ import { ToastService } from '../Services/toast.service';
 export class FormInvitacionPage implements OnInit {
 
   public email = "";
+  @Input() isModal = false;
 
   constructor(
     private route:ActivatedRoute,
-    private toastService:ToastService
+    private toastService:ToastService,
+    private modalCtrl: ModalController
   ) { 
 
 
@@ -36,6 +39,13 @@ export class FormInvitacionPage implements OnInit {
 
     
 
+  }
+
+  async volver(event){
+    if(this.isModal){
+      console.log('volver del form invitacion');
+    await this.modalCtrl.dismiss();	
+    }  
   }
 
 }

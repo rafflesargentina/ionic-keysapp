@@ -9,6 +9,8 @@ import { FormRegistroSucursalPageRoutingModule } from './form-registro-sucursal-
 import { FormRegistroSucursalPage } from './form-registro-sucursal.page';
 import { InputUbicacionComponent } from '../Components/input-ubicacion/input-ubicacion.component';
 import { ComponentsModule } from '../Components/components.module';
+import { ToastService } from '../Services/toast.service';
+import { UsuarioService } from '../Services/usuario.service';
 
 @NgModule({
   imports: [
@@ -19,6 +21,7 @@ import { ComponentsModule } from '../Components/components.module';
     ComponentsModule,
     FormRegistroSucursalPageRoutingModule
   ],
-  declarations: [FormRegistroSucursalPage, InputUbicacionComponent]
+  declarations: [FormRegistroSucursalPage, InputUbicacionComponent],
+  providers: [ToastService, UsuarioService]
 })
 export class FormRegistroSucursalPageModule {}

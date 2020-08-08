@@ -1,8 +1,10 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>form-invitacion</ion-title>
+    <app-header [titulo]="'Formulario de Invitación'" [icono]="'back'"
+                (volver)="volver($event)"></app-header>
   </ion-toolbar>
 </ion-header>
+
 
 <ion-content class="ion-padding">
   <ion-input type="text" [(ngModel)]="email"></ion-input>

@@ -5,9 +5,10 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-button expand="block" [routerLink]="['/list-clientes']">Listado de clientes</ion-button>
-  <ion-button expand="block" [routerLink]="['/list-inmuebles']">Listado de Inmuebles</ion-button>
-  <ion-button expand="block" [routerLink]="['/list-propietarios']">Listado de Propietarios</ion-button>
+  <ion-button expand="block" [routerLink]="['/list', 'cliente']">Listado de Clientes</ion-button>
+  <ion-button expand="block" [routerLink]="['/list', 'agente']">Listado de Agentes</ion-button>
+  <ion-button expand="block" [routerLink]="['/list', 'propietario']">Listado de Propietarios</ion-button>
+  <ion-button expand="block" [routerLink]="['/list', 'inmueble']">Listado de Inmuebles</ion-button>
   <hr>
   <ion-button expand="block" [routerLink]="['/form-registro']">Formulario de Registro</ion-button>
   <ion-button expand="block" [routerLink]="['/form-registro-propiedad']">Formulario de Registro de Propiedad</ion-button>
@@ -16,8 +17,11 @@
   <hr>
   <ion-button expand="block" [routerLink]="['/calendario']">Calendario</ion-button>
   <ion-button expand="block" [routerLink]="['/form-evento']">Evento</ion-button>
-  <ion-button expand="block" (click)="modalCliente()">Seleccionar Cliente</ion-button>
-  <ion-button expand="block" (click)="modalInmueble()">Seleccionar Inmueble</ion-button>
+  <hr>
+  <ion-button expand="block" (click)="modalPage('cliente')">Seleccionar Cliente</ion-button>
+  <ion-button expand="block" (click)="modalPage('agente')">Seleccionar Agente</ion-button>
+  <ion-button expand="block" (click)="modalPage('propietario')">Seleccionar Propietario</ion-button>
+  <ion-button expand="block" (click)="modalPage('inmueble')">Seleccionar Inmueble</ion-button>
   <hr>
   <ion-button expand="block" [routerLink]="['/']"></ion-button>
 </ion-content>

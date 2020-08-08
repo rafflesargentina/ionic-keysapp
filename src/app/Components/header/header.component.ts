@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 
@@ -11,6 +11,7 @@ export class HeaderComponent implements OnInit {
 
   @Input() titulo = "";
   @Input() icono = "";
+  @Output() volver: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     public router:Router,
@@ -30,7 +31,8 @@ export class HeaderComponent implements OnInit {
   }
 
   atras(){
-    this.navCtrl.back();
+    this.volver.emit();
+    this.navCtrl.back();  
   }
 
 }

@@ -5,11 +5,16 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { IonicModule } from '@ionic/angular';
 import { InputUbicacionComponent } from '../Components/input-ubicacion/input-ubicacion.component';
-import { HeaderComponent } from '../Components/header/header.component';
-import { CardInmuebleComponent } from './card-inmueble/card-inmueble.component';
-import { ListClientesComponent } from './list-clientes/list-clientes.component';
-import { ListInmueblesComponent } from './list-inmuebles/list-inmuebles.component';
-import { ListPropietariosPage } from '../list-propietarios/list-propietarios.page';
+//import { ListClientesComponent } from './list-clientes/list-clientes.component';
+import { HeaderComponent } from './header/header.component';
+//import { CardUsuarioComponent } from './card-usuario/card-usuario.component';
+//import { ListInmueblesComponent } from './list-inmuebles/list-inmuebles.component';
+//import { ListAgentesComponent } from './list-agentes/list-agentes.component';
+//import { CardInmuebleComponent } from './card-inmueble/card-inmueble.component';
+import { CardComponent } from './card/card.component';
+import { DetailComponent } from './detail/detail.component';
+import { ItemDirective } from './list-base/item.directive';
+import { ListBaseComponent } from './list-base/list-base.component';
 
 @NgModule({
 imports: [
@@ -22,16 +27,18 @@ imports: [
   declarations: [
     SeleccionarImagenComponent,
     HeaderComponent,
-    CardInmuebleComponent,
-    ListClientesComponent,
-    ListInmueblesComponent
+    ListBaseComponent,
+    DetailComponent,
+    CardComponent,
+    ItemDirective
   ],
   exports: [
     SeleccionarImagenComponent,
     HeaderComponent,
-    CardInmuebleComponent,
-    ListClientesComponent,
-    ListInmueblesComponent,
+    ListBaseComponent,
+    DetailComponent,
+    CardComponent,
+    ItemDirective
   ]
 })
 export class ComponentsModule {}

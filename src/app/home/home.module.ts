@@ -7,6 +7,13 @@ import { IonicModule } from '@ionic/angular';
 import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
+//import { SelectClientePage } from '../select-cliente/select-cliente.page';
+//import { SelectInmueblePage } from '../select-inmueble/select-inmueble.page';
+import { ComponentsModule } from '../Components/components.module';
+import { SelectPage } from '../select/select.page';
+import { SelectPageModule } from '../select/select.module';
+//import { SelectClientePageModule } from '../select-cliente/select-cliente.module';
+//import { SelectInmueblePageModule } from '../select-inmueble/select-inmueble.module';
 
 import { ComponentsModule } from '../Components/components.module';
 import { SelectClientePage } from '../select-cliente/select-cliente.page';
@@ -15,15 +22,14 @@ import { SelectClientePageModule } from '../select-cliente/select-cliente.module
 import { SelectInmueblePageModule } from '../select-inmueble/select-inmueble.module';
 
 @NgModule({
-  entryComponents: [SelectClientePage, SelectInmueblePage], //para manejar los modales de seleccion
+  entryComponents: [SelectPage], //para manejar los modales de seleccion
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
     ComponentsModule,
-    SelectClientePageModule, //para manejar modal de seleccion de clientes
-    SelectInmueblePageModule,//para manejar modal de seleccion de inmuebles
+    SelectPageModule,//para manejar modal de seleccion
   ],
   declarations: [HomePage]
 })

@@ -1,6 +1,6 @@
 export class Inmueble{
-    public id ="";
-    
+
+    public id="";
     public owner_id ="";
     public property_type_id ="";
     public name ="";

@@ -8,7 +8,7 @@ import { Inmueble } from '../../models/inmueble';
 })
 export class CardInmuebleComponent implements OnInit {
 
-  @Input() item: Inmueble;
+  @Input() data: any;
   
   constructor() { }
 

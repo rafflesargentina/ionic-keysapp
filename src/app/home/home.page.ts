@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { SelectClientePage } from '../select-cliente/select-cliente.page';
-import { SelectInmueblePage } from '../select-inmueble/select-inmueble.page';
+import { SelectPage } from '../select/select.page';
 
 @Component({
   selector: 'app-home',
@@ -20,18 +19,20 @@ export class HomePage implements OnInit {
     
   }
 
-  async modalCliente(){
-    const modalCliente = await this.modalCtrl.create({ 	
-      component: SelectClientePage, 			
+  async modalPage(tipo: string){
+    const modalPage = await this.modalCtrl.create({ 	
+      component: SelectPage, 			
       componentProps: { 					
-        //datos que viajan al modal en modo clave: valor,					
+        //datos que viajan al modal en modo clave: valor,	
+        tipo: tipo				
       } 							
     }); 							
-    await modalCliente.present(); 
-    const {data} = await modalCliente.onDidDismiss(); 	
-    console.log('Retorno del modal Cliente', data); 		
+    await modalPage.present(); 
+    const {data} = await modalPage.onDidDismiss(); 	
+    console.log('Retorno del modal', data); 		
   }
 
+  /*
   async modalInmueble(){
     const modalInmueble = await this.modalCtrl.create({ 	
       component: SelectInmueblePage, 			
@@ -43,5 +44,5 @@ export class HomePage implements OnInit {
     const {data} = await modalInmueble.onDidDismiss(); 	
     console.log('Retorno del modal Inmueble', data); 	
   }
-
+  */
 }
