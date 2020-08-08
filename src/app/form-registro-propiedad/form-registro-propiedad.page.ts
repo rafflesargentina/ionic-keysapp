@@ -3,8 +3,8 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { ToastController, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Usuario } from '../models/usuario';
-import { SelectInmueblePage } from '../select-inmueble/select-inmueble.page';
-import { SelectPropietarioPage } from '../select-propietario/select-propietario.page';
+//import { SelectInmueblePage } from '../select-inmueble/select-inmueble.page';
+//import { SelectPropietarioPage } from '../select-propietario/select-propietario.page';
 import { TiposPropiedadesService } from '../Services/tipos-propiedades.service';
 import { TiposOperacionesService } from '../Services/tipos-operaciones.service';
 import { Inmueble } from '../models/inmueble';

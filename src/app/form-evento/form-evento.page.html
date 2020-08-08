@@ -1,8 +1,9 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>form-evento</ion-title>
+    <app-header [titulo]="'Formulario de Eventos'" [icono]="'back'"></app-header>
   </ion-toolbar>
 </ion-header>
+
 <ion-content class="ion-padding">
   <form [formGroup]="datosForm">
 
@@ -26,7 +27,7 @@
           <ion-icon name="trash"></ion-icon>
         </ion-button>        
       </ion-item>  
-      <ion-button type="button" expand="block" (click)="seleccionarInmueble()">Seleccionar Cliente</ion-button>
+      <ion-button type="button" expand="block" (click)="seleccionarCliente()">Seleccionar Cliente</ion-button>
       <div *ngIf="submitted && f.property_id.errors" class="invalid-feedback">
         <div *ngIf="f.property_id.errors.required"><h5>Selecciona un Cliente</h5></div>
       </div>

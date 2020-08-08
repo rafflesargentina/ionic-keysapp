@@ -1,6 +1,6 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>form-registro-sucursal</ion-title>
+    <app-header [titulo]="'Registro de Sucursal'" [icono]="'back'"></app-header>
   </ion-toolbar>
 </ion-header>
 
@@ -35,7 +35,7 @@
       </ion-item>
 
       <!--ubicacion-->
-      <ion-item [class.invalid]="submitted && !datosForm.controls.address.valid">
+      <!--<ion-item [class.invalid]="submitted && !datosForm.controls.address.valid">
         <app-input-ubicacion     
           [address] = "user.address"
           [country]="user.address.country"
@@ -55,7 +55,15 @@
               <h5>Ingresa una ubicación para esta sucursal</h5>
             </div>
         </div>
+      </ion-item>-->
+      <ion-item [class.invalid]="submitted && !datosForm.controls.address.valid">
+        <app-input-ubicacion      
+          (onSelectValue)='setAddress($event)' >
+        </app-input-ubicacion> 
       </ion-item>
+      <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+        <div *ngIf="f.address.errors.required"><h5>Ingresa una Dirección</h5></div>
+      </div>
     </div>
     <div class="div100">
       <h4 class="h41">Contacto</h4>      

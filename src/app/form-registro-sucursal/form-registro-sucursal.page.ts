@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Usuario } from '../models/usuario';
+import { Inmueble } from '../models/inmueble';
 
 @Component({
   selector: 'app-form-registro-sucursal',
@@ -14,6 +15,7 @@ export class FormRegistroSucursalPage implements OnInit {
   datosForm: FormGroup;
   submitted = false;
   public user: Usuario;
+  public inmueble: Inmueble;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -82,6 +84,10 @@ export class FormRegistroSucursalPage implements OnInit {
   setValue(newValue: any){
     //this.user.address = newValue.address;
     //console.log(this.user.address);
+  }
+
+  setAddress(newValue: any){
+    this.inmueble.address = newValue.address;
   }
 
 }

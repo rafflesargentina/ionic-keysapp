@@ -6,12 +6,13 @@ import { ParametrosService } from '../Services/global/parametros.service';
 import { Evento } from '../models/evento';
 import { EventosService } from '../Services/eventos.service';
 import { ModalController } from '@ionic/angular';
-import { SelectClientePage } from '../select-cliente/select-cliente.page';
-import { SelectInmueblePage } from '../select-inmueble/select-inmueble.page';
+//import { SelectClientePage } from '../select-cliente/select-cliente.page';
+//import { SelectInmueblePage } from '../select-inmueble/select-inmueble.page';
 import { ClientesService } from '../Services/clientes.service';
 import { Route } from '@angular/compiler/src/core';
 import { ActivatedRoute } from '@angular/router';
 import { UsuarioService } from '../Services/usuario.service';
+import { SelectPage } from '../select/select.page';
 
 @Component({
   selector: 'app-form-evento',
@@ -83,7 +84,11 @@ export class FormEventoPage implements OnInit {
 
   async seleccionarInmueble(){
     const modal = await this.modalController.create({
-      component: SelectInmueblePage
+      component: SelectPage, 			
+      componentProps: { 					
+        //datos que viajan al modal en modo clave: valor,	
+        tipo: 'inmueble'				
+      } 
     });    
 
     modal.onDidDismiss()
@@ -98,7 +103,11 @@ export class FormEventoPage implements OnInit {
   async seleccionarCliente(){
 
     const modal = await this.modalController.create({
-      component: SelectClientePage
+      component: SelectPage, 			
+      componentProps: { 					
+        //datos que viajan al modal en modo clave: valor,	
+        tipo: 'cliente'				
+      } 
     });    
 
     modal.onDidDismiss()
