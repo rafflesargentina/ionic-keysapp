@@ -15,11 +15,6 @@ import { SelectPageModule } from '../select/select.module';
 //import { SelectClientePageModule } from '../select-cliente/select-cliente.module';
 //import { SelectInmueblePageModule } from '../select-inmueble/select-inmueble.module';
 
-import { ComponentsModule } from '../Components/components.module';
-import { SelectClientePage } from '../select-cliente/select-cliente.page';
-import { SelectInmueblePage } from '../select-inmueble/select-inmueble.page';
-import { SelectClientePageModule } from '../select-cliente/select-cliente.module';
-import { SelectInmueblePageModule } from '../select-inmueble/select-inmueble.module';
 
 @NgModule({
   entryComponents: [SelectPage], //para manejar los modales de seleccion

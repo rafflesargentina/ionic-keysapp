@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { DetailPropietarioPageRoutingModule } from './detail-propietario-routing.module';
 
 import { DetailPropietarioPage } from './detail-propietario.page';
 import { ComponentsModule } from '../Components/components.module';
@@ -15,8 +14,7 @@ import { PropietariosService } from '../Services/propietarios.service';
     CommonModule,
     FormsModule,
     IonicModule,
-    ComponentsModule,
-    DetailPropietarioPageRoutingModule
+    ComponentsModule
   ],
   declarations: [DetailPropietarioPage],
   providers: [PropietariosService]

@@ -13,7 +13,6 @@ export class CardInmuebleComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('card-inmueble', this.item);
   }
 
 }

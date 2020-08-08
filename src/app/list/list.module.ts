@@ -3,12 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-
-import { ListClientesPageRoutingModule } from './list-clientes-routing.module';
-
-import { ListClientesPage } from './list-clientes.page';
-import { ClientesService } from '../Services/clientes.service';
 import { ComponentsModule } from '../Components/components.module';
+import { ListPageRoutingModule } from './list-routing.module';
+import { ListPage } from './list.page';
 
 @NgModule({
   imports: [
@@ -16,9 +13,8 @@ import { ComponentsModule } from '../Components/components.module';
     FormsModule,
     IonicModule,
     ComponentsModule,
-    ListClientesPageRoutingModule,
+    ListPageRoutingModule
   ],
-  declarations: [ListClientesPage],
-  providers: [ClientesService],
+  declarations: [ListPage]
 })
-export class ListClientesPageModule {}
+export class ListPageModule {}

@@ -91,22 +91,16 @@ const routes: Routes = [
     path: 'select-propietario',
     loadChildren: () => import('./select-propietario/select-propietario.module').then( m => m.SelectPropietarioPageModule)
   },*/
-  {
-    path: 'list-notificaciones',
-    loadChildren: () => import('./list-notificaciones/list-notificaciones.module').then( m => m.ListNotificacionesPageModule)
-  },
+ 
   /*{
     path: 'list-clientes/:usuario',
     loadChildren: () => import('./list-clientes/list-clientes.module').then( m => m.ListClientesPageModule)
-  },
-  {
-    path: 'list-inmuebles',
-    loadChildren: () => import('./list-inmuebles/list-inmuebles.module').then( m => m.ListInmueblesPageModule)
   },*/
   {
-    path: 'list-notificaciones',
-    loadChildren: () => import('./list-notificaciones/list-notificaciones.module').then( m => m.ListNotificacionesPageModule)
+    path: 'list',
+    loadChildren: () => import('./list/list.module').then( m => m.ListPageModule)
   },
+ 
   {
     path: 'form-llave',
     loadChildren: () => import('./form-llave/form-llave.module').then( m => m.FormLlavePageModule)
@@ -114,14 +108,6 @@ const routes: Routes = [
   {
     path: 'form-sucursal',
     loadChildren: () => import('./form-sucursal/form-sucursal.module').then( m => m.FormSucursalPageModule)
-  },
-  {
-    path: 'list/:tipo',
-    loadChildren: () => import('./list/list.module').then( m => m.ListPageModule)
-  },
-  {
-    path: 'detail/:tipo/:id',
-    loadChildren: () => import('./detail/detail.module').then( m => m.DetailPageModule)
   },
   {
     path: 'select/:tipo',
