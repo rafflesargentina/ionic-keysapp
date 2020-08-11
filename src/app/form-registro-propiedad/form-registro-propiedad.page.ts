@@ -60,12 +60,12 @@ export class FormRegistroPropiedadPage implements OnInit {
       temp_rental_currency:['', Validators.required],
     });    
 
-    this.tiposOperacionesService.all().subscribe(resp =>{
+    this.tiposOperacionesService.all(1).subscribe(resp =>{
       let response:any = resp;
       this.operaciones = response.data.data;
     });
 
-    this.tiposPropiedadesService.all().subscribe(resp =>{
+    this.tiposPropiedadesService.all(1).subscribe(resp =>{
       let response:any = resp;
       this.tipos = response.data.data;
     })

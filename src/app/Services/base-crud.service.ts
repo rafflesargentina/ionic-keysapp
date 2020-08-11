@@ -16,9 +16,16 @@ export class BaseCRUDService {
 
   private httpHeaders:HttpHeaders;
 
-  public options = {
-    headers: this.httpHeaders
-  };
+ 
+
+  private httpParams = new HttpParams({
+      
+  })
+
+  private options = {
+    headers: this.httpHeaders,
+    params: this.httpParams
+  }; 
   
   constructor(
     public httpClient: HttpClient,
@@ -35,7 +42,8 @@ export class BaseCRUDService {
       'Authorization': 'Bearer ' + this.usuarioService.getToken()
     });
     this.options = {
-      headers: this.httpHeaders
+      headers: this.httpHeaders,
+      params: this.httpParams
     };
     this.endpoint = endpoint;
   }
@@ -58,7 +66,17 @@ export class BaseCRUDService {
     );
   }
 
-  all(){    
+  all(page){      
+    
+    this.httpParams = new HttpParams()
+    .set('perPage', "5") 
+    .set('page', page)
+
+    this.options = {
+      headers: this.httpHeaders,
+      params: this.httpParams   
+    };  
+
     console.log(this.options);
     return this.httpClient.get(this.getEndpoint(), this.options) .pipe(
       retry(0),
@@ -71,7 +89,7 @@ export class BaseCRUDService {
   }
 
   delete(id){
-    return this.httpClient.delete(this.getEndpoint()+"/"+id, this.options) .pipe(
+    return this.httpClient.delete(this.getEndpoint()+"/"+id, this.options).pipe(
       retry(0),
       catchError(this.handleError)
     );
@@ -99,8 +117,7 @@ export class BaseCRUDService {
         mensaje += error.error.errors[key][0] + '\n';
       });
       this.toastService.mensaje("",mensaje);
-    }
-    
+    } 
 
     return throwError(mensaje);
   };
