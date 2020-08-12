@@ -78,7 +78,7 @@ export class ListBaseComponent implements OnInit {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.itemComponent);
     console.log(this.itemHost)
     this.itemHost.forEach((element,index) => {
-      console.log(element);
+      console.log( this.items[index]);
       const viewContainerRef = element.viewContainerRef;
       viewContainerRef.clear();
 

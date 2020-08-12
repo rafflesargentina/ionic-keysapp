@@ -7,12 +7,12 @@ import { Usuario } from 'src/app/models/usuario';
   styleUrls: ['./card-usuario.component.scss'],
 })
 export class CardUsuarioComponent implements OnInit {
-  @Input() item: Usuario;
+  @Input() data: Usuario;
 
   constructor() { }
 
   ngOnInit() {
-    
+    console.log(this.data)
   }
 
   /*
