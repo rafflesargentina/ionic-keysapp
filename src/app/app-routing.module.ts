@@ -78,9 +78,10 @@ const routes: Routes = [
   }, 
   
   {
-    path: 'detail-contacto',
+    path: 'detail-contacto/:id',
     loadChildren: () => import('./detail-contacto/detail-contacto.module').then( m => m.DetailContactoPageModule)
-  },  {
+  },
+  {
     path: 'form-operacion',
     loadChildren: () => import('./form-operacion/form-operacion.module').then( m => m.FormOperacionPageModule)
   },

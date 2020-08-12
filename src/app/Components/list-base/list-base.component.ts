@@ -1,8 +1,9 @@
-import { Component, OnInit, ComponentFactoryResolver, Input, ViewChild, Type, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, ComponentFactoryResolver, Input, ViewChild, Type, ViewChildren, QueryList, Output, EventEmitter } from '@angular/core';
 import { ItemDirective } from './item.directive';
 import { ItemComponent } from './item.component';
 import { CardInmuebleComponent } from '../card-inmueble/card-inmueble.component';
 import { IonInfiniteScroll, LoadingController } from '@ionic/angular';
+import { Usuario } from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-list-base',
@@ -14,9 +15,11 @@ export class ListBaseComponent implements OnInit {
   @Input() itemComponent:Type<any>;
   @Input() service:any;
   @ViewChildren(ItemDirective) itemHost: QueryList<ItemDirective>;
-
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-  
+
+  @Output() select: EventEmitter<Usuario> = new EventEmitter<Usuario>();
+  @Output() add: EventEmitter<any> = new EventEmitter<any>();
+
   public page = 1;
   
   public items =[];
@@ -37,7 +40,7 @@ export class ListBaseComponent implements OnInit {
   actualizar(){
     var service = this.service();
     service.all(this.page).subscribe(response=>{
-      console.log(response.data.data);
+      //console.log(response.data.data);
       var elementos = response.data.data; 
     })  
     
@@ -76,15 +79,14 @@ export class ListBaseComponent implements OnInit {
   loadComponent() {
    
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.itemComponent);
-    console.log(this.itemHost)
-    this.itemHost.forEach((element,index) => {
-      console.log(element);
+    //console.log('item.Host', this.itemHost)
+    this.itemHost.forEach((element, index) => {
+      //console.log('element', element);
       const viewContainerRef = element.viewContainerRef;
       viewContainerRef.clear();
-
       const componentRef = viewContainerRef.createComponent(componentFactory);
       (<ItemComponent>componentRef.instance).data = this.items[index];
-
+      //console.log('this.items[index]', this.items[index]);
     });   
   }
 
@@ -99,12 +101,21 @@ export class ListBaseComponent implements OnInit {
     
   }
 
+  loadData(event){
+
+  }
+
   onChange(event){
 
   }
 
   seleccionar(item){
+    //console.log('list-base.seleccionar(item)', item);
+    this.select.emit(item);
+  }
 
+  agregar(){
+    this.add.emit();
   }
 
   async presentLoading() {

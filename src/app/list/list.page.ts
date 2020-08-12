@@ -58,22 +58,16 @@ export class ListPage implements OnInit {
 
 
   seleccionar(item){
-    //console.log('list-clientes.page.seleccionar(item)', item);
-    //solo para prueba esta el if, luego se saca
-    console.log('tipo', this.tipo);
-    if(item == undefined){
-      this.router.navigate(['/detail', this.tipo, '1']);
-    }else{
-      this.router.navigate(['/detail', this.tipo, item.id]);
+    if(item != undefined){
+      this.router.navigate(['/detail-'+this.tipo, item.id]);
     } 
   }
 
   agregar(){
     if(this.tipo === 'inmueble'){
       this.router.navigate(['/form-registro-propiedad']);
-    }else if(this.tipo === 'cliente' || this.tipo === 'propietario' || this.tipo === 'agente' || this.tipo === 'usuario'){
+    }else if(this.tipo === 'contacto'){
       //redirigir a form-invitacion
-      console.log('redirigir a form-invitacion');
       this.router.navigate(['/form-invitacion']);
     }    
   }

@@ -15,7 +15,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-list *ngIf="items.length > 0" class="animated fadeIn fast"> 
-    <ion-item *ngFor="let item of items; let i = index"> 
+    <ion-item *ngFor="let item of items; let i = index" (click)="seleccionar(item)"> 
       <ng-template item-host></ng-template>   
     </ion-item>
   </ion-list>  

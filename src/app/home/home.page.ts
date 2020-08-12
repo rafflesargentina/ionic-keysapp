@@ -20,11 +20,12 @@ export class HomePage implements OnInit {
   }
 
   async modalPage(tipo: string){
+    console.log('home tipo', tipo);
     const modalPage = await this.modalCtrl.create({ 	
       component: SelectPage, 			
       componentProps: { 					
         //datos que viajan al modal en modo clave: valor,	
-        tipo: tipo				
+        tipo: tipo,				
       } 							
     }); 							
     await modalPage.present(); 

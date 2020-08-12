@@ -1,11 +1,12 @@
 import { Component, OnInit, Input, Type } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { FormInvitacionPage } from '../form-invitacion/form-invitacion.page';
-import { FormRegistroPropiedadPage } from '../form-registro-propiedad/form-registro-propiedad.page';
 import { CardInmuebleComponent } from '../Components/card-inmueble/card-inmueble.component';
 import { CardUsuarioComponent } from '../Components/card-usuario/card-usuario.component';
 import { InmueblesService } from '../Services/inmuebles.service';
 import { ContactosService } from '../Services/contactos.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Usuario } from '../models/usuario';
 
 @Component({
   selector: 'app-select',
@@ -13,43 +14,32 @@ import { ContactosService } from '../Services/contactos.service';
   styleUrls: ['./select.page.scss'],
 })
 export class SelectPage implements OnInit {
-  @Input() tipo: string;
-  titulo: string;
-  item: any;
-  
   itemComponent:Type<any> = CardInmuebleComponent;
+  item: Usuario;
+  @Input() tipo: string = '';
+  titulo: string = '';
   
   constructor(
-    private modalCtrl: ModalController,
+    private router: Router,
+    private route: ActivatedRoute,
     private contactosService:ContactosService,
-    private inmuebleService:InmueblesService
+    private inmuebleService:InmueblesService,
+    private modalCtrl: ModalController,
     ) { }
 
   ngOnInit() {
-    switch (this.tipo){
-      case 'cliente':
-        this.titulo = 'Listado de Clientes';
+    switch(this.tipo){
+      case 'contacto':
+        this.titulo = 'Selección de Contactos';
         this.itemComponent = CardUsuarioComponent;
-        break;
-      case 'propietario':
-        this.titulo = 'Listado de Propietarios';
-        this.itemComponent = CardUsuarioComponent;
-        break;
-      case 'agente':
-        this.titulo = 'Listado de Agentes';
-        this.itemComponent = CardUsuarioComponent;
-        break;
-      case 'usuario':
-        this.titulo = 'Listado de Usuarios';
-        this.itemComponent = CardUsuarioComponent;
-        break;
+      break;      
       case 'inmueble':
-        this.titulo = 'Listado de Inmuebles';
+        this.titulo = 'Selección de Inmuebles';
         this.itemComponent = CardInmuebleComponent;
       break;
       default:
         console.log('tipo no definido');
-      break;  
+      break;      
     }
   }
 
