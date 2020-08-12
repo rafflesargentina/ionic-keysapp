@@ -41,7 +41,7 @@ export class ListBaseComponent implements OnInit {
       var elementos = response.data.data; 
     })  
     
-    this.presentLoading();  
+   
 
     service.all(this.page).subscribe(response=>{   
       var resp:any = response;
@@ -49,15 +49,18 @@ export class ListBaseComponent implements OnInit {
       elementos.forEach(element => {
         this.items.push(element);        
       });
-      this.loadComponent();
-      this.dismissLoading();
+      setTimeout(
+        ()=>{this.loadComponent()},
+      100);
+      //this.loadComponent();
+     
       this.infiniteScroll.disabled = false;
       if (elementos.length < 5) {        
         this.infiniteScroll.disabled = true;
       }
 
     },error=>{
-      this.dismissLoading();
+     
     }); 
   }
 
@@ -73,7 +76,7 @@ export class ListBaseComponent implements OnInit {
   loadComponent() {
    
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.itemComponent);
-
+    console.log(this.itemHost)
     this.itemHost.forEach((element,index) => {
       console.log(element);
       const viewContainerRef = element.viewContainerRef;
@@ -105,16 +108,17 @@ export class ListBaseComponent implements OnInit {
   }
 
   async presentLoading() {
-    this.isLoading = true;
-    return await this.loadingController.create({
-      message: 'Cargando',
-    }).then(a => {
-      a.present().then(() => {
-        if (!this.isLoading) {
-          a.dismiss().then(() => console.log('abort presenting'));
-        }
+    if(this.isLoading = false){
+      this.isLoading = true;
+      return await this.loadingController.create({
+        message: 'Cargando',
+      }).then(a => {
+        a.present().then(() => {
+         
+        });
       });
-    });
+    }
+   
 
   }
   async dismissLoading() {
