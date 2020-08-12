@@ -48,16 +48,18 @@ export class FormRegistroPropiedadPage implements OnInit {
 
     this.user = new Usuario();
     this.datosForm = this.formBuilder.group({
-      owner_id: ['', Validators.required],
+      name:['', Validators.required],
+      customer_id: ['', Validators.required],
       address: ['', Validators.required],
       type:['', Validators.required],
-      description: ['', Validators.required],
+    //  operation_id:['', Validators.required],
+    /*  description: ['', Validators.required],
       sale_price:['', Validators.required],
       sale_currency:['', Validators.required],
       rental_price:['', Validators.required],
       rental_currency:['', Validators.required],
       temp_rental_price:['', Validators.required],
-      temp_rental_currency:['', Validators.required],
+      temp_rental_currency:['', Validators.required],*/
     });    
 
     this.tiposOperacionesService.all(1).subscribe(resp =>{

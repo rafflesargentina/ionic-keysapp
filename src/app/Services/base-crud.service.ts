@@ -18,11 +18,11 @@ export class BaseCRUDService {
 
  
 
-  private httpParams = new HttpParams({
+  public httpParams = new HttpParams({
       
   })
 
-  private options = {
+  public options = {
     headers: this.httpHeaders,
     params: this.httpParams
   }; 

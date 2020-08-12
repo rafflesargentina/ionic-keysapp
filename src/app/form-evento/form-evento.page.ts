@@ -8,7 +8,7 @@ import { EventosService } from '../Services/eventos.service';
 import { ModalController } from '@ionic/angular';
 //import { SelectClientePage } from '../select-cliente/select-cliente.page';
 //import { SelectInmueblePage } from '../select-inmueble/select-inmueble.page';
-import { ClientesService } from '../Services/clientes.service';
+
 import { Route } from '@angular/compiler/src/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsuarioService } from '../Services/usuario.service';

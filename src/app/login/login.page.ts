@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthenticationFirebaseService } from '../Services/authentication/authentication-firebase.service';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AuthenticationRafflesService } from '../Services/authentication/authentication-raffles.service';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginPage implements OnInit {
   public password:string;
 
   constructor(
+    private authRafflesSerivce:AuthenticationRafflesService,
     private authFirebaseService:AuthenticationFirebaseService,
     public alertController: AlertController,
     public router:Router,
@@ -29,7 +31,7 @@ export class LoginPage implements OnInit {
   }
 
   login(){
-    this.authFirebaseService.login(this.email.trim(),this.password.trim()); 
+    this.authRafflesSerivce.login(this.email.trim(),this.password.trim()); 
     
   }
 

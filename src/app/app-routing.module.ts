@@ -33,15 +33,16 @@ const routes: Routes = [
   },
   {
     path: 'form-registro',
-    loadChildren: () => import('./form-registro/form-registro.module').then( m => m.FormRegistroPageModule)
+    loadChildren: () => import('./form-registro/form-registro.module').then( m => m.FormRegistroPageModule),
+    
   },
   {
     path: 'form-registro-propiedad',
     loadChildren: () => import('./form-registro-propiedad/form-registro-propiedad.module').then( m => m.FormRegistroPropiedadPageModule)
   },
   {
-    path: 'form-registro-sucursal',
-    loadChildren: () => import('./form-registro-sucursal/form-registro-sucursal.module').then( m => m.FormRegistroSucursalPageModule)
+    path: 'form-registro-administrador',
+    loadChildren: () => import('./form-registro-administrador/form-registro-administrador.module').then( m => m.FormRegistroAdministradorPageModule)
   },
   {
     path: 'calendario',
@@ -74,7 +75,18 @@ const routes: Routes = [
   {
     path: 'select/:tipo',
     loadChildren: () => import('./select/select.module').then( m => m.SelectPageModule)
-  },   
+  }, 
+  
+  {
+    path: 'detail-contacto',
+    loadChildren: () => import('./detail-contacto/detail-contacto.module').then( m => m.DetailContactoPageModule)
+  },  {
+    path: 'form-operacion',
+    loadChildren: () => import('./form-operacion/form-operacion.module').then( m => m.FormOperacionPageModule)
+  },
+
+
+  
 
   
 ];

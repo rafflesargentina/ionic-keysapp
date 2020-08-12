@@ -1,11 +1,9 @@
 import { Component, OnInit, Input, Type } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CardInmuebleComponent } from '../Components/card-inmueble/card-inmueble.component';
-import { ClientesService } from '../Services/clientes.service';
-import { PropietariosService } from '../Services/propietarios.service';
 import { InmueblesService } from '../Services/inmuebles.service';
 import { CardUsuarioComponent } from '../Components/card-usuario/card-usuario.component';
-import { AgentesService } from '../Services/agentes.service';
+import { ContactosService } from '../Services/contactos.service';
 
 @Component({
   selector: 'app-list',
@@ -22,9 +20,7 @@ export class ListPage implements OnInit {
   constructor( 
     private router: Router,
     private route: ActivatedRoute,
-    private clienteService:ClientesService,
-    private agentesService:AgentesService,
-    private propietarioService:PropietariosService,
+    private contactosService:ContactosService,
     private inmuebleService:InmueblesService
     ) { }
 
@@ -34,22 +30,10 @@ export class ListPage implements OnInit {
       //console.log('params.tipo', this.tipo);
     });
     switch(this.tipo){
-      case 'cliente':
-        this.titulo = 'Listado de Clientes';
+      case 'contacto':
+        this.titulo = 'Lista de Contactos';
         this.itemComponent = CardUsuarioComponent;
-        break;
-      case 'propietario':
-        this.titulo = 'Listado de Propietarios';
-        this.itemComponent = CardUsuarioComponent;
-        break;
-      case 'agente':
-        this.titulo = 'Listado de Agentes';
-        this.itemComponent = CardUsuarioComponent;
-        break;
-      case 'usuario':
-        this.titulo = 'Listado de Usuarios';
-        this.itemComponent = CardUsuarioComponent;
-        break;
+      break;      
       case 'inmueble':
         this.titulo = 'Listado de Inmuebles';
         this.itemComponent = CardInmuebleComponent;
@@ -62,12 +46,8 @@ export class ListPage implements OnInit {
 
   getService = ()=>{
     switch(this.tipo){
-      case 'cliente':
-        return this.clienteService;
-      case 'propietario':
-        return this.propietarioService;
-      case 'agente':
-        return this.agentesService;
+      case 'contacto':
+        return this.contactosService;
       case 'inmueble':
         return this.inmuebleService;
       default:

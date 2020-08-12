@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { SelectPage } from '../select/select.page';
 
-@Component({
+@Component({ 
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],

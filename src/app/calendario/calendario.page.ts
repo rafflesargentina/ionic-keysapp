@@ -17,7 +17,7 @@ export class CalendarioPage implements OnInit {
   }
 
   onViewDidEnter(){
-    this.eventosService.all().subscribe(resp =>{
+    this.eventosService.all(1).subscribe(resp =>{
       console.log(resp);
     })
   }

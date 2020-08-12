@@ -4,10 +4,8 @@ import { FormInvitacionPage } from '../form-invitacion/form-invitacion.page';
 import { FormRegistroPropiedadPage } from '../form-registro-propiedad/form-registro-propiedad.page';
 import { CardInmuebleComponent } from '../Components/card-inmueble/card-inmueble.component';
 import { CardUsuarioComponent } from '../Components/card-usuario/card-usuario.component';
-import { ClientesService } from '../Services/clientes.service';
-import { AgentesService } from '../Services/agentes.service';
-import { PropietariosService } from '../Services/propietarios.service';
 import { InmueblesService } from '../Services/inmuebles.service';
+import { ContactosService } from '../Services/contactos.service';
 
 @Component({
   selector: 'app-select',
@@ -23,9 +21,7 @@ export class SelectPage implements OnInit {
   
   constructor(
     private modalCtrl: ModalController,
-    private clienteService:ClientesService,
-    private agentesService:AgentesService,
-    private propietarioService:PropietariosService,
+    private contactosService:ContactosService,
     private inmuebleService:InmueblesService
     ) { }
 
@@ -59,12 +55,8 @@ export class SelectPage implements OnInit {
 
   getService = ()=>{
     switch(this.tipo){
-      case 'cliente':
-        return this.clienteService;
-      case 'propietario':
-        return this.propietarioService;
-      case 'agente':
-        return this.agentesService;
+      case 'contacto':
+        return this.contactosService;
       case 'inmueble':
         return this.inmuebleService;
       default:

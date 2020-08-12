@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { EventosService } from '../Services/eventos.service';
-import { ClientesService } from '../Services/clientes.service';
 import { InmueblesService } from '../Services/inmuebles.service';
 import { ActivatedRoute } from '@angular/router';
 import { UsuarioService } from '../Services/usuario.service';
 import { Evento } from '../models/evento';
 import { Inmueble } from '../models/inmueble';
 import { Usuario } from '../models/usuario';
+import { ContactosService } from '../Services/contactos.service';
 
 @Component({
   selector: 'app-detail-evento',
@@ -25,9 +25,9 @@ export class DetailEventoPage implements OnInit {
 
   constructor(
     private eventosService:EventosService,
-    private clientesService:ClientesService,
     private inmueblesService:InmueblesService,
     private usuarioService:UsuarioService,
+    private contactosSerivce:ContactosService,
     private route:ActivatedRoute
   ) { 
 
@@ -48,7 +48,7 @@ export class DetailEventoPage implements OnInit {
           this.inmuebleAsignado.asignarValores(resp);
         });
 
-        this.clientesService.get(this.evento.customer_id).subscribe(resp=>{
+        this.contactosSerivce.get(this.evento.customer_id).subscribe(resp=>{
           this.clienteAsignado.asignarValores(resp);
         })
 

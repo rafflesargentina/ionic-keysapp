@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
+import { BaseCRUDService } from './base-crud.service';
 import { HttpClient } from '@angular/common/http';
 import { UsuarioService } from './usuario.service';
 import { ToastService } from './toast.service';
-import { BaseCRUDService } from './base-crud.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AgentesService extends BaseCRUDService{
+export class InvitacionesService extends BaseCRUDService{
 
   constructor(
     public httpClient: HttpClient,
@@ -16,6 +16,6 @@ export class AgentesService extends BaseCRUDService{
   ) { 
     
     super(httpClient,usuarioService,toastService);
-    this.setEndpoint("clients");
+    this.setEndpoint("invitations");
   }
 }

@@ -49,6 +49,7 @@ export class ListBaseComponent implements OnInit {
       elementos.forEach(element => {
         this.items.push(element);        
       });
+      this.loadComponent();
       this.dismissLoading();
       this.infiniteScroll.disabled = false;
       if (elementos.length < 5) {        
@@ -66,7 +67,7 @@ export class ListBaseComponent implements OnInit {
   }
 
   ngAfterViewInit(){
-    this.loadComponent();
+   
   }
   
   loadComponent() {
