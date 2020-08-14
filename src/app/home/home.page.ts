@@ -20,7 +20,7 @@ export class HomePage implements OnInit {
   }
 
   async modalPage(tipo: string){
-    console.log('home tipo', tipo);
+    //console.log('home tipo', tipo);
     const modalPage = await this.modalCtrl.create({ 	
       component: SelectPage, 			
       componentProps: { 					
@@ -30,7 +30,7 @@ export class HomePage implements OnInit {
     }); 							
     await modalPage.present(); 
     const {data} = await modalPage.onDidDismiss(); 	
-    console.log('Retorno del modal', data); 		
+    //console.log('Retorno del modal', data); 		
   }
 
   /*

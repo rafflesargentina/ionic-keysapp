@@ -16,7 +16,7 @@ import { Usuario } from '../models/usuario';
 export class SelectPage implements OnInit {
   itemComponent:Type<any> = CardInmuebleComponent;
   item: Usuario;
-  @Input() tipo: string = '';
+  @Input() tipo: string;
   titulo: string = '';
   
   constructor(
@@ -28,13 +28,17 @@ export class SelectPage implements OnInit {
     ) { }
 
   ngOnInit() {
+    console.log('tipo select', this.tipo);
     switch(this.tipo){
+      case 'propietario':
+        this.titulo = "Selección de Propietario";
+        this.itemComponent = CardUsuarioComponent;
       case 'contacto':
-        this.titulo = 'Selección de Contactos';
+        this.titulo = 'Selección de Contacto';
         this.itemComponent = CardUsuarioComponent;
       break;      
       case 'inmueble':
-        this.titulo = 'Selección de Inmuebles';
+        this.titulo = 'Selección de Inmueble';
         this.itemComponent = CardInmuebleComponent;
       break;
       default:
@@ -45,6 +49,8 @@ export class SelectPage implements OnInit {
 
   getService = ()=>{
     switch(this.tipo){
+      case 'propietario':
+        return this.contactosService;
       case 'contacto':
         return this.contactosService;
       case 'inmueble':

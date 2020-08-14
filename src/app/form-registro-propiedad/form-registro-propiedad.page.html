@@ -55,90 +55,22 @@
       </div>
     </div >
 
-    boton agregar operacion
-
-    listado de operaciones: con presion moneda y estado.
+    <!-- agregar operacion listado de operaciones: con presio moneda y estado. -->
     
     <div *ngIf="segment == 'second'">
-      <!--operaciones-->
-      <ion-item>
-        <ion-label position="floating">Operaciones</ion-label> 
-        <ion-select ok-text="Ok" cancel-text="Cancelar" multiple="true" expand="full" (ionChange)="cambioOperacion($event)">
-          <ion-select-option *ngFor="let operacion of operaciones">
-            {{operacion.name}}
-          </ion-select-option>
-        </ion-select>        
-      </ion-item>
-      <br>
-      <!--precio de venta-->        
-      <ion-item [class.invalid]="submitted && !datosForm.controls.sale_price.valid" *ngIf="sale_operation==true">
-        <ion-label position="floating">Precio de Venta</ion-label>       
-        <ion-input name="sale_price" type="number" formControlName="sale_price" 
-            clearOnEdit="true" required></ion-input> 
-        <div *ngIf="submitted && f.sale_price.errors" class="invalid-feedback">
-            <div *ngIf="f.sale_price.errors.required"><h5>Ingresa un precio de venta</h5></div>
-        </div>
-      </ion-item>
-      <!--moneda de venta-->
-      <ion-item [class.invalid]="submitted && !datosForm.controls.sale_currency.valid" *ngIf="sale_operation==true" >
-        <ion-label position="floating">Moneda</ion-label> 
-        <ion-select ok-text="Ok" cancel-text="Cancel" expand="full"
-            formControlName="sale_currency" required>
-          <ion-select-option *ngFor="let currency of currencies">
-            {{ currency }}
-          </ion-select-option>
-        </ion-select>
-        <div *ngIf="submitted && f.sale_currency.errors" class="invalid-feedback">
-          <div *ngIf="f.sale_currency.errors.required"><h5>Ingresa un tipo de Moneda</h5></div>
-        </div>
-      </ion-item>
-      <!--precio de alquiler-->
-      <ion-item [class.invalid]="submitted && !datosForm.controls.rental_price.valid" *ngIf="rental_operation">
-        <ion-label position="floating">Precio de Alquiler</ion-label> 
-        <ion-input name="rental_price" type="number" formControlName="rental_price" 
-                    clearOnEdit="true" required></ion-input>             
-        <div *ngIf="submitted && f.rental_price.errors" class="invalid-feedback">
-            <div *ngIf="f.rental_price.errors.required"><h5>Ingresa un precio de alquiler</h5></div>
-        </div> 
-      </ion-item>
-      <!--moneda de alquiler-->
-      <ion-item [class.invalid]="submitted && !datosForm.controls.rental_currency.valid" *ngIf="rental_operation">
-        <ion-label position="floating">Moneda</ion-label> 
-        <ion-select ok-text="Ok" cancel-text="Cancel" expand="full"
-            formControlName="rental_currency" required>
-          <ion-select-option *ngFor="let currency of currencies">
-            {{ currency }}
-          </ion-select-option>
-        </ion-select>
-        <div *ngIf="submitted && f.rental_currency.errors" class="invalid-feedback">
-          <div *ngIf="f.rental_currency.errors.required"><h5>Ingresa un tipo de Moneda</h5></div>
-        </div>
-      </ion-item>
-      <!--precio de alquiler temporario-->
-      <ion-item [class.invalid]="submitted && !datosForm.controls.temp_rental_price.valid" *ngIf="temp_rental_operation">
-        <ion-label position="floating">Precio de Alquiler temporario</ion-label> 
-        <ion-input name="temp_rental_price" type="number" formControlName="temp_rental_price" required></ion-input>             
-        <div *ngIf="submitted && f.temp_rental_price.errors" class="invalid-feedback">
-            <div *ngIf="f.temp_rental_price.errors.required">
-              <h5>Ingresa un precio de alquiler</h5>
-            </div>
-        </div> 
-      </ion-item>
-      <!--moneda de alquiler temporario-->
-      <ion-item [class.invalid]="submitted && !datosForm.controls.temp_rental_currency.valid"
-                *ngIf="temp_rental_operation">
-        <ion-label position="floating">Moneda</ion-label> 
-        <ion-select ok-text="Ok" cancel-text="Cancel" expand="full" formControlName="temp_rental_currency" required>
-          <ion-select-option *ngFor="let currency of currencies">
-            {{currency}}
-          </ion-select-option>
-        </ion-select>
-        <div *ngIf="submitted && f.temp_rental_currency.errors" class="invalid-feedback">
-          <div *ngIf="f.temp_rental_currency.errors.required">
-            <h5>Ingresa un tipo de Moneda</h5>
+      <ion-button expand="block" (click)="seleccionarOperaciones()">Seleccionar Operación</ion-button>
+      <ion-list *ngIf="operaciones.length > 0" >
+        <ion-item *ngFor="let operacion of operaciones; let i = index;" [class.invalid]="submitted && !datosForm.controls.operaciones.valid">
+          <ion-label>
+            <h1 size="10">{{operacion.tipo}}</h1>
+            <h2 size="10">{{operacion.precio}}  {{operacion.moneda}}</h2>
+          </ion-label>
+          <ion-icon name="trash" color="danger" slot="end" (click)="eliminarOperacion(i)" size="2"></ion-icon>
+          <div *ngIf="submitted && f.operaciones.errors" class="invalid-feedback">
+            <div *ngIf="f.operaciones.errors.required"><h5>Selecciona al menos una operación</h5></div>
           </div>
-        </div>
-      </ion-item>
+        </ion-item> 
+      </ion-list>
       <br>
       <!--descripcion-->
       <ion-item>

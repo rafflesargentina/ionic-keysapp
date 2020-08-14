@@ -1,9 +1,54 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>form-operacion</ion-title>
+    <ion-title justify-content-center>Seleccionar operaciones</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="ion-padding">
+  <form [formGroup]="datosForm" (submitted)="submit()">
+    <!--operacion-->
+    <ion-item [class.invalid]="submitted && !datosForm.controls.tipo.valid">
+      <ion-label position="floating">Operaciones</ion-label> 
+      <ion-select ok-text="Ok" cancel-text="Cancelar" multiple="false" expand="full" 
+                  (ionChange)="cambioOperacion($event)" formControlName="tipo">
+        <ion-select-option *ngFor="let tipo of tipos">
+          {{tipo}}
+        </ion-select-option>
+      </ion-select>
+      <div *ngIf="submitted && f.tipo.errors" class="invalid-feedback">
+        <div *ngIf="f.tipo.errors.required"><h5>Selecciona el tipo de operación</h5></div>
+    </div>        
+    </ion-item>
+    <!--precio -->        
+    <ion-item [class.invalid]="submitted && !datosForm.controls.precio.valid">
+      <ion-label position="floating">Precio de Venta</ion-label>       
+      <ion-input name="sale_price" type="number" formControlName="precio" 
+          clearOnEdit="true" required formControlName="precio"></ion-input> 
+      <div *ngIf="submitted && f.precio.errors" class="invalid-feedback">
+          <div *ngIf="f.precio.errors.required"><h5>Ingresa un precio</h5></div>
+      </div>
+    </ion-item>
+    <!--moneda-->
+    <ion-item [class.invalid]="submitted && !datosForm.controls.moneda.valid">
+      <ion-label position="floating">Moneda</ion-label> 
+      <ion-select ok-text="Ok" cancel-text="Cancel" expand="full"
+          formControlName="sale_currency" required formControlName="moneda">
+        <ion-select-option *ngFor="let currency of currencies">
+          {{ currency }}
+        </ion-select-option>
+      </ion-select>
+      <div *ngIf="submitted && f.moneda.errors" class="invalid-feedback">
+        <div *ngIf="f.moneda.errors.required"><h5>Ingresa un tipo de Moneda</h5></div>
+      </div>
+    </ion-item>
+    <p></p>
+    <ion-row>
+      <ion-col>
+        <ion-button type="button" (click)="cancelar()" color="light" expand="block">Cancelar</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button type="submit" (click)="submit()" color="success" expand="block">Aceptar</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
 </ion-content>

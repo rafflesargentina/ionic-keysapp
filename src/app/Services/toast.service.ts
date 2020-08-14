@@ -10,7 +10,6 @@ export class ToastService {
 
   async mensaje(titulo,mensaje) {
 
-
     const toast = await this.toastController.create({
       header: titulo,
       message: mensaje,
@@ -72,6 +71,60 @@ export class ToastService {
     });
     toast.present();
 
+  }
+
+  async mensajeRojo(titulo, mensaje){
+   
+    const toast = await this.toastController.create({
+      header: titulo,
+      message: mensaje,
+      position: 'top',
+      color: "danger",
+      duration: 3000,
+      buttons: [
+       {
+          text: 'X',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    toast.present();
+
+  }
+
+  async advertencia(titulo, mensaje) {
+    let resp: boolean;
+    const toast = await this.toastController.create({
+      header: titulo,
+      message: mensaje,
+      position: 'top',
+      color: "warning",
+      buttons: [
+       {
+          side: 'start',
+          icon: 'close-circle',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+            resp = false;
+          }
+        },
+        {
+          side: 'end',
+          icon: 'checkmark-circle',
+          role: 'acept',
+          handler: () =>{
+            console.log('ok clicked');
+            resp = true;
+          }
+        }
+      ]
+    });
+    toast.present();
+    return resp;
   }
 
   async presentToastWithOptions() {

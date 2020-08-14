@@ -8,8 +8,10 @@ import { SelectPageRoutingModule } from './select-routing.module';
 
 import { SelectPage } from './select.page';
 import { ComponentsModule } from '../Components/components.module';
+import { ListBaseComponent } from '../Components/list-base/list-base.component';
 
 @NgModule({
+  
   imports: [
     CommonModule,
     FormsModule,

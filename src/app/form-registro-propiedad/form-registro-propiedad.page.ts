@@ -10,6 +10,8 @@ import { TiposOperacionesService } from '../Services/tipos-operaciones.service';
 import { Inmueble } from '../models/inmueble';
 import { SelectPage } from '../select/select.page';
 import { ToastService } from '../Services/toast.service';
+import { FormOperacionPage } from '../form-operacion/form-operacion.page';
+import { Operacion } from '../models/operacion';
 
 @Component({
   selector: 'app-form-registro-propiedad',
@@ -18,15 +20,15 @@ import { ToastService } from '../Services/toast.service';
 })
 export class FormRegistroPropiedadPage implements OnInit {
   
-  currencies: string[] = ['Dólares U$S', 'Pesos $'];
+  //currencies: string[] = ['Dólares U$S', 'Pesos $'];
   segment: string = 'first';
-  operaciones = [];
+  public operaciones: Operacion[] = [];
   tipos = [];
   titulo: string = 'Registro de Inmuebles'
   public inmueble:Inmueble;
-  sale_operation: boolean = false;
-  rental_operation: boolean = false;
-  temp_rental_operation: boolean = false;
+  //sale_operation: boolean = false;
+  //rental_operation: boolean = false;
+  //temp_rental_operation: boolean = false;
 
   public propietarioAsignado:Usuario;
   datosForm: FormGroup;
@@ -37,9 +39,10 @@ export class FormRegistroPropiedadPage implements OnInit {
     private formBuilder: FormBuilder,
     private router:Router,
     private toast: ToastService,
-    private modalController:ModalController,
     private tiposPropiedadesService:TiposPropiedadesService,
-    private tiposOperacionesService:TiposOperacionesService
+    private tiposOperacionesService:TiposOperacionesService,
+    private modalCtrl: ModalController,
+    private toastCtrl: ToastController
   ) { 
 
     this.inmueble = new Inmueble();
@@ -52,6 +55,7 @@ export class FormRegistroPropiedadPage implements OnInit {
       customer_id: ['', Validators.required],
       address: ['', Validators.required],
       type:['', Validators.required],
+      operaciones: [[], Validators.required]
     //  operation_id:['', Validators.required],
     /*  description: ['', Validators.required],
       sale_price:['', Validators.required],
@@ -86,7 +90,7 @@ export class FormRegistroPropiedadPage implements OnInit {
 
     this.inmueble.asignarValores(this.datosForm.value);
 
-    console.log(this.inmueble);
+    //console.log(this.inmueble);
     
   }
   
@@ -99,7 +103,7 @@ export class FormRegistroPropiedadPage implements OnInit {
 
   async seleccionarPropietario(){
 
-    const modal = await this.modalController.create({
+    const modal = await this.modalCtrl.create({
       component: SelectPage,
       componentProps: { 					
         //datos que viajan al modal en modo clave: valor,	
@@ -128,7 +132,61 @@ export class FormRegistroPropiedadPage implements OnInit {
         this.toast.mensaje('Error', 'Debe seleccionar un propietario');
       }
     }); 
-  }  
+  }
+  
+  async seleccionarOperaciones(){
+    const modalPage = await this.modalCtrl.create({ 	
+      component: FormOperacionPage, 			
+      componentProps: { 					
+        //datos que viajan al modal en modo clave: valor,			
+      },
+    });
+    await modalPage.present();
+    const {data} = await modalPage.onDidDismiss(); 
+    if(data !=undefined){
+      this.operaciones.push(data.operacion);
+      /*.datosForm.patchValue({
+        operaciones: operacion
+      });*/
+    }else{
+      this.toast.mensajeRojo('Error', 'Debe seleccionar al menos un tipo de operación');
+    }
+    console.log('Retorno del modal', this.operaciones); 
+    
+  }
+
+  async eliminarOperacion(indice){
+    console.log('eliminarOperacion', indice);
+    const toast = await this.toastCtrl.create({
+      header: 'Advertencia',
+      message: '¿Realmente desea eliminar esta operación?',
+      position: 'top',
+      color: "warning",
+      buttons: [
+       {
+          side: 'end',
+          icon: 'close-circle',
+          text: 'cancel',
+          role: 'cancel',
+          handler: () => {
+            //console.log('Cancel clicked')
+          }
+        },
+        {
+          side: 'end',
+          icon: 'checkmark-circle',
+          text: 'ok',
+          role: 'acept',
+          handler: () =>{
+            //console.log('ok clicked');
+            this.operaciones.splice(indice, 1);
+            //console.log('operaciones', this.operaciones);
+          }
+        }
+      ]
+    });
+    toast.present();
+  }
 
   setValue(newValue: any){
     this.inmueble.address = newValue.address;
@@ -142,7 +200,7 @@ export class FormRegistroPropiedadPage implements OnInit {
     }
   }
 
-  cambioOperacion(event){
+  /*cambioOperacion(event){
     
     if(event.target.value.includes(' Venta ')){      
       this.sale_operation = true;
@@ -171,7 +229,7 @@ export class FormRegistroPropiedadPage implements OnInit {
       this.datosForm.removeControl('temp_rental_price');
       this.datosForm.removeControl('temp_rental_currency');
     }
-  }
+  }*/
 
 
 }

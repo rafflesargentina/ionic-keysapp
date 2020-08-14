@@ -13,9 +13,10 @@ import { ToastService } from '../Services/toast.service';
 import { InmueblesService } from '../Services/inmuebles.service';
 import { UsuarioService } from '../Services/usuario.service';
 import { SelectPage } from '../select/select.page';
+import { FormOperacionPage } from '../form-operacion/form-operacion.page';
 
 @NgModule({
-  entryComponents: [SelectPage], //para manejar los modales de selección
+  entryComponents: [SelectPage, FormOperacionPage], //para manejar los modales de selección
   imports: [
     CommonModule,
     FormsModule,
