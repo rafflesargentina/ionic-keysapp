@@ -55,15 +55,7 @@ export class FormRegistroPropiedadPage implements OnInit {
       customer_id: ['', Validators.required],
       address: ['', Validators.required],
       type:['', Validators.required],
-      operaciones: [[], Validators.required]
-    //  operation_id:['', Validators.required],
-    /*  description: ['', Validators.required],
-      sale_price:['', Validators.required],
-      sale_currency:['', Validators.required],
-      rental_price:['', Validators.required],
-      rental_currency:['', Validators.required],
-      temp_rental_price:['', Validators.required],
-      temp_rental_currency:['', Validators.required],*/
+      operaciones: ['', Validators.required]
     });    
 
     this.tiposOperacionesService.all(1).subscribe(resp =>{
@@ -145,9 +137,9 @@ export class FormRegistroPropiedadPage implements OnInit {
     const {data} = await modalPage.onDidDismiss(); 
     if(data !=undefined){
       this.operaciones.push(data.operacion);
-      /*.datosForm.patchValue({
-        operaciones: operacion
-      });*/
+      this.datosForm.patchValue({
+        operaciones: true
+      });
     }else{
       this.toast.mensajeRojo('Error', 'Debe seleccionar al menos un tipo de operación');
     }
@@ -199,37 +191,6 @@ export class FormRegistroPropiedadPage implements OnInit {
       this.segment = 'first';
     }
   }
-
-  /*cambioOperacion(event){
-    
-    if(event.target.value.includes(' Venta ')){      
-      this.sale_operation = true;
-      this.datosForm.addControl('sale_price', new FormControl('', Validators.required));
-      this.datosForm.addControl('sale_currency', new FormControl('', Validators.required));
-    }else{
-      this.sale_operation = false;
-      this.datosForm.removeControl('sale_price');
-      this.datosForm.removeControl('sale_currency');
-    }
-    if(event.target.value.includes(' Alquiler ')){
-      this.rental_operation = true;
-      this.datosForm.addControl('rental_price', new FormControl('', Validators.required));
-      this.datosForm.addControl('rental_currency', new FormControl('', Validators.required));
-    }else{
-      this.rental_operation = false;
-      this.datosForm.removeControl('rental_price');
-      this.datosForm.removeControl('rental_currency');
-    }
-    if(event.target.value.includes(' Alquiler temporario ')){
-      this.temp_rental_operation = true;
-      this.datosForm.addControl('temp_rental_price', new FormControl('', Validators.required));
-      this.datosForm.addControl('temp_rental_currency', new FormControl('', Validators.required));
-    }else{
-      this.temp_rental_operation = false;
-      this.datosForm.removeControl('temp_rental_price');
-      this.datosForm.removeControl('temp_rental_currency');
-    }
-  }*/
 
 
 }
