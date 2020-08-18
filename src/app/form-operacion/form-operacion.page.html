@@ -21,7 +21,7 @@
     </ion-item>
     <!--precio -->        
     <ion-item [class.invalid]="submitted && !datosForm.controls.precio.valid">
-      <ion-label position="floating">Precio de Venta</ion-label>       
+      <ion-label position="floating">Precio</ion-label>       
       <ion-input name="sale_price" type="number" formControlName="precio" 
           clearOnEdit="true" required formControlName="precio"></ion-input> 
       <div *ngIf="submitted && f.precio.errors" class="invalid-feedback">
