@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { ToastController, ModalController } from '@ionic/angular';
+import { ToastController, ModalController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Usuario } from '../models/usuario';
 //import { SelectInmueblePage } from '../select-inmueble/select-inmueble.page';
@@ -140,7 +140,10 @@ export class FormRegistroPropiedadPage implements OnInit {
     
   }
 
-  async eliminarOperacion(indice){
+  /* async eliminarOperacion(indice){
+    alert('¿Realmente desea eliminar esta operación?');
+    this.operaciones.splice(indice, 1);
+
     console.log('eliminarOperacion', indice);
     const toast = await this.toastCtrl.create({
       header: 'Advertencia',
@@ -171,6 +174,32 @@ export class FormRegistroPropiedadPage implements OnInit {
       ]
     });
     toast.present();
+  }*/
+  
+  async eliminarOperacion(indice) {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Advertencia',
+      message: '¿Realmente desea <strong>eliminar</strong> esta operación?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            //console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Aceptar',
+          handler: () => {
+            this.operaciones.splice(indice, 1);
+            //console.log('Confirm Okay'); 
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   setValue(newValue: any){
