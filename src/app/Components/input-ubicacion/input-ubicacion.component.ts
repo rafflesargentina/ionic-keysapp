@@ -9,7 +9,6 @@ declare var google: any;
 })
 export class InputUbicacionComponent implements OnInit {
 
-  @Input() address: any;
   @Input() country: string;
   @Input() street_number: string;
   @Input() street_name: string;
@@ -45,7 +44,6 @@ export class InputUbicacionComponent implements OnInit {
 
   ngOnInit() {  
 
-    console.log(this.address);
     
     if(this.latitud)
       this.localizacion.address.lat = this.latitud;
@@ -217,7 +215,7 @@ export class InputUbicacionComponent implements OnInit {
         if (pickedAddress[addressType]) {
             console.log(addressType)
             direccion_completa = direccion_completa +" "+  addressComponents[i][pickedAddress[addressType][1]]+","
-
+            this.localizacion.address.location = direccion_completa;
             if(addressType == "country")
               this.localizacion.address.country = addressComponents[i][pickedAddress[addressType][1]];
             
@@ -235,9 +233,9 @@ export class InputUbicacionComponent implements OnInit {
         }
     }
 
-    setTimeout(function () {
+    /*setTimeout(function () {
       document.getElementById('pac-input').click();
-    }, 2500);
+    }, 2500);*/
 
     this.onChange();
       

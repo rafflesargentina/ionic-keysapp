@@ -19,6 +19,16 @@
           <div *ngIf="f.first_name.errors.required"><h5>Ingresa un Nombre</h5></div>
       </div>
     </ion-item>
+
+    <!--nombre-->
+    <ion-item [class.invalid]="submitted && !datosForm.controls.company_name.valid">
+      <ion-label position="floating">Nombre Compania</ion-label>     
+      <ion-input name="nombre" type="text" formControlName="company_name" 
+                  required ></ion-input>
+      <div *ngIf="submitted && f.company_name.errors" class="invalid-feedback">
+          <div *ngIf="f.company_name.errors.required"><h5>Ingresa un Nombre</h5></div>
+      </div>
+    </ion-item>
        
     <!--apellido-->
     <ion-item [class.invalid]="submitted && !datosForm.controls.last_name.valid">

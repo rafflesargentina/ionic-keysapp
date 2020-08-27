@@ -31,29 +31,78 @@ export class FormEventoPage implements OnInit {
 
   public isEditando = false;
   public pendienteConfirmar = false;
-  
+  public userId ="";
+
   constructor(
     private formBuilder: FormBuilder,
     private eventosService:EventosService,
     private modalController:ModalController,
     private route:ActivatedRoute,
     private usuarioService:UsuarioService,
-    private router:Router
+    private router:Router,
+    private modalCtrl:ModalController
   ) {
 
+    this.userId = this.usuarioService.getUID();
+
     this.datosForm = this.formBuilder.group({
-      agent_id: ['', Validators.required],
+      registrant_id: [this.userId, null],
       property_id : ['', Validators.required],
       customer_id: ['', Validators.required],
-      date: ['', Validators.required],      
+      date: ['', Validators.required],     
+      hour: ['', Validators.required],
+      comment:['',Validators.required]     
     });
+
     this.evento = new Evento();
+    this.inmuebleAsignado = new Inmueble();
+    this.clienteAsignado = new Usuario();
 
   }
 
 
   ngOnInit() {
 
+  }
+
+  async selectInmueble(){
+    //console.log('home tipo', tipo);
+    const modalPage = await this.modalCtrl.create({ 	
+      component: SelectPage, 			
+      componentProps: { 					
+        tipo: 'property',				
+      } 							
+    }); 							
+    await modalPage.present(); 
+    modalPage.onDidDismiss()
+    .then((data) => {
+      let resp:any = data;
+      console.log(resp.data)
+      this.inmuebleAsignado.asignarValores(resp.data.cliente);
+      this.datosForm.patchValue({
+        property_id:this.inmuebleAsignado.id
+      })
+    });
+  }
+
+  async selectContact(){
+    //console.log('home tipo', tipo);
+    const modalPage = await this.modalCtrl.create({ 	
+      component: SelectPage, 			
+      componentProps: { 					
+        tipo: 'contact',				
+      } 							
+    }); 							
+    await modalPage.present(); 
+    modalPage.onDidDismiss()
+    .then((data) => {
+      let resp:any = data;
+      console.log(resp.data)
+      this.clienteAsignado.asignarValores(resp.data.cliente);
+      this.datosForm.patchValue({
+        customer_id:this.clienteAsignado.id
+      })
+    });
   }
 
   ionViewDidEnter(){ 
@@ -84,50 +133,11 @@ export class FormEventoPage implements OnInit {
     })
   }
 
-  async seleccionarInmueble(){
-    const modal = await this.modalController.create({
-      component: SelectPage, 			
-      componentProps: { 					
-        //datos que viajan al modal en modo clave: valor,	
-        tipo: 'inmueble'				
-      } 
-    });    
-
-    modal.onDidDismiss()
-    .then((data) => {
-      let resp:any = data;
-      this.inmuebleAsignado.asignarValores(resp);
-    });
-
-    modal.present();   
-  }
-
-  async seleccionarCliente(){
-
-    const modal = await this.modalController.create({
-      component: SelectPage, 			
-      componentProps: { 					
-        //datos que viajan al modal en modo clave: valor,	
-        tipo: 'cliente'				
-      } 
-    });    
-
-    modal.onDidDismiss()
-    .then((data) => {
-      let resp:any = data;
-      this.clienteAsignado.asignarValores(resp);
-    });
-
-    modal.present();  
-    
-    
-    
-  }
-
   get f() { return this.datosForm.controls; }
 
   guardar(){
 
+    console.log(this.datosForm.value)
     this.submitted = true;
 
     if (this.datosForm.invalid) {
@@ -135,6 +145,8 @@ export class FormEventoPage implements OnInit {
     }
 
     this.evento.asignarValores(this.datosForm.value);
+
+    //!!!!
 
     if(this.isEditando){
       this.eventosService.update(this.evento).subscribe(resp =>{
@@ -150,18 +162,11 @@ export class FormEventoPage implements OnInit {
   }
 
   aceptar(){
-    let usuario_id = this.usuarioService.getUID();
-    this.eventosService.aceptar(usuario_id,this.evento).subscribe(resp =>{
-      this.ionViewDidEnter();
-    });
-    
+   
   }
 
-  rechazar(){
-    let usuario_id = this.usuarioService.getUID();
-    this.eventosService.rechazar(usuario_id,this.evento).subscribe(resp =>{
-      this.ionViewDidEnter();
-    });
+  rechazar(){ 
+   
   }
 
 }

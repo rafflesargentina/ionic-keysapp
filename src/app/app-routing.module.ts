@@ -84,7 +84,11 @@ const routes: Routes = [
   {
     path: 'form-operacion',
     loadChildren: () => import('./form-operacion/form-operacion.module').then( m => m.FormOperacionPageModule)
+  },  {
+    path: 'list-invitaciones',
+    loadChildren: () => import('./list-invitaciones/list-invitaciones.module').then( m => m.ListInvitacionesPageModule)
   },
+
 
 
   

@@ -23,14 +23,22 @@
     
     <div *ngIf="segment == 'first'">
       <!--propietario-->
+
+      <!--nombre-->
+      <ion-item [class.invalid]="submitted && !datosForm.controls.name.valid">
+        <ion-label position="floating">Nombre</ion-label>     
+        <ion-input name="nombre" type="text" formControlName="name" 
+                    required ></ion-input>
+        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required"><h5>Ingresa un Nombre</h5></div>
+        </div>
+      </ion-item>
+
       <div [class.invalid]="submitted && !datosForm.controls.property_id.valid">
-        <ion-item>   
-          <app-card-usuario [usuario]="propietarioAsignado"></app-card-usuario>  
-          <ion-button class="btn-delete" color="primary" slot="end" (click)="eliminarPropietario()">
-            <ion-icon name="trash"></ion-icon>
-          </ion-button>        
-        </ion-item>  
-        <ion-button type="button" expand="block" (click)="seleccionarPropietario()">Agregar Propietario</ion-button>
+
+        {{propietarioAsignado.name}}         
+ 
+        <ion-button type="button" expand="block" (click)="seleccionarPropietario()">Asignar Propietario</ion-button>
         <div *ngIf="submitted && f.property_id.errors" class="invalid-feedback">
           <div *ngIf="f.property_id.errors.required"><h5>Selecciona un Propietario</h5></div>
         </div>
@@ -38,15 +46,25 @@
 
       <ion-item>
         <ion-label position="floating">Tipo de Inmueble</ion-label> 
-        <ion-select ok-text="Ok" cancel-text="Cancelar" expand="full" formControlName="type" >
-          <ion-select-option [value]="tipo.slug" *ngFor="let tipo of tipos">
+        <ion-select ok-text="Ok" cancel-text="Cancelar" expand="full" formControlName="property_type_id" >
+          <ion-select-option [value]="tipo.id" *ngFor="let tipo of tipos">
             {{tipo.name}}
           </ion-select-option>
         </ion-select>        
       </ion-item>
 
       <ion-item [class.invalid]="submitted && !datosForm.controls.address.valid">
-        <app-input-ubicacion      
+        <app-input-ubicacion          
+          [country]="inmueble.address.country"
+          [street_number]="inmueble.address.street_number"
+          [street_name] ="inmueble.address.street_name" 
+          [locality]="inmueble.address.locality"
+          [state] ="inmueble.address.state"
+          [door_number]="inmueble.address.door_number"  
+          [floor_number]="inmueble.address.floor_number" 
+          [latitud]="inmueble.address.lat" 
+          [longitud]="inmueble.address.lng"  
+          [location]="inmueble.address.location"      
           (onSelectValue)='setValue($event)' >
         </app-input-ubicacion> 
       </ion-item>
@@ -58,16 +76,16 @@
     <!-- agregar operacion listado de operaciones: con presio moneda y estado. -->
     
     <div *ngIf="segment == 'second'">
-      <ion-button expand="block" (click)="seleccionarOperaciones()">Seleccionar Operación</ion-button>
+      <ion-button expand="block" (click)="seleccionarOperaciones()">Agregar Operación</ion-button>
       <ion-list *ngIf="operaciones.length > 0" >
-        <ion-item *ngFor="let operacion of operaciones; let i = index;" [class.invalid]="submitted && !datosForm.controls.operaciones.valid">
+        <ion-item *ngFor="let operacion of operaciones; let i = index;" [class.invalid]="submitted && !datosForm.controls.operations.valid">
           <ion-label>
-            <h1 size="10">{{operacion.tipo}}</h1>
-            <h2 size="10">{{operacion.precio}}  {{operacion.moneda}}</h2>
+            <h1 size="10">{{operacion.operation_type_id}}</h1>
+            <h2 size="10">{{operacion.value}}  {{operacion.currency}}</h2>
           </ion-label>
           <ion-icon name="trash" color="danger" slot="end" (click)="eliminarOperacion(i)" size="2"></ion-icon>
-          <div *ngIf="submitted && f.operaciones.errors" class="invalid-feedback">
-            <div *ngIf="f.operaciones.errors.required"><h5>Selecciona al menos una operación</h5></div>
+          <div *ngIf="submitted && f.operations.errors" class="invalid-feedback">
+            <div *ngIf="f.operations.errors.required"><h5>Selecciona al menos una operación</h5></div>
           </div>
         </ion-item> 
       </ion-list>

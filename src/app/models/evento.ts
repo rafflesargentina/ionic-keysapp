@@ -1,10 +1,11 @@
 export class Evento{
     public id="";
-    public agent_id ="";
+    public registrant_id ="";
     public customer_id="";
     public date ="";
     public property_id ="";
-
+    public comment ="";
+    public members= [];
 	constructor(
 		
 		){

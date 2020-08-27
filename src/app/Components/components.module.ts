@@ -8,6 +8,7 @@ import { InputUbicacionComponent } from '../Components/input-ubicacion/input-ubi
 import { HeaderComponent } from './header/header.component';
 import { ItemDirective } from './list-base/item.directive';
 import { ListBaseComponent } from './list-base/list-base.component';
+import { CardEventoComponent } from './card-evento/card-evento.component';
 
 @NgModule({
 imports: [
@@ -21,12 +22,14 @@ imports: [
     SeleccionarImagenComponent,
     HeaderComponent,
     ListBaseComponent,
+    CardEventoComponent,
     ItemDirective
   ],
   exports: [
     SeleccionarImagenComponent,
     HeaderComponent,
     ListBaseComponent,
+    CardEventoComponent,
     ItemDirective
   ]
 })

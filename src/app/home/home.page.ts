@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { SelectPage } from '../select/select.page';
+import { FormInvitacionPage } from '../form-invitacion/form-invitacion.page';
 
 @Component({ 
   selector: 'app-home',
@@ -31,6 +32,14 @@ export class HomePage implements OnInit {
     await modalPage.present(); 
     const {data} = await modalPage.onDidDismiss(); 	
     //console.log('Retorno del modal', data); 		
+  }
+
+  async openInvitacion(){
+    const modalPage = await this.modalCtrl.create({ 	
+      component: FormInvitacionPage						
+    }); 							
+    await modalPage.present(); 
+    const {data} = await modalPage.onDidDismiss(); 	
   }
 
   /*

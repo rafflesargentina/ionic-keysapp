@@ -30,14 +30,11 @@ export class SelectPage implements OnInit {
   ngOnInit() {
     console.log('tipo select', this.tipo);
     switch(this.tipo){
-      case 'propietario':
-        this.titulo = "Selección de Propietario";
+      case 'contact':
+        this.titulo = "Selección de Agente";
         this.itemComponent = CardUsuarioComponent;
-      case 'contacto':
-        this.titulo = 'Selección de Contacto';
-        this.itemComponent = CardUsuarioComponent;
-      break;      
-      case 'inmueble':
+      break;
+      case 'property':
         this.titulo = 'Selección de Inmueble';
         this.itemComponent = CardInmuebleComponent;
       break;
@@ -49,11 +46,9 @@ export class SelectPage implements OnInit {
 
   getService = ()=>{
     switch(this.tipo){
-      case 'propietario':
+      case 'contact':
         return this.contactosService;
-      case 'contacto':
-        return this.contactosService;
-      case 'inmueble':
+      case 'property':
         return this.inmuebleService;
       default:
         console.log('tipo no definido');
@@ -79,12 +74,11 @@ export class SelectPage implements OnInit {
   }
 
   async modalInvitacion(){
-    if(this.tipo != 'inmueble'){
+    if(this.tipo != 'property'){
       const modalUsuario = await this.modalCtrl.create({ 	
         component: FormInvitacionPage, 			
         componentProps: { 				
-          //datos que viajan al modal en modo clave: valor,	
-          isModal: true				
+          rol: this.tipo				
         } 							
       }); 							
       await modalUsuario.present(); 

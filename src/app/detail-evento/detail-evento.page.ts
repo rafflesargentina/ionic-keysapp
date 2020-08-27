@@ -52,7 +52,7 @@ export class DetailEventoPage implements OnInit {
           this.clienteAsignado.asignarValores(resp);
         })
 
-        if(usuario_id == this.evento.agent_id){
+        if(usuario_id == this.evento.registrant_id){
         //  if(this.evento.pendiente_agente_confirmar){
             this.pendienteConfirmar = true;
           //}

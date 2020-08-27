@@ -12,11 +12,12 @@
   <ion-button expand="block" [routerLink]="['/form-registro-propiedad']">Formulario de Registro de Propiedad</ion-button>
   <ion-button expand="block" [routerLink]="['/form-registro-sucursal']">Formulario de Registro de Sucursal</ion-button>
   <ion-button expand="block" [routerLink]="['/cambiar-contrasena']">Formulario para Cambiar Contraseña</ion-button>
+  <ion-button expand="block" (click)="openInvitacion()">Formulario Invitacion</ion-button>
   <hr>
   <ion-button expand="block" [routerLink]="['/calendario']">Calendario</ion-button>
   <ion-button expand="block" [routerLink]="['/form-evento']">Evento</ion-button>
   <hr>
-  <ion-button expand="block" (click)="modalPage('contacto')">Seleccionar Contacto</ion-button>
-  <ion-button expand="block" (click)="modalPage('inmueble')">Seleccionar Inmueble</ion-button>
+  <ion-button expand="block" (click)="modalPage('contact')">Seleccionar Contacto</ion-button>
+  <ion-button expand="block" (click)="modalPage('property')">Seleccionar Inmueble</ion-button>
   
 </ion-content>

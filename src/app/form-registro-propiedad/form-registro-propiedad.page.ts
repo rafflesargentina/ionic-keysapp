@@ -12,6 +12,8 @@ import { SelectPage } from '../select/select.page';
 import { ToastService } from '../Services/toast.service';
 import { FormOperacionPage } from '../form-operacion/form-operacion.page';
 import { Operacion } from '../models/operacion';
+import { InmueblesService } from '../Services/inmuebles.service';
+import { UsuarioService } from '../Services/usuario.service';
 
 @Component({
   selector: 'app-form-registro-propiedad',
@@ -22,7 +24,7 @@ export class FormRegistroPropiedadPage implements OnInit {
   
   //currencies: string[] = ['Dólares U$S', 'Pesos $'];
   segment: string = 'first';
-  public operaciones: Operacion[] = [];
+  public operaciones:Operacion[] = [];
   tipos = [];
   titulo: string = 'Registro de Inmuebles'
   public inmueble:Inmueble;
@@ -33,35 +35,32 @@ export class FormRegistroPropiedadPage implements OnInit {
   public propietarioAsignado:Usuario;
   datosForm: FormGroup;
   submitted = false;
-  public user: Usuario;
+  public userId = "";
 
   constructor(
     private formBuilder: FormBuilder,
     private router:Router,
     private toast: ToastService,
     private tiposPropiedadesService:TiposPropiedadesService,
-    private tiposOperacionesService:TiposOperacionesService,
+    private inmueblesService:InmueblesService,
     private modalCtrl: ModalController,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private usuarioService:UsuarioService
   ) { 
 
     this.inmueble = new Inmueble();
-
     this.propietarioAsignado = new Usuario();
+    this.userId = this.usuarioService.getUID();
 
-    this.user = new Usuario();
     this.datosForm = this.formBuilder.group({
+      registrant_id:[this.userId,null],
       name:['', Validators.required],
-      customer_id: ['', Validators.required],
+      owner_id: ['', null],
       address: ['', Validators.required],
-      type:['', Validators.required],
-      operaciones: ['', Validators.required]
-    });    
-
-    this.tiposOperacionesService.all(1).subscribe(resp =>{
-      let response:any = resp;
-      this.operaciones = response.data.data;
-    });
+      property_type_id:['', Validators.required],
+      operations: ['', Validators.required],
+      description:['',null]
+    });      
 
     this.tiposPropiedadesService.all(1).subscribe(resp =>{
       let response:any = resp;
@@ -81,15 +80,19 @@ export class FormRegistroPropiedadPage implements OnInit {
     this.submitted = true;
 
     this.inmueble.asignarValores(this.datosForm.value);
+    this.inmueble.operations = this.operaciones;
+    console.log(this.inmueble); 
 
-    //console.log(this.inmueble);
+    this.inmueblesService.create(this.inmueble).subscribe(data=>{
+      console.log(data);
+    });
     
   }
   
   eliminarPropietario(){
     this.propietarioAsignado = new Usuario();
     this.datosForm.patchValue({
-      owner_id: ""
+      customer_id: ""
     })
   }
 
@@ -98,32 +101,22 @@ export class FormRegistroPropiedadPage implements OnInit {
     const modal = await this.modalCtrl.create({
       component: SelectPage,
       componentProps: { 					
-        //datos que viajan al modal en modo clave: valor,	
-        tipo: 'propietario'				
+        tipo: 'customer'				
       } 
     });    
-    /*
+    
     modal.onDidDismiss()
     .then((data) => {
       let resp:any = data;
-      this.propietarioAsignado.asignarValores(resp);
+      console.log(resp.data.cliente.id);
+      this.propietarioAsignado.asignarValores(resp.data.cliente);
       this.datosForm.patchValue({
-        owner_id: resp.id
+        owner_id: resp.data.cliente.id
       })
-    });*/
+    });
     modal.present();
-    await modal.onDidDismiss()
-    .then((data) => {
-      let resp: any = data;
-      if(data != undefined){
-        this.propietarioAsignado.asignarValores(resp);
-        this.datosForm.patchValue({
-          owner_id: resp.id
-        });
-      }else{
-        this.toast.mensaje('Error', 'Debe seleccionar un propietario');
-      }
-    }); 
+
+    
   }
   
   async seleccionarOperaciones(){
@@ -138,7 +131,7 @@ export class FormRegistroPropiedadPage implements OnInit {
     if(data !=undefined){
       this.operaciones.push(data.operacion);
       this.datosForm.patchValue({
-        operaciones: true
+        operations: true
       });
     }else{
       this.toast.mensajeRojo('Error', 'Debe seleccionar al menos un tipo de operación');
@@ -181,7 +174,11 @@ export class FormRegistroPropiedadPage implements OnInit {
   }
 
   setValue(newValue: any){
-    this.inmueble.address = newValue.address;
+    console.log(newValue.address)
+    this.datosForm.patchValue({
+      address:newValue.address
+    })
+    this.inmueble.address = newValue.address;    
   }
 
   segmentChanged(ev: any) {

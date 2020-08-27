@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastService } from '../Services/toast.service';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
+import { InvitacionesService } from '../Services/invitaciones.service';
 
 @Component({
   selector: 'app-form-invitacion',
@@ -10,15 +11,23 @@ import { ModalController } from '@ionic/angular';
 })
 export class FormInvitacionPage implements OnInit {
 
-  public email = "";
+  public data = {
+    email:"",
+    broker:false,
+    agent:false,
+    customer:false
+  };
+
   @Input() isModal = false;
 
   constructor(
     private route:ActivatedRoute,
     private toastService:ToastService,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private invitacionesService:InvitacionesService,
+    private navParams:NavParams
   ) { 
-
+   
 
   }
 
@@ -26,18 +35,24 @@ export class FormInvitacionPage implements OnInit {
   }
 
   ionViewDidEnter(){
-    if(this.route.snapshot.params.rol){
-
+    if(this.navParams.get('rol') == "agent"){
+      this.data.agent = true;
+    }
+    if(this.navParams.get('rol') == "customer"){
+      this.data.customer = true;
     }
   }
 
   enviar(){
-
-    if(this.email ==""){
+    console.log("!!!!")
+    if(this.data.email ==""){
       this.toastService.mensaje("","Por favor ingrese un mail");
     }
 
-    
+   
+    this.invitacionesService.create(this.data).subscribe(data=>{
+      console.log(data);
+    });
 
   }
 

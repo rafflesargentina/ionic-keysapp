@@ -17,25 +17,16 @@ export class EventosService extends BaseCRUDService {
   ) { 
     
     super(httpClient,usuarioService,toastService);
-    this.setEndpoint("appointment");
+    this.setEndpoint("appointments");
   }
 
-  aceptar(user_id,evento:Evento){
+  aceptar(pivot_id){
 
-    let data = {
-      user_id: user_id,
-      appointment_id:evento.id
-    }
-
-    return this.httpClient.post(this.getEndpoint(), data, this.options);    
+    return this.httpClient.put(this.getEndpoint()+"/"+pivot_id+"/accept",this.options);    
   }
 
-  rechazar(user_id,evento:Evento){
+  rechazar(pivot_id){
 
-    let data = {
-      user_id: user_id,
-      appointment_id:evento.id
-    }
-    return this.httpClient.post(this.getEndpoint(), data, this.options);
+    return this.httpClient.put(this.getEndpoint()+"/"+pivot_id+"/reject",this.options);
   }
 }

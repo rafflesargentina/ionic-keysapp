@@ -39,7 +39,11 @@ export class FormRegistroPage implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required],      
       password_confirmation:['', Validators.required],
-      accepted: [false, Validators.required]    
+      accepted: [false, Validators.required],
+      company_name:['',Validators.required],
+      broker:[true,null],
+      agent:[false,null],  
+      customer:[false,null]      
     });
     
   }
@@ -61,6 +65,8 @@ export class FormRegistroPage implements OnInit {
     if(this.f.accepted.value != true){
       this.presentToast("Debe leer y aceptar los términos y condiciones");
     }   
+
+    console.log(this.datosForm.value);
     
     this.authServiceRaffless.registrar(this.datosForm.value);
   }

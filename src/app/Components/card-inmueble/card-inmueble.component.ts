@@ -8,8 +8,8 @@ import { ItemComponent } from '../list-base/item.component';
   styleUrls: ['./card-inmueble.component.scss'],
 })
 export class CardInmuebleComponent implements OnInit, ItemComponent {
-  data: Inmueble;
-  //@Input() data: any;
+
+  @Input() data: Inmueble;
   
   constructor() { }
 

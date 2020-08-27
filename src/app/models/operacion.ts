@@ -1,12 +1,12 @@
 export class Operacion{
     public id="";
-    public tipo ="";
-    public precio="";
-    public moneda ="";
+    public operation_type_id ="";
+    public value="";
+    public currency ="";
 
 	constructor(){ }
     
     public asignarValores(init?: Partial<Operacion>) {
         Object.assign(this, init);
     }
-}
+} 

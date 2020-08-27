@@ -8,18 +8,22 @@ import { EventosService } from '../Services/eventos.service';
 })
 export class CalendarioPage implements OnInit {
 
+  private items = [];
+
   constructor(
     private eventosService:EventosService
   ) { }
 
   ngOnInit() {
-    
+    this.eventosService.all(1).subscribe(resp =>{
+      let response:any = resp;     
+      this.items = response.data.data;
+      console.log(this.items)
+    })
   }
 
   onViewDidEnter(){
-    this.eventosService.all(1).subscribe(resp =>{
-      console.log(resp);
-    })
+   
   }
 
 }

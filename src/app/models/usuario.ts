@@ -5,7 +5,10 @@ export class Usuario {
     public email= "";
     public phone= "";
     public mobile= "";
-
+    public owner = false;
+    public broker = false;
+    public agent = false;
+    public customer = false;
     
     constructor(
 		
