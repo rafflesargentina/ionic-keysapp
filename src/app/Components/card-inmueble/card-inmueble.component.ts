@@ -14,6 +14,7 @@ export class CardInmuebleComponent implements OnInit, ItemComponent {
   constructor() { }
 
   ngOnInit() {
+    console.log('data inmueble', this.data);
   }
 
 }

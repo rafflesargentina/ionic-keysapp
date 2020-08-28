@@ -5,9 +5,14 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <div *ngFor="let item of items">
-    <app-card-evento [data]="item"> </app-card-evento>
+  
+  <div *ngFor="let item of items; let i = index;" class="row">
+    <div class="division" *ngIf="mostrar(item, i) && i != 0"></div>
+    <ion-title *ngIf="mostrar(item, i)">{{ item.date | date: "dd 'de' MMMM" }}</ion-title>
+    <app-card-evento [data]="item" (onSelect)="mostrarDetalle($event)"></app-card-evento>
+    <div class="separacion"></div> 
   </div>
+  
   
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button routerLink="/form-evento">

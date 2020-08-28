@@ -7,10 +7,12 @@ import { IonicModule } from '@ionic/angular';
 import { DetailEventoPageRoutingModule } from './detail-evento-routing.module';
 
 import { DetailEventoPage } from './detail-evento.page';
+import { ComponentsModule } from '../Components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
+    ComponentsModule,
     FormsModule,
     IonicModule,
     DetailEventoPageRoutingModule

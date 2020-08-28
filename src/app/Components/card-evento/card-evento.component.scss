@@ -1,9 +1,21 @@
-.evento{
-    --background: red;
+.Aceptado{
+    --background: green;
     border-radius: 5px;
     color:white;
 }
 
 ion-toolbar{
-    --background:transparent;
+    --background: transparent;
+}
+
+.esperando{
+    --background: yellow;
+    border-radius: 5px;
+    color: black;
+}
+
+.Rechazado{
+    --background: red;
+    border-radius: 5px;
+    color:white;
 }

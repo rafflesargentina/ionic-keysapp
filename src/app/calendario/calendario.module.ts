@@ -9,6 +9,12 @@ import { CalendarioPageRoutingModule } from './calendario-routing.module';
 import { CalendarioPage } from './calendario.page';
 import { ComponentsModule } from '../Components/components.module';
 
+//para el manejo de la fecha
+import { LOCALE_ID } from '@angular/core';
+import localeEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localeEs);
+
 @NgModule({
   imports: [
     CommonModule,
@@ -18,6 +24,9 @@ import { ComponentsModule } from '../Components/components.module';
     ComponentsModule,
     CalendarioPageRoutingModule
   ],
-  declarations: [CalendarioPage]
+  declarations: [CalendarioPage, ],
+  providers: [
+    {provide: LOCALE_ID, useValue: "es"}
+  ]
 })
 export class CalendarioPageModule {}

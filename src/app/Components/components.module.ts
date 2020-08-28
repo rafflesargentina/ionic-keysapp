@@ -9,6 +9,8 @@ import { HeaderComponent } from './header/header.component';
 import { ItemDirective } from './list-base/item.directive';
 import { ListBaseComponent } from './list-base/list-base.component';
 import { CardEventoComponent } from './card-evento/card-evento.component';
+import { CardInmuebleComponent } from './card-inmueble/card-inmueble.component';
+import { CardUsuarioComponent } from './card-usuario/card-usuario.component';
 
 @NgModule({
 imports: [
@@ -23,6 +25,8 @@ imports: [
     HeaderComponent,
     ListBaseComponent,
     CardEventoComponent,
+    CardInmuebleComponent,
+    CardUsuarioComponent,
     ItemDirective
   ],
   exports: [
@@ -30,6 +34,8 @@ imports: [
     HeaderComponent,
     ListBaseComponent,
     CardEventoComponent,
+    CardInmuebleComponent,
+    CardUsuarioComponent,
     ItemDirective
   ]
 })

@@ -14,6 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UsuarioService } from '../Services/usuario.service';
 import { SelectPage } from '../select/select.page';
 
+
 @Component({
   selector: 'app-form-evento',
   templateUrl: './form-evento.page.html',
@@ -24,8 +25,8 @@ export class FormEventoPage implements OnInit {
   public evento:Evento;
   public inmuebleAsignado:Inmueble;
   public clienteAsignado:Usuario;
-  public fecha:Date;
-  public hora:Date;
+  //public fecha: Date;
+  //public hora: Date;
   public datosForm: FormGroup;
   public submitted = false;
 
@@ -66,7 +67,6 @@ export class FormEventoPage implements OnInit {
   }
 
   async selectInmueble(){
-    //console.log('home tipo', tipo);
     const modalPage = await this.modalCtrl.create({ 	
       component: SelectPage, 			
       componentProps: { 					
@@ -86,7 +86,6 @@ export class FormEventoPage implements OnInit {
   }
 
   async selectContact(){
-    //console.log('home tipo', tipo);
     const modalPage = await this.modalCtrl.create({ 	
       component: SelectPage, 			
       componentProps: { 					
@@ -147,18 +146,17 @@ export class FormEventoPage implements OnInit {
     this.evento.asignarValores(this.datosForm.value);
 
     //!!!!
-
+    
     if(this.isEditando){
       this.eventosService.update(this.evento).subscribe(resp =>{
         console.log(resp);
       })
-    }
-    else{
+    }else{
       this.eventosService.create(this.evento).subscribe(resp =>{
         console.log(resp);
       })
     } 
-
+    
   }
 
   aceptar(){

@@ -1,17 +1,19 @@
-<ion-item class="evento" (click)="select()">
-  <ion-label>
+<ion-item class="evento" (click)="select()" [ngClass]="estado">
+  <ion-label >
     <ion-row>
-      <h2>{{data.date}}</h2>
+      <h2>{{data.date | date:"dd 'de' MMMM 'de 'yyyy"}}</h2>
     </ion-row>
     <ion-row>
       <h3>{{data.comment}}</h3><br>
-      <p>{{data.property_id}}</p>
     </ion-row>
     <ion-row>
-      <ion-toolbar> 
-        <ion-button type="button" color="light" slot="start" expand="block" (click)="cancelar()">Cancelar</ion-button>
-        <ion-button type="button" slot="end" expand="block" (click)="cambiar()">Aceptar</ion-button>
+      <ion-toolbar *ngIf="mostrar"> 
+        <ion-button type="button" color="danger" slot="start" expand="block" 
+        (click)="cancelar($event)">Cancelar</ion-button>
+        <ion-button type="button" color="success" slot="end" expand="block"  
+        (click)="aceptar($event)">Aceptar</ion-button>
       </ion-toolbar>
+      <ion-label *ngIf="!mostrar">Evento {{estado}}</ion-label>
     </ion-row>
   </ion-label>  
 </ion-item>

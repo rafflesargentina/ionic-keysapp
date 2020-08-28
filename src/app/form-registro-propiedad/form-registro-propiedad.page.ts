@@ -45,6 +45,7 @@ export class FormRegistroPropiedadPage implements OnInit {
     private inmueblesService:InmueblesService,
     private modalCtrl: ModalController,
     private toastCtrl: ToastController,
+    private alertCtrl: AlertController,
     private usuarioService:UsuarioService
   ) { 
 

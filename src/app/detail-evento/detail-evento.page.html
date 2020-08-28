@@ -1,6 +1,6 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>detail-evento</ion-title>
+    <app-header [titulo]="'Detalle de Evento'" [icono]="'back'"></app-header>
   </ion-toolbar>
 </ion-header>
 
@@ -8,32 +8,32 @@
 
   <ion-item>
     <ion-label position="floating">Inmueble</ion-label>     
-    <app-card-inmueble [inmueble]="inmuebleAsignado"></app-card-inmueble>  
+    <app-card-inmueble [data]="inmuebleAsignado" *ngIf="inmuebleAsignado"></app-card-inmueble> 
   </ion-item>
   
   <ion-item>
     <ion-label position="floating">Cliente</ion-label>     
-    <app-card-usuario [usuario]="clienteAsignado"></app-card-usuario>  
+    <app-card-usuario [data]="clienteAsignado" *ngIf="clienteAsignado"></app-card-usuario>
   </ion-item>
 
   <ion-item>
-    Fecha:{{this.evento.date}}
+    Fecha: {{fecha}}
   </ion-item>
   
-  <ion-item *ngIf=="!pendienteConfirmar">
+  <ion-item *ngIf="!pendienteConfirmar">
     Confirmado    
   </ion-item>
 
 </ion-content>
 <ion-footer *ngIf="pendienteConfirmar" class="ion-no-border ion-padding">
   <ion-toolbar> 
-    <ion-button color="primary" slot="end" (click)="aceptar()">Aceptar</ion-button>  
-    <ion-button color="light" slot="start"  color="light" (click)="rechazar()">Rechazar</ion-button>
+    <ion-button color="success" slot="end" (click)="aceptar()">Aceptar</ion-button>  
+    <ion-button color="danger" slot="start"  color="light" (click)="rechazar()">Rechazar</ion-button>
   </ion-toolbar>
 </ion-footer>
 
 <ion-footer *ngIf="!pendienteConfirmar" class="ion-no-border ion-padding">
   <ion-toolbar> 
-    <ion-button color="light" slot="start"  color="light" (click)="rechazar()">Rechazar</ion-button>
+    <ion-button color="danger" slot="start"  color="light" (click)="rechazar()">Rechazar</ion-button>
   </ion-toolbar>
 </ion-footer>

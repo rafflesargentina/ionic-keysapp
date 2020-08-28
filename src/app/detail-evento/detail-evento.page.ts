@@ -15,11 +15,11 @@ import { ContactosService } from '../Services/contactos.service';
 })
 export class DetailEventoPage implements OnInit {
 
-  public fecha ="";
+  public fecha = "";
   public hora = "";
-  public clienteAsignado:Usuario;
-  public inmuebleAsignado:Inmueble;
-  public evento:Evento;
+  public clienteAsignado: Usuario;
+  public inmuebleAsignado: Inmueble;
+  public evento: Evento;
 
   public pendienteConfirmar = true;
 
@@ -34,24 +34,23 @@ export class DetailEventoPage implements OnInit {
   }
 
   ngOnInit() {
+    
   }
 
   ionViewDidEnter(){
 
     let usuario_id = this.usuarioService.getUID();
-
     if(this.route.snapshot.params.id){
       this.eventosService.get(this.route.snapshot.params.id).subscribe(resp=>{               
         this.evento.asignarValores(resp);
-    
         this.inmueblesService.get(this.evento.property_id).subscribe(resp =>{
           this.inmuebleAsignado.asignarValores(resp);
         });
 
         this.contactosSerivce.get(this.evento.customer_id).subscribe(resp=>{
           this.clienteAsignado.asignarValores(resp);
-        })
-
+        });
+        this.fecha = this.evento.date;
         if(usuario_id == this.evento.registrant_id){
         //  if(this.evento.pendiente_agente_confirmar){
             this.pendienteConfirmar = true;
@@ -62,7 +61,7 @@ export class DetailEventoPage implements OnInit {
             this.pendienteConfirmar = true;
          // }
         }
-      })      
+      });      
     }
   }
 
