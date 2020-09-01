@@ -16,7 +16,7 @@ export class CardEventoComponent implements OnInit {
   @Output() onSelect = new EventEmitter<Evento>();
   
   estado: string = '';
-  mostrar: boolean = true;
+  mostrar: boolean = false;
 
   private user_id = "";
   private memberIndex = 0;
@@ -31,16 +31,17 @@ export class CardEventoComponent implements OnInit {
     this.data.members.forEach((member,index) => {
       if(member.id == this.user_id){
         this.memberIndex = index;
-      }
-      //determinamos el nombre de la clase scss que usará la tarjeta
-      if(member.pivot.accepted === 0 && member.pivot.rejected === 0){
-        this.estado = 'esperando';
-      }
-      if(member.pivot.accepted === 1){
-        this.estado = 'Aceptado';
-      }
-      if(member.pivot.rejected === 1){
-        this.estado = 'Rechazado';
+      
+        if(member.pivot.accepted === 0 && member.pivot.rejected === 0){
+          this.estado = 'esperando';
+          this.mostrar = true;
+        }
+        if(member.pivot.accepted === 1){
+          this.estado = 'Aceptado';
+        }
+        if(member.pivot.rejected === 1){
+          this.estado = 'Rechazado';
+        }
       }
     });
   }
@@ -59,18 +60,19 @@ export class CardEventoComponent implements OnInit {
 
   aceptar(event){
     event.stopPropagation();
-    this.eventoService.aceptar(this.data.members[this.memberIndex].pivot.id);
-    this.data.members[this.memberIndex].pivot.accepted = 1;
-    //console.log('aceptado', this.data.members[this.memberIndex].pivot.accepted);
+    this.eventoService.aceptar(this.data.members[this.memberIndex].pivot.id).subscribe(data=>{
+      console.log(data)
+    });    
     this.estado = 'Aceptado';
     this.mostrarBotones();
   }
 
   cancelar(event){
     event.stopPropagation();
-    this.eventoService.rechazar(this.data.members[this.memberIndex].pivot.id);
-    this.data.members[this.memberIndex].pivot.rejected = 1;
-    //console.log('rechazado', this.data.members[this.memberIndex].pivot.rejected);
+    this.eventoService.rechazar(this.data.members[this.memberIndex].pivot.id).subscribe(data=>{
+      console.log(data)
+    });
+
     this.estado = 'Rechazado';
     this.mostrarBotones();
   }
