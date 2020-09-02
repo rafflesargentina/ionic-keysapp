@@ -112,7 +112,7 @@ export class BaseCRUDService {
     console.log(error);
     let mensaje: string = '';
     if(error.status != 0){
-      Object.keys(error.error.errors).forEach((key,index)=> {
+      Object.keys(error.error.errors).forEach((key, index)=> {
         console.log(error.error.errors[key][0])
         mensaje += error.error.errors[key][0] + '\n';
       });

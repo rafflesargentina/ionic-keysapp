@@ -19,7 +19,6 @@ import { SelectPage } from '../select/select.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    ComponentsModule,
     FormEventoPageRoutingModule
   ],
   declarations: [FormEventoPage]

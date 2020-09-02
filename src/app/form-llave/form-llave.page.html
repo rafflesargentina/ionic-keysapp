@@ -1,9 +1,38 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>form-llave</ion-title>
+    <app-header [titulo]="'Formulario de Llaves'" [icono]="'back'"></app-header>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="ion-padding">
+  <form [formGroup]="datosForm">
+    <!--inmueble-->
+    <div [class.invalid]="submitted && !datosForm.controls.property_id.valid">
+      <ion-item>   
+        <ion-label>{{inmuebleAsignado.name}}</ion-label>    
+      </ion-item>  
+      <ion-button  type="button" expand="block" (click)="selectInmueble()">Seleccionar Inmueble</ion-button>
+      <div *ngIf="submitted && f.property_id.errors" class="invalid-feedback">
+        <div *ngIf="f.property_id.errors.required"><h5>Selecciona un Inmueble</h5></div>
+      </div>
+    </div>
+    <!--agente que tiene la llave-->
+      <ion-item> 
+        {{agente.name}}        
+      </ion-item>  
+      <ion-button type="button" expand="block" (click)="selectContact()">
+        Seleccionar Agente
+      </ion-button>
+    <!--Numero de llave-->
+    <div [class.invalid]="submitted && !datosForm.controls.number.valid">
+      <ion-item> 
+        <ion-label position="floating">Llave Numero</ion-label>
+        <ion-input type="number" value="{{number}}" formControlName="number"></ion-input>
+      </ion-item>  
+      <div *ngIf="submitted && f.number.errors" class="invalid-feedback">
+        <div *ngIf="f.number.errors.required"><h5>Selecciona Número de llave</h5></div>
+      </div>
+    </div>
+  </form>
+  <ion-button color="primary" (click)="guardar()" expand="block">Guardar</ion-button>  
 </ion-content>

@@ -109,7 +109,7 @@ export class FormRegistroPropiedadPage implements OnInit {
     modal.onDidDismiss()
     .then((data) => {
       let resp:any = data;
-      console.log(resp.data.cliente.id);
+      //console.log(resp.data.cliente.id);
       this.propietarioAsignado.asignarValores(resp.data.cliente);
       this.datosForm.patchValue({
         owner_id: resp.data.cliente.id

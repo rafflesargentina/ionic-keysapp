@@ -13,7 +13,7 @@ import { Usuario } from 'src/app/models/usuario';
 export class ListBaseComponent implements OnInit {
 
   @Input() itemComponent:Type<any>;
-  @Input() service:any;
+  @Input() service: any;
   @ViewChildren(ItemDirective) itemHost: QueryList<ItemDirective>;
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
@@ -42,10 +42,7 @@ export class ListBaseComponent implements OnInit {
     service.all(this.page).subscribe(response=>{
       //console.log(response.data.data);
       var elementos = response.data.data; 
-    })  
-    
-   
-
+    });  
     service.all(this.page).subscribe(response=>{   
       var resp:any = response;
       var elementos = resp.data.data;
@@ -56,14 +53,12 @@ export class ListBaseComponent implements OnInit {
         ()=>{this.loadComponent()},
       100);
       //this.loadComponent();
-     
       this.infiniteScroll.disabled = false;
       if (elementos.length < 5) {        
         this.infiniteScroll.disabled = true;
       }
-
-    },error=>{
-     
+    }, error=>{
+      console.log('list-base.component.actualizar.error', error);
     }); 
   }
 
@@ -110,7 +105,7 @@ export class ListBaseComponent implements OnInit {
   }
 
   seleccionar(item){
-    //console.log('list-base.seleccionar(item)', item);
+    console.log('list-base.seleccionar(item)', item);
     this.select.emit(item);
   }
 

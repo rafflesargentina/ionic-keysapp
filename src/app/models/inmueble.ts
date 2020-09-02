@@ -3,7 +3,7 @@ export class Inmueble{
     public id="";
     public owner_id ="";
     public property_type_id ="";
-    public name ="";
+    public name = "";
     public operations = [];
     public description ="";
 
