@@ -8,6 +8,8 @@ import { ContactosService } from '../Services/contactos.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Usuario } from '../models/usuario';
 import { Inmueble } from '../models/inmueble';
+import { CardSucursalComponent } from '../Components/card-sucursal/card-sucursal.component';
+import { SucursalesService } from '../Services/sucursales.service';
 
 @Component({
   selector: 'app-select',
@@ -25,6 +27,7 @@ export class SelectPage implements OnInit {
     private route: ActivatedRoute,
     private contactosService:ContactosService,
     private inmuebleService:InmueblesService,
+    private sucursalesService:SucursalesService,
     private modalCtrl: ModalController,
     ) { }
 
@@ -38,6 +41,10 @@ export class SelectPage implements OnInit {
       case 'property':
         this.titulo = 'Selección de Inmueble';
         this.itemComponent = CardInmuebleComponent;
+      break;
+      case 'sucursal':
+        this.titulo = 'Selección de Sucursal';
+        this.itemComponent = CardSucursalComponent;
       break;
       case 'customer':
         this.titulo = "Selección de Propietario";
@@ -57,6 +64,8 @@ export class SelectPage implements OnInit {
         return this.inmuebleService;
       case 'customer':
         return this.contactosService;
+      case 'sucursal':
+        return this.sucursalesService;
       default:
         console.log('tipo no definido');
       break;      

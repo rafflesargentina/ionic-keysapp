@@ -4,6 +4,8 @@ import { CardInmuebleComponent } from '../Components/card-inmueble/card-inmueble
 import { InmueblesService } from '../Services/inmuebles.service';
 import { CardUsuarioComponent } from '../Components/card-usuario/card-usuario.component';
 import { ContactosService } from '../Services/contactos.service';
+import { CardSucursalComponent } from '../Components/card-sucursal/card-sucursal.component';
+import { SucursalesService } from '../Services/sucursales.service';
 
 @Component({
   selector: 'app-list',
@@ -21,7 +23,8 @@ export class ListPage implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private contactosService:ContactosService,
-    private inmuebleService:InmueblesService
+    private inmuebleService:InmueblesService,
+    private sucursalesService:SucursalesService,
     ) { }
 
   ngOnInit() {
@@ -38,6 +41,10 @@ export class ListPage implements OnInit {
         this.titulo = 'Listado de Inmuebles';
         this.itemComponent = CardInmuebleComponent;
       break;
+      case 'sucursal':
+        this.titulo = 'Lista de Sucursales';
+        this.itemComponent = CardSucursalComponent;
+      break;
       default:
         console.log('tipo no definido');
       break;      
@@ -50,6 +57,8 @@ export class ListPage implements OnInit {
         return this.contactosService;
       case 'inmueble':
         return this.inmuebleService;
+      case 'sucursal':
+        return this.sucursalesService;
       default:
         console.log('tipo no definido');
       break;      
@@ -65,10 +74,14 @@ export class ListPage implements OnInit {
 
   agregar(){
     if(this.tipo === 'inmueble'){
+      //redirigir a form-registro-propiedad
       this.router.navigate(['/form-registro-propiedad']);
     }else if(this.tipo === 'contacto'){
       //redirigir a form-invitacion
       this.router.navigate(['/form-invitacion']);
+    }else if(this.tipo === 'sucursal'){  
+      //redirigir a form-sucursal
+      this.router.navigate(['/form-sucursal']);
     }    
   }
 }

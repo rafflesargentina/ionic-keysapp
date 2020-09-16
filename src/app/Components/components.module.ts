@@ -11,6 +11,7 @@ import { ListBaseComponent } from './list-base/list-base.component';
 import { CardEventoComponent } from './card-evento/card-evento.component';
 import { CardInmuebleComponent } from './card-inmueble/card-inmueble.component';
 import { CardUsuarioComponent } from './card-usuario/card-usuario.component';
+import { CardSucursalComponent } from './card-sucursal/card-sucursal.component';
 
 @NgModule({
 imports: [
@@ -27,6 +28,7 @@ imports: [
     CardEventoComponent,
     CardInmuebleComponent,
     CardUsuarioComponent,
+    CardSucursalComponent,
     ItemDirective
   ],
   exports: [
@@ -36,6 +38,7 @@ imports: [
     CardEventoComponent,
     CardInmuebleComponent,
     CardUsuarioComponent,
+    CardSucursalComponent,
     ItemDirective
   ]
 })
