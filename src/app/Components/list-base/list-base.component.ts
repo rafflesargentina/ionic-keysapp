@@ -103,14 +103,13 @@ export class ListBaseComponent implements OnInit {
   onChange(event){
 
   }
-
-  seleccionar(item){
-    console.log('list-base.seleccionar(item)', item);
-    this.select.emit(item);
-  }
-
+  
   agregar(){
     this.add.emit();
+  }
+
+  public seleccionar(item){
+    this.select.emit(item);
   }
 
   async presentLoading() {

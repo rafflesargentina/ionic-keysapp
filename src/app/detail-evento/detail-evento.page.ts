@@ -7,6 +7,7 @@ import { Evento } from '../models/evento';
 import { Inmueble } from '../models/inmueble';
 import { Usuario } from '../models/usuario';
 import { ContactosService } from '../Services/contactos.service';
+import { ParametrosService } from '../Services/global/parametros.service';
 
 @Component({
   selector: 'app-detail-evento',
@@ -28,41 +29,38 @@ export class DetailEventoPage implements OnInit {
     private inmueblesService:InmueblesService,
     private usuarioService:UsuarioService,
     private contactosSerivce:ContactosService,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private parametrosService:ParametrosService
   ) { 
 
   }
 
   ngOnInit() {
-    
+    this.evento = new Evento();
+    this.clienteAsignado = new Usuario();
+    this.inmuebleAsignado = new Inmueble();
   }
 
   ionViewDidEnter(){
-
+    this.evento = this.parametrosService.param;
     let usuario_id = this.usuarioService.getUID();
-    if(this.route.snapshot.params.id){
-      this.eventosService.get(this.route.snapshot.params.id).subscribe(resp=>{               
-        this.evento.asignarValores(resp);
-        this.inmueblesService.get(this.evento.property_id).subscribe(resp =>{
-          this.inmuebleAsignado.asignarValores(resp);
-        });
 
-        this.contactosSerivce.get(this.evento.customer_id).subscribe(resp=>{
-          this.clienteAsignado.asignarValores(resp);
-        });
-        this.fecha = this.evento.date;
-        if(usuario_id == this.evento.registrant_id){
-        //  if(this.evento.pendiente_agente_confirmar){
-            this.pendienteConfirmar = true;
-          //}
-        }
-        if(usuario_id == this.evento.customer_id){
-          //if(this.evento.pendiente_customer_confirmar){
-            this.pendienteConfirmar = true;
-         // }
-        }
-      });      
+    console.log(this.evento);
+    this.inmueblesService.get(this.evento.property_id).subscribe(resp =>{
+      this.inmuebleAsignado.asignarValores(resp);
+    });
+
+    this.contactosSerivce.get(this.evento.customer_id).subscribe(resp=>{
+      this.clienteAsignado.asignarValores(resp);
+    });
+    
+    if(usuario_id == this.evento.registrant_id){
+      this.pendienteConfirmar = true;
     }
+    if(usuario_id == this.evento.customer_id){
+      this.pendienteConfirmar = true;
+    }
+    
   }
 
 }

@@ -24,8 +24,7 @@ export class FormInvitacionPage implements OnInit {
     private route:ActivatedRoute,
     private toastService:ToastService,
     private modalCtrl: ModalController,
-    private invitacionesService:InvitacionesService,
-    private navParams:NavParams
+    private invitacionesService:InvitacionesService
   ) { 
    
 
@@ -35,12 +34,12 @@ export class FormInvitacionPage implements OnInit {
   }
 
   ionViewDidEnter(){
-    if(this.navParams.get('rol') == "agent"){
+  /*  if(this.navParams.get('rol') == "agent"){
       this.data.agent = true;
     }
     if(this.navParams.get('rol') == "customer"){
       this.data.customer = true;
-    }
+    }*/
   }
 
   enviar(){

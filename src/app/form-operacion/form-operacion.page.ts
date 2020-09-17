@@ -30,17 +30,18 @@ export class FormOperacionPage implements OnInit {
 
     this.datosForm = this.formBuilder.group({
       registrant_id:[this.userId,null],
-      operation_type_id: ['', Validators.required],
+      operation_type_id: ['', null],
       value: ['', Validators.required],
-      currency: ['', Validators.required]
+      currency: ['', Validators.required],
+      operation_type_name:['',null]
     });  
   }
 
   ngOnInit() {
-
     this.tiposOperacionesService.all(1).subscribe(resp=>{
       let respuesta:any = resp;
       this.tiposOperaciones = respuesta.data.data;
+      console.log(this.tiposOperaciones);
     })
   }
 
@@ -57,14 +58,20 @@ export class FormOperacionPage implements OnInit {
     });
   }
 
+  seleccionTipo(event){
+    console.log(event.target.value);
+    this.datosForm.patchValue({
+      operation_type_id : event.target.value.id
+    })
+    this.datosForm.patchValue({
+      operation_type_name : event.target.value.name
+    })
+  }
+
   submit(){
     this.submitted = true;
     this.operacion.asignarValores(this.datosForm.value);
-    if(this.datosForm.controls.operation_type_id.valid && 
-       this.datosForm.controls.value.valid && 
-       this.datosForm.controls.currency.valid ){
-        this.aceptar();
-    }
+    this.aceptar();    
     console.log('operacion', this.operacion);
   }
 

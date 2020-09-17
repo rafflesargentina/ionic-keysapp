@@ -16,14 +16,14 @@
         <div *ngIf="f.property_id.errors.required"><h5>Selecciona un Inmueble</h5></div>
       </div>
     </div>
-    <!--agente que tiene la llave-->
-      <ion-item> 
-        {{agente.name}}        
-      </ion-item>  
-      <ion-button type="button" expand="block" (click)="selectContact()">
-        Seleccionar Agente
-      </ion-button>
-    <!--Numero de llave-->
+    
+    <ion-item> 
+      {{agente.name}}        
+    </ion-item>  
+    <ion-button type="button" expand="block" (click)="selectContact()">
+      Seleccionar Agente
+    </ion-button>
+    
     <div [class.invalid]="submitted && !datosForm.controls.number.valid">
       <ion-item> 
         <ion-label position="floating">Llave Numero</ion-label>

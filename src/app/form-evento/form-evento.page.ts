@@ -5,7 +5,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ParametrosService } from '../Services/global/parametros.service';
 import { Evento } from '../models/evento';
 import { EventosService } from '../Services/eventos.service';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 //import { SelectClientePage } from '../select-cliente/select-cliente.page';
 //import { SelectInmueblePage } from '../select-inmueble/select-inmueble.page';
 
@@ -41,7 +41,8 @@ export class FormEventoPage implements OnInit {
     private route:ActivatedRoute,
     private usuarioService:UsuarioService,
     private router:Router,
-    private modalCtrl:ModalController
+    private modalCtrl:ModalController,
+    private navCtrl:NavController
   ) {
 
     this.userId = this.usuarioService.getUID();
@@ -150,10 +151,12 @@ export class FormEventoPage implements OnInit {
     if(this.isEditando){
       this.eventosService.update(this.evento).subscribe(resp =>{
         console.log(resp);
+        this.navCtrl.back();
       })
     }else{
       this.eventosService.create(this.evento).subscribe(resp =>{
         console.log(resp);
+        this.navCtrl.back();
       })
     } 
     

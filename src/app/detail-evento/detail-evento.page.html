@@ -7,17 +7,17 @@
 <ion-content>
 
   <ion-item>
-    <ion-label position="floating">Inmueble</ion-label>     
+    <ion-label>Inmueble</ion-label>     
     <app-card-inmueble [data]="inmuebleAsignado" *ngIf="inmuebleAsignado"></app-card-inmueble> 
   </ion-item>
   
   <ion-item>
-    <ion-label position="floating">Cliente</ion-label>     
+    <ion-label>Cliente</ion-label>     
     <app-card-usuario [data]="clienteAsignado" *ngIf="clienteAsignado"></app-card-usuario>
   </ion-item>
 
   <ion-item>
-    Fecha: {{fecha}}
+    Fecha: {{evento.date}}
   </ion-item>
   
   <ion-item *ngIf="!pendienteConfirmar">

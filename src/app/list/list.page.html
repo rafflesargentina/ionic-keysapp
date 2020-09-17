@@ -1,6 +1,6 @@
 <ion-header class="ion-no-border">
     <ion-toolbar>
-      <app-header [titulo]="titulo" [icono]="'back'" (volver)="volver($event)"></app-header>
+      <app-header [titulo]="titulo" [icono]="'back'"></app-header>
     </ion-toolbar>
   </ion-header>
 
@@ -8,6 +8,7 @@
     <app-list-base 
       [itemComponent]="itemComponent"
       [service] ="getService"
-      (select)="seleccionar($event)" (add)="agregar($event)"  
+      (add)="agregar($event)"  
+      (select)="seleccionar($event)"
     ></app-list-base>
   </ion-content>

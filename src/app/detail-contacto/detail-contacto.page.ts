@@ -18,7 +18,7 @@ export class DetailContactoPage implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params =>{
+
       this.id = params['id'];
       console.log('params.id', this.id);
     });

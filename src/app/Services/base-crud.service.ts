@@ -60,7 +60,7 @@ export class BaseCRUDService {
   }
 
   get(id){
-    return this.httpClient.post(this.getEndpoint()+"/"+id, this.options) .pipe(
+    return this.httpClient.get(this.getEndpoint()+"/"+id, this.options) .pipe(
       retry(0),
       catchError(this.handleError)
     );

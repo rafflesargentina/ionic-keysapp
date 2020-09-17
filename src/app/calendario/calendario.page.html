@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <app-header [titulo]="'Calendario'" [icono]="'back'"></app-header>
+    <app-header [titulo]="'Calendario'" [icono]="'menu'"></app-header>
   </ion-toolbar>
 </ion-header>
 
@@ -9,10 +9,9 @@
   <div *ngFor="let item of items; let i = index;" class="row">
     <div class="division" *ngIf="mostrar(item, i) && i != 0"></div>
     <ion-title *ngIf="mostrar(item, i)">{{ item.date | date: "dd 'de' MMMM" }}</ion-title>
-    <app-card-evento [data]="item" (onSelect)="mostrarDetalle($event)"></app-card-evento>
+    <app-card-evento [data]="item" (onSelect)="mostrarDetalle(item)"></app-card-evento>
     <div class="separacion"></div> 
-  </div>
-  
+  </div> 
   
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button routerLink="/form-evento">

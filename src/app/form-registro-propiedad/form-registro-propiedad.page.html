@@ -80,7 +80,7 @@
       <ion-list *ngIf="operaciones.length > 0" >
         <ion-item *ngFor="let operacion of operaciones; let i = index;" [class.invalid]="submitted && !datosForm.controls.operations.valid">
           <ion-label>
-            <h1 size="10">{{operacion.operation_type_id}}</h1>
+            <h2 size="10">{{operacion.operation_type_name}}</h2>
             <h2 size="10">{{operacion.value}}  {{operacion.currency}}</h2>
           </ion-label>
           <ion-icon name="trash" color="danger" slot="end" (click)="eliminarOperacion(i)" size="2"></ion-icon>

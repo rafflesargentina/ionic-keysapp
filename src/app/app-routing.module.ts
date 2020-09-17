@@ -57,7 +57,7 @@ const routes: Routes = [
     loadChildren: () => import('./form-invitacion/form-invitacion.module').then( m => m.FormInvitacionPageModule)
   },
   {
-    path: 'detail-evento/:id',
+    path: 'detail-evento',
     loadChildren: () => import('./detail-evento/detail-evento.module').then( m => m.DetailEventoPageModule)
   },
   {
@@ -78,15 +78,20 @@ const routes: Routes = [
   }, 
   
   {
-    path: 'detail-contacto/:id',
+    path: 'detail-contacto',
     loadChildren: () => import('./detail-contacto/detail-contacto.module').then( m => m.DetailContactoPageModule)
   },
   {
     path: 'form-operacion',
     loadChildren: () => import('./form-operacion/form-operacion.module').then( m => m.FormOperacionPageModule)
-  },  {
+  },
+  {
     path: 'list-invitaciones',
     loadChildren: () => import('./list-invitaciones/list-invitaciones.module').then( m => m.ListInvitacionesPageModule)
+  },
+  {
+    path: 'detail-inmueble',
+    loadChildren: () => import('./detail-inmueble/detail-inmueble.module').then( m => m.DetailInmueblePageModule)
   },
 
 

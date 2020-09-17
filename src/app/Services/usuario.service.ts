@@ -56,6 +56,17 @@ export class UsuarioService {
   isAuthenticated() {
     return this.authenticationState.value;
   }
+
+  isAdmin(){
+
+    let user:any =  JSON.parse(localStorage.getItem('user')); 
+    if(user.roles){
+      return user.roles[0].slug == 'admin';    
+    }else{
+      return false;
+    }
+    return false;
+  }
   
   get(id: string){
     

@@ -8,24 +8,20 @@
         </ion-list>
                 
         <ion-list id="inbox-list" *ngIf="usuario">         
-          <ion-menu-toggle auto-hide="false" >
+          <ion-menu-toggle auto-hide="false">
             <ion-item (click)="cerrarSesion()" routerDirection="root" lines="none" detail="false">
               <ion-icon slot="start" name="home-outline"></ion-icon>
-              <ion-label>Sucursal</ion-label>
+              <ion-label>Sucursales</ion-label>
             </ion-item>
-            <ion-item (click)="cerrarSesion()" routerDirection="root" lines="none" detail="false">
+            <ion-item [routerLink]="['/list', 'inmueble']" routerDirection="root" lines="none" detail="false">
               <ion-icon slot="start" name="home-outline"></ion-icon>
               <ion-label>Inmuebles</ion-label>
             </ion-item>
-            <ion-item (click)="cerrarSesion()" routerDirection="root" lines="none" detail="false">
+            <ion-item [routerLink]="['/calendario']" routerDirection="root" lines="none" detail="false">
               <ion-icon slot="start" name="calendar-outline"></ion-icon>
               <ion-label>Eventos</ion-label>
             </ion-item>
-            <ion-item (click)="cerrarSesion()" routerDirection="root" lines="none" detail="false">
-              <ion-icon slot="start" name="people-circle-outline"></ion-icon>
-              <ion-label>Agentes</ion-label>
-            </ion-item>
-            <ion-item (click)="cerrarSesion()" routerDirection="root" lines="none" detail="false">
+            <ion-item [routerLink]="['/list', 'contacto']" routerDirection="root" lines="none" detail="false">
               <ion-icon slot="start" name="people-outline"></ion-icon>
               <ion-label>Contactos</ion-label>
             </ion-item>         

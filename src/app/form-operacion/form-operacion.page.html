@@ -9,9 +9,9 @@
     <!--operacion-->
     <ion-item [class.invalid]="submitted && !datosForm.controls.operation_type_id.valid">
       <ion-label position="floating">Operaciones</ion-label> 
-      <ion-select ok-text="Ok" cancel-text="Cancelar" multiple="false" expand="full" formControlName="operation_type_id">
-        <ion-select-option  *ngFor="let tipo of tiposOperaciones" [value]="tipo.id">
-          {{tipo.id}}
+      <ion-select ok-text="Ok" cancel-text="Cancelar" multiple="false" expand="full" (ionChange)="seleccionTipo($event)">
+        <ion-select-option  *ngFor="let tipo of tiposOperaciones" [value]="tipo">
+          {{tipo.name}}
         </ion-select-option>
       </ion-select>
       <div *ngIf="submitted && f.operation_type_id.errors" class="invalid-feedback">

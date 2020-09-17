@@ -3,6 +3,7 @@ import { EventosService } from '../Services/eventos.service';
 import { UsuarioService } from '../Services/usuario.service';
 import { Evento } from '../models/evento';
 import { Router } from '@angular/router';
+import { ParametrosService } from '../Services/global/parametros.service';
 
 @Component({
   selector: 'app-calendario',
@@ -15,12 +16,15 @@ export class CalendarioPage implements OnInit {
   
   constructor(
     private eventosService: EventosService,
-    private usuarioService: UsuarioService,
+    private parametrosService: ParametrosService,
     private router: Router,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(){
     //console.log('nombre usuario:', this.usuarioService.userSubject.value.nombre);
+  }
+
+  ionViewDidEnter(){
     this.eventosService.all(1).subscribe(resp =>{
       let response: any = resp;    
       console.log('data', response.data.data); 
@@ -28,7 +32,7 @@ export class CalendarioPage implements OnInit {
     });
   }
 
-  mostrar(evento: Evento, index: number){
+  mostrar(evento:Evento, index:number){
     if(index != 0){
       if(evento.date != this.items[index-1].date){
         return true;
@@ -41,12 +45,7 @@ export class CalendarioPage implements OnInit {
   }
 
   mostrarDetalle(event: Evento){
-    //console.log('mostrar detalle evento', event.id);
-    this.router.navigate(['/detail-evento/', event.id]);
-  }
-
-  onViewDidEnter(){
-   
-  }
-
+    this.parametrosService.param = event;
+    this.router.navigate(['/detail-evento']);
+  } 
 }
