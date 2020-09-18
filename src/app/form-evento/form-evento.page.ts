@@ -170,4 +170,8 @@ export class FormEventoPage implements OnInit {
    
   }
 
+  atras(){
+    this.navCtrl.back();
+  }
+
 }

@@ -65,7 +65,7 @@ export class FormOperacionPage implements OnInit {
     })
     this.datosForm.patchValue({
       operation_type_name : event.target.value.name
-    })
+    });
   }
 
   submit(){

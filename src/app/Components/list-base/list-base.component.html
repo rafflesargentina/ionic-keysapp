@@ -1,16 +1,15 @@
 <ion-searchbar animated 
-            [placeholder]="placeholder" 
-            showCancelButton="never" 
-            color="light" 
-            autocomplete="on"
-            enterkeyhint="send"
-            inputmode="text"
-            type="text"
-            debounce="500"
-            (ionChange)="onChange($event)">
+    [placeholder]="placeholder" 
+    showCancelButton="never" 
+    color="light" 
+    autocomplete="on"
+    enterkeyhint="send"
+    inputmode="text"
+    type="text"
+    debounce="500"
+    (ionChange)="onChange($event)">
 </ion-searchbar>
 
-<ion-content class="ion-padding">
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -25,9 +24,8 @@
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
   
-</ion-content>
-<ion-fab class="boton-flotante" horizontal="end" vertical="end" slot="fixed">
+<ion-fab class="boton-flotante" horizontal="end" vertical="end" slot="fixed"  (click)="agregar()">
   <ion-fab-button color="primary">
-    <ion-icon name="add" (click)="agregar()"></ion-icon>
+    <ion-icon name="add"></ion-icon>
   </ion-fab-button>
 </ion-fab>

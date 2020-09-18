@@ -4,6 +4,9 @@ import { CardInmuebleComponent } from '../Components/card-inmueble/card-inmueble
 import { InmueblesService } from '../Services/inmuebles.service';
 import { CardUsuarioComponent } from '../Components/card-usuario/card-usuario.component';
 import { ContactosService } from '../Services/contactos.service';
+import { FormRegistroPropiedadPage } from '../form-registro-propiedad/form-registro-propiedad.page';
+import { ModalController } from '@ionic/angular';
+import { FormInvitacionPage } from '../form-invitacion/form-invitacion.page';
 
 @Component({
   selector: 'app-list',
@@ -21,7 +24,8 @@ export class ListPage implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private contactosService:ContactosService,
-    private inmuebleService:InmueblesService
+    private inmuebleService:InmueblesService,
+    private modalCtrl:ModalController
     ) { }
 
   ngOnInit() {
@@ -63,12 +67,21 @@ export class ListPage implements OnInit {
     } 
   }
 
-  agregar(){
+  async agregar(){
     if(this.tipo === 'inmueble'){
-      this.router.navigate(['/form-registro-propiedad']);
+      //this.router.navigate(['/form-registro-propiedad']);
+      const modalUsuario = await this.modalCtrl.create({ 	
+        component: FormRegistroPropiedadPage,							
+      }); 							
+      await modalUsuario.present(); 
+      const {data} = await modalUsuario.onDidDismiss(); 	
     }else if(this.tipo === 'contacto'){
       //redirigir a form-invitacion
-      this.router.navigate(['/form-invitacion']);
+      const modalPage = await this.modalCtrl.create({ 	
+        component: FormInvitacionPage						
+      }); 							
+      await modalPage.present(); 
+      const {data} = await modalPage.onDidDismiss(); 	
     }    
   }
 }

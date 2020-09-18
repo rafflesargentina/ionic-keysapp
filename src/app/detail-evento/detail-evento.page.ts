@@ -8,6 +8,7 @@ import { Inmueble } from '../models/inmueble';
 import { Usuario } from '../models/usuario';
 import { ContactosService } from '../Services/contactos.service';
 import { ParametrosService } from '../Services/global/parametros.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-detail-evento',
@@ -30,7 +31,8 @@ export class DetailEventoPage implements OnInit {
     private usuarioService:UsuarioService,
     private contactosSerivce:ContactosService,
     private route:ActivatedRoute,
-    private parametrosService:ParametrosService
+    private parametrosService:ParametrosService,
+    private navCtrl:NavController
   ) { 
 
   }
@@ -39,6 +41,10 @@ export class DetailEventoPage implements OnInit {
     this.evento = new Evento();
     this.clienteAsignado = new Usuario();
     this.inmuebleAsignado = new Inmueble();
+  }
+
+  atras(){
+    this.navCtrl.back();
   }
 
   ionViewDidEnter(){

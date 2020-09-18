@@ -60,6 +60,14 @@ export class BaseCRUDService {
   }
 
   get(id){
+    this.httpParams = new HttpParams();
+
+    this.options = {
+      headers: this.httpHeaders,
+      params: this.httpParams   
+    };  
+    
+    console.log("!!!!???")
     return this.httpClient.get(this.getEndpoint()+"/"+id, this.options) .pipe(
       retry(0),
       catchError(this.handleError)
@@ -69,7 +77,7 @@ export class BaseCRUDService {
   all(page){      
     
     this.httpParams = new HttpParams()
-    .set('perPage', "5") 
+    .set('perPage', " 15") 
     .set('page', page)
 
     this.options = {

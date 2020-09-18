@@ -8,6 +8,7 @@ import { ContactosService } from '../Services/contactos.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Usuario } from '../models/usuario';
 import { Inmueble } from '../models/inmueble';
+import { FormRegistroPropiedadPage } from '../form-registro-propiedad/form-registro-propiedad.page';
 
 @Component({
   selector: 'app-select',
@@ -93,7 +94,12 @@ export class SelectPage implements OnInit {
       this.item = data;
       console.log('Retorno del modal Invitacion', data); 	
     }else{
-      console.log('aqui deberia ir al form-registro-propiedad como modal ');
+      const modalUsuario = await this.modalCtrl.create({ 	
+        component: FormRegistroPropiedadPage,							
+      }); 							
+      await modalUsuario.present(); 
+      const {data} = await modalUsuario.onDidDismiss(); 	
+      this.item = data;
     }
   }
 

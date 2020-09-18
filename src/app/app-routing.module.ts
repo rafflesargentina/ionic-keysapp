@@ -78,7 +78,7 @@ const routes: Routes = [
   }, 
   
   {
-    path: 'detail-contacto',
+    path: 'detail-contacto/:id',
     loadChildren: () => import('./detail-contacto/detail-contacto.module').then( m => m.DetailContactoPageModule)
   },
   {
@@ -90,7 +90,7 @@ const routes: Routes = [
     loadChildren: () => import('./list-invitaciones/list-invitaciones.module').then( m => m.ListInvitacionesPageModule)
   },
   {
-    path: 'detail-inmueble',
+    path: 'detail-inmueble/:id',
     loadChildren: () => import('./detail-inmueble/detail-inmueble.module').then( m => m.DetailInmueblePageModule)
   },
 

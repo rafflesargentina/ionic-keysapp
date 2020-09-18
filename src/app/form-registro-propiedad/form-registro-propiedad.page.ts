@@ -86,6 +86,7 @@ export class FormRegistroPropiedadPage implements OnInit {
 
     this.inmueblesService.create(this.inmueble).subscribe(data=>{
       console.log(data);
+      this.modalCtrl.dismiss(data)
     });
     
   }
@@ -120,6 +121,11 @@ export class FormRegistroPropiedadPage implements OnInit {
     
   }
   
+
+  atras(){
+    this.modalCtrl.dismiss();
+  }
+  
   async seleccionarOperaciones(){
     const modalPage = await this.modalCtrl.create({ 	
       component: FormOperacionPage, 			
@@ -141,41 +147,6 @@ export class FormRegistroPropiedadPage implements OnInit {
     
   }
 
-  /* async eliminarOperacion(indice){
-    alert('¿Realmente desea eliminar esta operación?');
-    this.operaciones.splice(indice, 1);
-
-    console.log('eliminarOperacion', indice);
-    const toast = await this.toastCtrl.create({
-      header: 'Advertencia',
-      message: '¿Realmente desea eliminar esta operación?',
-      position: 'top',
-      color: "warning",
-      buttons: [
-       {
-          side: 'end',
-          icon: 'close-circle',
-          text: 'cancel',
-          role: 'cancel',
-          handler: () => {
-            //console.log('Cancel clicked')
-          }
-        },
-        {
-          side: 'end',
-          icon: 'checkmark-circle',
-          text: 'ok',
-          role: 'acept',
-          handler: () =>{
-            //console.log('ok clicked');
-            this.operaciones.splice(indice, 1);
-            //console.log('operaciones', this.operaciones);
-          }
-        }
-      ]
-    });
-    toast.present();
-  }*/
   
   async eliminarOperacion(indice) {
     const alert = await this.alertCtrl.create({

@@ -34,21 +34,24 @@ export class ListBaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.actualizar();
+    this.actualizar(undefined);
   }
 
-  actualizar(){
+  actualizar(event){
     var service = this.service();
-    service.all(this.page).subscribe(response=>{
-      //console.log(response.data.data);
-      var elementos = response.data.data; 
-    });  
+    console.log(this.page);
     service.all(this.page).subscribe(response=>{   
       var resp:any = response;
       var elementos = resp.data.data;
       elementos.forEach(element => {
         this.items.push(element);        
       });
+
+      setTimeout(() => {
+        if(event)
+          event.target.complete();
+      }, 500);
+
       setTimeout(
         ()=>{this.loadComponent()},
       100);
@@ -64,7 +67,7 @@ export class ListBaseComponent implements OnInit {
 
   verMas(){
     this.page++;   
-    this.actualizar(); 
+    this.actualizar(undefined); 
   }
 
   ngAfterViewInit(){
@@ -89,15 +92,14 @@ export class ListBaseComponent implements OnInit {
   doRefresh(event){ 
     this.items = [];
     this.page = 1;
-    this.actualizar();
-    setTimeout(() => {
-      event.target.complete();
-    }, 500);
+    this.actualizar(event);
+    
     
   }
 
   loadData(event){
-
+    this.page++;
+    this.actualizar(event);
   }
 
   onChange(event){
@@ -105,6 +107,7 @@ export class ListBaseComponent implements OnInit {
   }
   
   agregar(){
+    console.log("add emit")
     this.add.emit();
   }
 

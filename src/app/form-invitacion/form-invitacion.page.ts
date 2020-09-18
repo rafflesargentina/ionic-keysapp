@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastService } from '../Services/toast.service';
-import { ModalController, NavParams } from '@ionic/angular';
+import { ModalController, NavParams, NavController } from '@ionic/angular';
 import { InvitacionesService } from '../Services/invitaciones.service';
 
 @Component({
@@ -24,6 +24,7 @@ export class FormInvitacionPage implements OnInit {
     private route:ActivatedRoute,
     private toastService:ToastService,
     private modalCtrl: ModalController,
+    private navCtrl:NavController,
     private invitacionesService:InvitacionesService
   ) { 
    
@@ -56,10 +57,7 @@ export class FormInvitacionPage implements OnInit {
   }
 
   async volver(event){
-    if(this.isModal){
-      console.log('volver del form invitacion');
-    await this.modalCtrl.dismiss();	
-    }  
+    await this.modalCtrl.dismiss();	 
   }
 
 }

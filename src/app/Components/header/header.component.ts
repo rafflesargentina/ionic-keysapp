@@ -31,8 +31,7 @@ export class HeaderComponent implements OnInit {
   }
 
   atras(){
-    this.volver.emit();
-    this.navCtrl.back();  
+    this.volver.emit(); 
   }
 
 }
