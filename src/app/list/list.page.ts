@@ -4,6 +4,8 @@ import { CardInmuebleComponent } from '../Components/card-inmueble/card-inmueble
 import { InmueblesService } from '../Services/inmuebles.service';
 import { CardUsuarioComponent } from '../Components/card-usuario/card-usuario.component';
 import { ContactosService } from '../Services/contactos.service';
+import { CardSucursalComponent } from '../Components/card-sucursal/card-sucursal.component';
+import { SucursalesService } from '../Services/sucursales.service';
 import { FormRegistroPropiedadPage } from '../form-registro-propiedad/form-registro-propiedad.page';
 import { ModalController } from '@ionic/angular';
 import { FormInvitacionPage } from '../form-invitacion/form-invitacion.page';
@@ -28,6 +30,8 @@ export class ListPage implements OnInit {
     private route: ActivatedRoute,
     private contactosService:ContactosService,
     private inmuebleService:InmueblesService,
+    private sucursalesService:SucursalesService,
+    private inmuebleService:InmueblesService,
     private llavesService:LlavesService,
     private modalCtrl:ModalController
     ) { }
@@ -45,6 +49,10 @@ export class ListPage implements OnInit {
       case 'inmueble':
         this.titulo = 'Listado de Inmuebles';
         this.itemComponent = CardInmuebleComponent;
+      break;
+      case 'sucursal':
+        this.titulo = 'Lista de Sucursales';
+        this.itemComponent = CardSucursalComponent;
       break;
       case 'llave':
         this.titulo = 'Listado de Llaves';
@@ -64,6 +72,8 @@ export class ListPage implements OnInit {
         return this.inmuebleService;
       case 'llave':
         return this.llavesService;
+      case 'sucursal':
+        return this.sucursalesService;
       default:
         console.log('tipo no definido');
       break;      

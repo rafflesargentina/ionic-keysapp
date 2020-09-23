@@ -1,9 +1,45 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-    <app-header [titulo]="'Formulario Sucursal'" [icono]="'back'"></app-header>
+    <app-header [titulo]="titulo" [icono]="'back'"></app-header>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="ion-padding">
+  <!--titulos-->
+  <div class="div1">
+    <h1 >Registrá una Sucursal</h1>
+  </div>
+  <form [formGroup]="datosForm">
+    <!--nombre-->
+    <ion-item [class.invalid]="submitted && !datosForm.controls.name.valid">
+      <ion-label position="floating">Nombre</ion-label>     
+      <ion-input name="nombre" type="text" formControlName="name" 
+                  required ></ion-input>
+      <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+          <div *ngIf="f.name.errors.required"><h5>Ingresa un Nombre</h5></div>
+      </div>
+    </ion-item>
+    <ion-item [class.invalid]="submitted && !datosForm.controls.address.valid">
+      <app-input-ubicacion          
+        [country]="sucursal.address.country"
+        [street_number]="sucursal.address.street_number"
+        [street_name] ="sucursal.address.street_name" 
+        [locality]="sucursal.address.locality"
+        [state] ="sucursal.address.state"
+        [door_number]="sucursal.address.door_number"  
+        [floor_number]="sucursal.address.floor_number" 
+        [latitud]="sucursal.address.lat" 
+        [longitud]="sucursal.address.lng"  
+        [location]="sucursal.address.location"      
+        (onSelectValue)='setValue($event)' >
+      </app-input-ubicacion> 
+    </ion-item>
+    <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+      <div *ngIf="f.address.errors.required"><h5>Ingresa una Dirección</h5></div>
+    </div>
+    <ion-footer position="fixed-bottom">
+      <!--boton submit-->
+      <ion-button type="submit" expand="block" (click)="registrar()">Guardar</ion-button> 
+    </ion-footer>
+  </form>
 </ion-content>
