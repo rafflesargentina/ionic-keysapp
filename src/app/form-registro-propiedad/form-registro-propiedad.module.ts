@@ -19,6 +19,7 @@ import { FormOperacionPage } from '../form-operacion/form-operacion.page';
   entryComponents: [SelectPage, FormOperacionPage], //para manejar los modales de selección
   imports: [
     CommonModule,
+    ComponentsModule,
     FormsModule,
     ReactiveFormsModule,
     IonicModule,

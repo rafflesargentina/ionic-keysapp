@@ -3,10 +3,15 @@ export class Inmueble{
     public id="";
     public owner_id ="";
     public property_type_id ="";
+    public property_type = {
+        name:""
+    }
     public name = "";
     public operations = [];
     public description ="";
-
+    public owner = {
+        name:""
+    }
     public address = {
         country:"",
         locality:"",

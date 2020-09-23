@@ -53,7 +53,11 @@ export class FormSucursalPage implements OnInit {
     this.sucursalesService.create(this.sucursal).subscribe(data=>{
       console.log(data);
     });
-    
+    this.modalCtrl.dismiss();
+  }
+
+  atras(){
+    this.modalCtrl.dismiss();
   }
 
   setValue(newValue: any){

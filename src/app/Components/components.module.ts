@@ -29,6 +29,7 @@ imports: [
     CardInmuebleComponent,
     CardUsuarioComponent,
     CardSucursalComponent,
+    InputUbicacionComponent,
     ItemDirective
   ],
   exports: [
@@ -39,6 +40,7 @@ imports: [
     CardInmuebleComponent,
     CardUsuarioComponent,
     CardSucursalComponent,
+    InputUbicacionComponent,
     ItemDirective
   ]
 })

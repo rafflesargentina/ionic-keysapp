@@ -131,6 +131,7 @@ export class FormLlavePage implements OnInit {
         console.log('llavesService.create', resp);
       })
     } 
+    this.modalCtrl.dismiss();
     
   }
 

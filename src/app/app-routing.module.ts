@@ -93,6 +93,15 @@ const routes: Routes = [
     path: 'detail-inmueble/:id',
     loadChildren: () => import('./detail-inmueble/detail-inmueble.module').then( m => m.DetailInmueblePageModule)
   },
+  {
+    path: 'detail-llave/:id',
+    loadChildren: () => import('./detail-llave/detail-llave.module').then( m => m.DetailLlavePageModule)
+  },
+  {
+    path: 'detail-sucursal/:id',
+    loadChildren: () => import('./detail-sucursal/detail-sucursal.module').then( m => m.DetailSucursalPageModule)
+  },
+
 
 
 

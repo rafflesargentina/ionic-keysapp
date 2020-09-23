@@ -5,5 +5,34 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  {{inmueble.name}}
+
+  <ion-item>
+    {{inmueble.name}}
+  </ion-item>
+  <ion-item>
+    Tipo:
+    {{inmueble.property_type.name}}
+  </ion-item>  
+  <ion-item>
+    Propietario:
+    {{inmueble.owner.name}}
+  </ion-item>
+  
+ 
+ 
+
+  <app-input-ubicacion          
+    [country]="inmueble.address.country"
+    [street_number]="inmueble.address.street_number"
+    [street_name] ="inmueble.address.street_name" 
+    [locality]="inmueble.address.locality"
+    [state] ="inmueble.address.state"
+    [door_number]="inmueble.address.door_number"  
+    [floor_number]="inmueble.address.floor_number" 
+    [latitud]="inmueble.address.lat" 
+    [longitud]="inmueble.address.lng"  
+    [location]="inmueble.address.location"      
+    (onSelectValue)='setValue($event)' >
+  </app-input-ubicacion>
+
 </ion-content>

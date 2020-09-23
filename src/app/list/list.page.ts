@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Type } from '@angular/core';
+import { Component, OnInit, Input, Type, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CardInmuebleComponent } from '../Components/card-inmueble/card-inmueble.component';
 import { InmueblesService } from '../Services/inmuebles.service';
@@ -12,6 +12,8 @@ import { FormInvitacionPage } from '../form-invitacion/form-invitacion.page';
 import { CardLlaveComponent } from '../Components/card-llave/card-llave.component';
 import { LlavesService } from '../Services/llaves.service';
 import { FormLlavePage } from '../form-llave/form-llave.page';
+import { FormSucursalPage } from '../form-sucursal/form-sucursal.page';
+import { ListBaseComponent } from '../Components/list-base/list-base.component';
 
 @Component({
   selector: 'app-list',
@@ -19,6 +21,8 @@ import { FormLlavePage } from '../form-llave/form-llave.page';
   styleUrls: ['./list.page.scss'],
 })
 export class ListPage implements OnInit {
+
+  @ViewChild(ListBaseComponent) listBase:ListBaseComponent;
 
   itemComponent:Type<any> = CardInmuebleComponent;
   
@@ -79,6 +83,10 @@ export class ListPage implements OnInit {
     }    
   }
 
+  atras(){
+    this.modalCtrl.dismiss();
+  }
+
 
   seleccionar(item){
     if(item != undefined){
@@ -87,28 +95,33 @@ export class ListPage implements OnInit {
   }
 
   async agregar(){
+    let modal:any;
+
     if(this.tipo === 'inmueble'){
-      //this.router.navigate(['/form-registro-propiedad']);
-      const modalUsuario = await this.modalCtrl.create({ 	
+      modal = await this.modalCtrl.create({ 	
         component: FormRegistroPropiedadPage,							
-      }); 							
-      await modalUsuario.present(); 
-      const {data} = await modalUsuario.onDidDismiss(); 	
+      }); 						
+      	
     }else if(this.tipo === 'contacto'){
-      //redirigir a form-invitacion
-      const modalPage = await this.modalCtrl.create({ 	
+      modal = await this.modalCtrl.create({ 	
         component: FormInvitacionPage						
       }); 							
-      await modalPage.present(); 
-      const {data} = await modalPage.onDidDismiss(); 	
+     
     }    
     else if(this.tipo === 'llave'){
-      //redirigir a form-invitacion
-      const modalPage = await this.modalCtrl.create({ 	
+      modal = await this.modalCtrl.create({ 	
         component: FormLlavePage						
-      }); 							
-      await modalPage.present(); 
-      const {data} = await modalPage.onDidDismiss(); 	
-    }    
+      }); 	
+    }   
+    else if(this.tipo === 'sucursal'){
+      //redirigir a form-invitacion
+      modal = await this.modalCtrl.create({ 	
+        component: FormSucursalPage						
+      }); 						
+    } 
+    await modal.present(); 
+    await modal.onDidDismiss().then(data=>{
+      this.listBase.doRefresh(undefined);
+    }); 
   }
 }
