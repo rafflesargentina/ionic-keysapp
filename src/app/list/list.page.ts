@@ -31,7 +31,6 @@ export class ListPage implements OnInit {
     private contactosService:ContactosService,
     private inmuebleService:InmueblesService,
     private sucursalesService:SucursalesService,
-    private inmuebleService:InmueblesService,
     private llavesService:LlavesService,
     private modalCtrl:ModalController
     ) { }

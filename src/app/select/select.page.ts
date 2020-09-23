@@ -14,6 +14,7 @@ import { CardLlaveComponent } from '../Components/card-llave/card-llave.componen
 import { FormLlavePage } from '../form-llave/form-llave.page';
 import { CardSucursalComponent } from '../Components/card-sucursal/card-sucursal.component';
 import { SucursalesService } from '../Services/sucursales.service';
+import { FormSucursalPage } from '../form-sucursal/form-sucursal.page';
 
 @Component({
   selector: 'app-select',
@@ -127,6 +128,15 @@ export class SelectPage implements OnInit {
     if(this.tipo == 'llave'){
       const modal = await this.modalCtrl.create({ 	
         component: FormLlavePage,							
+      }); 							
+      await modal.present(); 
+      const {data} = await modal.onDidDismiss(); 	
+      this.item = data;
+    }
+
+    if(this.tipo == 'sucursal'){
+      const modal = await this.modalCtrl.create({ 	
+        component: FormSucursalPage,							
       }); 							
       await modal.present(); 
       const {data} = await modal.onDidDismiss(); 	
