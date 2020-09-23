@@ -76,7 +76,7 @@ export class AppComponent implements OnInit {
       
         if (state) {
                    
-          this.router.navigate(['/calendario']);     
+         // this.router.navigate(['/calendario']);     
 
           if (this.platform.is('cordova')) {
             this.fcm.subscribeToTopic('general');

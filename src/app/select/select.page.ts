@@ -9,6 +9,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Usuario } from '../models/usuario';
 import { Inmueble } from '../models/inmueble';
 import { FormRegistroPropiedadPage } from '../form-registro-propiedad/form-registro-propiedad.page';
+import { LlavesService } from '../Services/llaves.service';
+import { CardLlaveComponent } from '../Components/card-llave/card-llave.component';
+import { FormLlavePage } from '../form-llave/form-llave.page';
 
 @Component({
   selector: 'app-select',
@@ -17,7 +20,7 @@ import { FormRegistroPropiedadPage } from '../form-registro-propiedad/form-regis
 })
 export class SelectPage implements OnInit {
   itemComponent:Type<any> = CardInmuebleComponent;
-  item: Usuario;
+  item:any;
   @Input() tipo: string;
   titulo: string = '';
   
@@ -26,6 +29,7 @@ export class SelectPage implements OnInit {
     private route: ActivatedRoute,
     private contactosService:ContactosService,
     private inmuebleService:InmueblesService,
+    private llavesService:LlavesService,
     private modalCtrl: ModalController,
     ) { }
 
@@ -39,6 +43,10 @@ export class SelectPage implements OnInit {
       case 'property':
         this.titulo = 'Selección de Inmueble';
         this.itemComponent = CardInmuebleComponent;
+      break;
+      case 'llaves':
+        this.titulo = 'Selección de Llave';
+        this.itemComponent = CardLlaveComponent;
       break;
       case 'customer':
         this.titulo = "Selección de Propietario";
@@ -56,6 +64,8 @@ export class SelectPage implements OnInit {
         return this.contactosService;
       case 'property':
         return this.inmuebleService;
+      case 'llave':
+        return this.llavesService;
       case 'customer':
         return this.contactosService;
       default:
@@ -73,7 +83,7 @@ export class SelectPage implements OnInit {
 
   async agregar(event){
     console.log('agregar');
-    this.modalInvitacion();
+    this.add();
     if(this.item){
       this.modalCtrl.dismiss({
         data: this.item
@@ -81,24 +91,36 @@ export class SelectPage implements OnInit {
     }
   }
 
-  async modalInvitacion(){
-    if(this.tipo != 'property'){
-      const modalUsuario = await this.modalCtrl.create({ 	
+  async add(){
+
+    if(this.tipo == 'contact'){
+      const modal = await this.modalCtrl.create({ 	
         component: FormInvitacionPage, 			
         componentProps: { 				
           rol: this.tipo				
         } 							
       }); 							
-      await modalUsuario.present(); 
-      const {data} = await modalUsuario.onDidDismiss(); 	
+      await modal.present(); 
+      const {data} = await modal.onDidDismiss(); 	
       this.item = data;
       console.log('Retorno del modal Invitacion', data); 	
-    }else{
-      const modalUsuario = await this.modalCtrl.create({ 	
+    }
+
+    if(this.tipo == 'property'){
+      const modal = await this.modalCtrl.create({ 	
         component: FormRegistroPropiedadPage,							
       }); 							
-      await modalUsuario.present(); 
-      const {data} = await modalUsuario.onDidDismiss(); 	
+      await modal.present(); 
+      const {data} = await modal.onDidDismiss(); 	
+      this.item = data;
+    }
+
+    if(this.tipo == 'llave'){
+      const modal = await this.modalCtrl.create({ 	
+        component: FormLlavePage,							
+      }); 							
+      await modal.present(); 
+      const {data} = await modal.onDidDismiss(); 	
       this.item = data;
     }
   }

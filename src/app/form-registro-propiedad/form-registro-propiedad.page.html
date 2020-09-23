@@ -90,6 +90,15 @@
         </ion-item> 
       </ion-list>
       <br>
+      <!--ion-button expand="block" (click)="agregarLlave()">Agregar Llave</ion-button>
+      <ion-list *ngIf="llaves.length > 0" >
+        <ion-item *ngFor="let llave of llaves; let i = index;">
+          <ion-label>
+            <h2 size="10">{{llave.number}}</h2>
+          </ion-label>
+          <ion-icon name="trash" color="danger" slot="end" (click)="eliminarllave(i)" size="2"></ion-icon>
+        </ion-item> 
+      </ion-list-->
       <!--descripcion-->
       <ion-item>
         <ion-label position="floating">Descripción</ion-label>

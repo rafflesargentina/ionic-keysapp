@@ -32,7 +32,21 @@ export class BaseCRUDService {
     public usuarioService:UsuarioService,
     public toastService:ToastService
   ) {
+    
     this.url = environment.url;
+
+    this.usuarioService.getActualUserObservable().subscribe(data=>{
+
+      this.httpHeaders = new HttpHeaders({
+        'Content-Type' : 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + this.usuarioService.getToken()
+      });
+      this.options = {
+        headers: this.httpHeaders,
+        params: this.httpParams
+      };
+    })
   } 
 
   setEndpoint(endpoint){

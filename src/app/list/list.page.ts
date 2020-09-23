@@ -7,6 +7,9 @@ import { ContactosService } from '../Services/contactos.service';
 import { FormRegistroPropiedadPage } from '../form-registro-propiedad/form-registro-propiedad.page';
 import { ModalController } from '@ionic/angular';
 import { FormInvitacionPage } from '../form-invitacion/form-invitacion.page';
+import { CardLlaveComponent } from '../Components/card-llave/card-llave.component';
+import { LlavesService } from '../Services/llaves.service';
+import { FormLlavePage } from '../form-llave/form-llave.page';
 
 @Component({
   selector: 'app-list',
@@ -25,6 +28,7 @@ export class ListPage implements OnInit {
     private route: ActivatedRoute,
     private contactosService:ContactosService,
     private inmuebleService:InmueblesService,
+    private llavesService:LlavesService,
     private modalCtrl:ModalController
     ) { }
 
@@ -42,6 +46,10 @@ export class ListPage implements OnInit {
         this.titulo = 'Listado de Inmuebles';
         this.itemComponent = CardInmuebleComponent;
       break;
+      case 'llave':
+        this.titulo = 'Listado de Llaves';
+        this.itemComponent = CardLlaveComponent;
+      break;
       default:
         console.log('tipo no definido');
       break;      
@@ -54,6 +62,8 @@ export class ListPage implements OnInit {
         return this.contactosService;
       case 'inmueble':
         return this.inmuebleService;
+      case 'llave':
+        return this.llavesService;
       default:
         console.log('tipo no definido');
       break;      
@@ -79,6 +89,14 @@ export class ListPage implements OnInit {
       //redirigir a form-invitacion
       const modalPage = await this.modalCtrl.create({ 	
         component: FormInvitacionPage						
+      }); 							
+      await modalPage.present(); 
+      const {data} = await modalPage.onDidDismiss(); 	
+    }    
+    else if(this.tipo === 'llave'){
+      //redirigir a form-invitacion
+      const modalPage = await this.modalCtrl.create({ 	
+        component: FormLlavePage						
       }); 							
       await modalPage.present(); 
       const {data} = await modalPage.onDidDismiss(); 	

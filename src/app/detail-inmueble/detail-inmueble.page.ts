@@ -22,7 +22,7 @@ export class DetailInmueblePage implements OnInit {
     private navCtrl:NavController
     ) {
       this.inmueble = new Inmueble();
-     }
+    }
 
   ngOnInit() {
 

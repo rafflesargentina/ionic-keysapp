@@ -14,6 +14,8 @@ import { FormOperacionPage } from '../form-operacion/form-operacion.page';
 import { Operacion } from '../models/operacion';
 import { InmueblesService } from '../Services/inmuebles.service';
 import { UsuarioService } from '../Services/usuario.service';
+import { Llave } from '../models/llave';
+import { FormLlavePage } from '../form-llave/form-llave.page';
 
 @Component({
   selector: 'app-form-registro-propiedad',
@@ -25,12 +27,10 @@ export class FormRegistroPropiedadPage implements OnInit {
   //currencies: string[] = ['Dólares U$S', 'Pesos $'];
   segment: string = 'first';
   public operaciones:Operacion[] = [];
+  public llaves:Llave[]=[];
   tipos = [];
   titulo: string = 'Registro de Inmuebles'
   public inmueble:Inmueble;
-  //sale_operation: boolean = false;
-  //rental_operation: boolean = false;
-  //temp_rental_operation: boolean = false;
 
   public propietarioAsignado:Usuario;
   datosForm: FormGroup;
@@ -79,16 +79,14 @@ export class FormRegistroPropiedadPage implements OnInit {
   registrar(){
 
     this.submitted = true;
-
     this.inmueble.asignarValores(this.datosForm.value);
     this.inmueble.operations = this.operaciones;
     console.log(this.inmueble); 
 
     this.inmueblesService.create(this.inmueble).subscribe(data=>{
       console.log(data);
-      this.modalCtrl.dismiss(data)
-    });
-    
+      this.modalCtrl.dismiss(data);
+    });    
   }
   
   eliminarPropietario(){
@@ -116,14 +114,53 @@ export class FormRegistroPropiedadPage implements OnInit {
         owner_id: resp.data.cliente.id
       })
     });
-    modal.present();
-
-    
+    modal.present();   
   }
   
 
   atras(){
     this.modalCtrl.dismiss();
+  }
+
+  async agregarLlave(){
+    const modalPage = await this.modalCtrl.create({ 	
+      component: FormLlavePage, 			
+      componentProps: { 					
+        //datos que viajan al modal en modo clave: valor,			
+      },
+    });
+    await modalPage.present();
+    const {data} = await modalPage.onDidDismiss(); 
+    if(data !=undefined){
+      this.llaves.push(data.llave);
+    }
+    console.log('Retorno del modal', this.operaciones); 
+    
+  }
+
+  async eliminarllave(indice){
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Advertencia',
+      message: '¿Realmente desea <strong>eliminar</strong> esta llave?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            //console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Aceptar',
+          handler: () => {
+            this.llaves.splice(indice, 1);
+            //console.log('Confirm Okay'); 
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
   
   async seleccionarOperaciones(){
@@ -140,8 +177,6 @@ export class FormRegistroPropiedadPage implements OnInit {
       this.datosForm.patchValue({
         operations: true
       });
-    }else{
-      this.toast.mensajeRojo('Error', 'Debe seleccionar al menos un tipo de operación');
     }
     console.log('Retorno del modal', this.operaciones); 
     
@@ -170,7 +205,6 @@ export class FormRegistroPropiedadPage implements OnInit {
         }
       ]
     });
-
     await alert.present();
   }
 
